@@ -1,0 +1,10 @@
+INPUT: carbonate PFD.inm
+MODNAME: apmain
+RUNID: carbonate PFD
+NEW_RUNID: carbonate PFD
+OLD_RUNID: carbonate PFD
+PDF: carbonate PFD.appdf
+USERNAME: benjam2
+XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V8.6\Engine\xeq\apmain
+SPONLY:
+DBCONN: C:\Users\benjam2\Dropbox\spring 2020\Capstone\Aspen\Outbound\Carbonate PFD\carbonate PFD.ads

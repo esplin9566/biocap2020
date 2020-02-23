@@ -1,0 +1,1167 @@
+MM "32.0" FLAVOR "NO" VERSION "32.0" DATETIME "Thu Feb 06 20:02:49 2020" 
+MACHINE "WIN-NT/VC"  ; 
+startlibrary
+version1
+NumLibs = 2
+Built-In
+ACM Built-In
+NumCats = 10
+Mixers/Splitters
+active
+Separators
+active
+Exchangers
+active
+Columns
+active
+Reactors
+active
+Pressure Changers
+active
+Manipulators
+active
+Solids
+active
+Solids Separators
+active
+User Models
+active
+endlibrary
+; 
+11
+>VERSION 0
+REACTOR1
+RStoic
+Built-In
+RSTOIC
+>VERSION 0
+FILTER1
+Sep
+Built-In
+SEP
+>VERSION 0
+DECANTER
+Decanter
+Built-In
+DECANTER
+>VERSION 0
+HX1
+HeatX
+Built-In
+HEATX
+>VERSION 0
+DISTILL1
+Sep2
+Built-In
+SEP2
+>VERSION 0
+M101
+Mixer
+Built-In
+MIXER
+>VERSION 0
+H101
+Heater
+Built-In
+HEATER
+>VERSION 0
+M102
+Mixer
+Built-In
+MIXER
+>VERSION 0
+DISTILL2
+Sep2
+Built-In
+SEP2
+>VERSION 0
+M103
+Mixer
+Built-In
+MIXER
+>VERSION 0
+H102
+Heater
+Built-In
+HEATER
+? SETUP MAIN ? \ "RUN-CLASS" RUN-CLASS = FLOWSHEET \ \ SIMULATE INTERACTIVE
+ = NO MOLEFLOW = MOLEFLOW \ ? SETUP GLOBAL ? \ "IN-UNITS" INSET = METCBAR \ ? 
+SETUP DIAGNOSTICS ? ? SETUP "SIM-OPTIONS" ? ; "METCBAR_MOLE" ; \ "SIM-OPTIONS" 
+\ ? SETUP "MODEL-OPTION" ? ; "METCBAR_MOLE" ; ? SETUP "UNITS-SET" METCBAR ? \ 
+DESCRIPTION DESCRIPTION = "User-defined units set" \ \ MMLOCAL \ \ UNITSET 
+BASESET = MET ( 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 5 3 4 3 3 3 3 3 3 3 3 4 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 5 3 3 3 3 3 3 5 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 ) \ ? 
+COMPONENTS MAIN ? ? COMPONENTS "ADA/PCS" "LE-PROP-DATA" ? ; "METCBAR_MOLE" ; 
+? COMPONENTS "COMP-LIST" GLOBAL ? ? COMPONENTS "UNIFAC-GROUP" ? ? SOLVE ? \ 
+"RUN-MODE" MODE = SIM \ ? "DYN-OPTIONS" ? ? FLOWSHEET GLOBAL ? \ BLOCK BLKID
+ = REACTOR1 BLKTYPE = RSTOIC MDLTYPE = "RStoic" IN = ( S102 M0-1 S109 M0-1 ) 
+OUT = ( S103 M0-1 ) \ \ BLOCK BLKID = FILTER1 BLKTYPE = SEP MDLTYPE = "Sep" 
+IN = ( S103 M0-1 ) OUT = ( R101 M0-1 S104 M0-1 ) \ \ BLOCK BLKID = DECANTER 
+BLKTYPE = DECANTER MDLTYPE = "Decanter" IN = ( S104 M0-1 ) OUT = ( S105 M1-2 
+S106 M0-1 ) \ \ BLOCK BLKID = HX1 BLKTYPE = HEATX MDLTYPE = "HeatX" IN = ( 
+S106 M1-2 P102 M0-1 ) OUT = ( S107 M1-2 P103 M0-1 ) \ \ BLOCK BLKID = 
+DISTILL1 BLKTYPE = SEP2 MDLTYPE = "Sep2" IN = ( S107 M0-1 ) OUT = ( P102 M1-2 
+R103 M0-1 ) \ \ BLOCK BLKID = M101 BLKTYPE = MIXER MDLTYPE = "Mixer" IN = ( 
+OIL M0-1 METHANOL M0-1 R105 M0-1 ) OUT = ( S101 M0-1 ) \ \ BLOCK BLKID = H101 
+BLKTYPE = HEATER MDLTYPE = "Heater" IN = ( S101 M0-1 ) OUT = ( S102 M0-1 ) \ 
+\ BLOCK BLKID = M102 BLKTYPE = MIXER MDLTYPE = "Mixer" IN = ( CAO M0-1 R101 
+M0-1 ) OUT = ( S108 M0-1 ) \ \ BLOCK BLKID = DISTILL2 BLKTYPE = SEP2 MDLTYPE
+ = "Sep2" IN = ( S105 M0-1 ) OUT = ( P101 M1-2 R104 M0-1 ) \ \ BLOCK BLKID = 
+M103 BLKTYPE = MIXER MDLTYPE = "Mixer" IN = ( R103 M0-1 R104 M0-1 ) OUT = ( 
+R105 M0-1 ) \ \ BLOCK BLKID = H102 BLKTYPE = HEATER MDLTYPE = "Heater" IN = ( 
+S108 M0-1 ) OUT = ( S109 M0-1 ) \ ? PROPERTIES MAIN ? \ GPROPERTIES PARCON = 
+-2 \ ? PROPERTIES PARAMETERS BINARY SCALAR "MLQKIJ-1" ? ; "ENG_MOLE" ; \ 
+PROP-LIST PARAMNAME = MLQKIJ SETNO = 1 \ ? PROPERTIES PARAMETERS BINARY 
+SCALAR "RKTKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = RKTKIJ SETNO = 1 \ 
+? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "ANDKIJ-1" ? ; "ENG_MOLE" ; \ 
+PROP-LIST PARAMNAME = ANDKIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL
+ = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "ANDMIJ-1" ? ; 
+"ENG_MOLE" ; \ PROP-LIST PARAMNAME = ANDMIJ SETNO = 1 UNITROW = 0 TUNITROW = 
+22 TUNITLABEL = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" 
+"MUKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = MUKIJ SETNO = 1 UNITROW = 0 
+TUNITROW = 22 TUNITLABEL = F NEL = 6 \ ? PROPERTIES PARAMETERS BINARY 
+"T-DEPENDENT" "MULIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = MULIJ SETNO
+ = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 11 \ ? PROPERTIES 
+"ATTR-COMPS" ? ? POLYMERS ? ? "STREAM-NAMES" ? ? BLOCK MIXER M101 ? ; 
+"METCBAR_MOLE" ; ; TRIANGLE ; \ PARAM VISITED = 1 \ ? BLOCK MIXER M102 ? ; 
+"METCBAR_MOLE" ; ; TRIANGLE ; \ PARAM VISITED = 1 \ ? BLOCK MIXER M103 ? ; 
+"METCBAR_MOLE" ; ; TRIANGLE ; \ PARAM VISITED = 1 \ ? BLOCK SEP FILTER1 ? ; 
+"METCBAR_MOLE" ; ; ICON1 ; \ PARAM1 FLAG = 1 \ ? BLOCK SEP2 DISTILL1 ? ; 
+"METCBAR_MOLE" ; ; ICON2 ; ? BLOCK SEP2 DISTILL2 ? ; "METCBAR_MOLE" ; ; ICON2 
+; ? BLOCK HEATER H101 ? ; "METCBAR_MOLE" ; ; HEATER ; ? BLOCK HEATER H102 ? ; 
+"METCBAR_MOLE" ; ; HEATER ; ? BLOCK DECANTER DECANTER ? ; "METCBAR_MOLE" ; ; 
+"V-DRUM" ; ? BLOCK HEATX HX1 ? ; "METCBAR_MOLE" ; ; "GEN-HS" ; \ FEEDS FHOT
+ = P102 FCOLD = S106 \ \ OUTLETS-HOT HOT-SID = P103 \ \ OUTLETS-COLD COLD-SID
+ = S107 \ \ PRODUCTS PHOT = P103 PCOLD = S107 \ ? BLOCK RSTOIC REACTOR1 ? ; 
+"METCBAR_MOLE" ; ; ICON1 ; ? "EO-CONV-OPTI" ? \ DMO-PARAMS MODE = DEFAULT \ \ 
+DMO-PARAMS MODE = SIMULATION \ \ DMO-PARAMS MODE = "PARAMETER-ESTIMATION" \ \ 
+DMO-PARAMS MODE = RECONCILIATION \ \ DMO-PARAMS MODE = OPTIMIZATION \ \ 
+LSSQP-PARAMS MODE-L = DEFAULT \ \ LSSQP-PARAMS MODE-L = SIMULATION \ \ 
+LSSQP-PARAMS MODE-L = "PARAMETER-ESTIMATION" \ \ LSSQP-PARAMS MODE-L = 
+RECONCILIATION \ \ LSSQP-PARAMS MODE-L = OPTIMIZATION \ \ NSOLVE-PARAM 
+NSOLVE-MODE = DEFAULT \ \ NSOLVE-PARAM NSOLVE-MODE = SIMULATION \ \ 
+NSOLVE-PARAM NSOLVE-MODE = "PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE
+ = DEFAULT \ \ XSLP-PARAMS XSLP-MODE = SIMULATION \ \ XSLP-PARAMS XSLP-MODE
+ = "PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE = RECONCILIATION \ \ 
+XSLP-PARAMS XSLP-MODE = OPTIMIZATION \ ? REPORT "BLOCK-REPORT" ? ? REPORT 
+"STREAM-REPOR" ? \ OPTIONS MOLEFLOW = MOLEFLOW \ 
+
+ GRAPHICS_BACKUP
+PFS V 5.00
+$CONFIG
+paramdata ENRTL-RK
+paramdata VLE-IG
+paramdata VLE-RK
+paramdata VLE-HOC
+paramdata LLE-LIT
+paramdata LLE-ASPEN
+paramdata VLE-LIT
+paramdata BINARY
+paramdata EOS-LIT
+paramdata HENRY
+paramdata SRK-ASPEN
+paramdata PC-SAFT
+paramdata POLYPCSF
+paramdata HYSYS
+purebank PURE32
+purebank AQUEOUS
+purebank SOLIDS
+purebank INORGANIC
+regdbank 1
+ftn_check 1
+autoblockid 1
+autostreamid 1
+showblockid 1
+showstreamid 1
+autoplacement 1
+grid 2
+gridresolution 0.100000
+scale 0
+blockprefix B
+labelscale 1.000000
+3DOn 1
+qwformat %.0f
+tempformat %.0f
+presformat %.0f
+flowformat %.0f
+strmqwformat %.0f
+vflowformat %.0f
+mflowformat %.0f
+vfracformat %.2f
+pseudobatch 0
+partial 1
+animation 1
+runanyway 0
+globalqw 0
+globaltemp 0
+globalpres 0
+globalflow 0
+globalstrmqw 0
+globalvflow 0
+globalmflow 0
+globalvfrac 0
+tooldrawvisible 0
+browserheight 7530
+browserwidth 10725
+browsertreewidth 2450
+polyplusenabled 1
+dynaplusenabled 1
+bfracenabled 1
+rtfenabled 1
+rspenabled 1
+initializeicarus 0
+pinchenabled 0
+linklimit 5000
+material_color 0
+material_style 0
+material_width 1
+heat_color 0
+heat_style 1
+heat_width 1
+heat_termid Q
+work_color 0
+work_style 2
+work_width 1
+work_termid W
+connections_color 9
+connections_style 3
+connections_width 1
+measurements_color 4
+measurements_style 4
+measurements_width 1
+displayeoconn 0
+displaycalcs 0
+displaytransfers 0
+displaymeas 0
+displaydesignspecs 0
+displaycalccons 0
+displaymeascons 0
+displayothercons 0
+displayeomeas 1
+displayeomeastype 2
+displayothermanipconn 0
+showeoviews 0
+eoautosave 1
+lockflowsheet 0
+allow_system_userprops 0
+copy_estimation 1
+copy_retrieved 1
+purge_incomp_params 0
+set_default_biparams 0
+set_default_dataset1 0
+set_default_dataset0 1
+bestinput 0
+autosmrun 0
+genallpropset 0
+strmresformdefault 0
+roottype 1
+exchangerfile 1
+streamformat 1
+runsettingfile 1
+usermodelfile 1
+fortranfile 0
+allow_system_autoparam 1
+timeout 1000
+auto_evaluate 0
+customglobaldatapropset1 0 | Custom1 | * | %.2f | 0 | 6
+customglobaldatapropset2 0 | Custom2 | * | %.2f | 1 | 7
+customglobaldatapropset3 0 | Custom3 | * | %.2f | 2 | 8
+customglobaldatapropset4 0 | Custom4 | * | %.2f | 4 | 9
+customglobaldatapropset5 0 | Custom5 | * | %.2f | 5 | 10
+customglobaldatapropset6 0 | Custom6 | * | %.2f | 6 | 11
+economics_active 0
+ignoreEOVarNameFixupsOnImport 1
+tpsaupgrade 0
+#
+$_APWNSHELL_SETTINGS
+<CommonShellSettings xmlns="http://schemas.aspentech.com/xaml/presentation/visualisation/commonshell" xmlns:atapi="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+  <CommonShellSettings.CurrentWorkspace>
+    <ShellWorkspace Layout="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;xamDockManager version=&quot;13.1.20131.2073&quot;&gt;&#xD;&#xA;  &lt;contentPanes&gt;&#xD;&#xA;    &lt;contentPane name=&quot;FlowsheetScreenFactory&quot; location=&quot;Document&quot; lastActivatedTime=&quot;2020-02-07T01:02:43.0799162Z&quot; /&gt;&#xD;&#xA;    &lt;contentPane name=&quot;ModelLibraryScreenFactoryKey&quot; location=&quot;DockedBottom&quot; lastActivatedTime=&quot;2020-02-07T00:53:51.74883Z&quot; /&gt;&#xD;&#xA;  &lt;/contentPanes&gt;&#xD;&#xA;  &lt;panes&gt;&#xD;&#xA;    &lt;splitPane name=&quot;Zd8a5941d3369401f83c54653e396467b&quot; splitterOrientation=&quot;Vertical&quot; location=&quot;DockedBottom&quot; extent=&quot;133&quot;&gt;&#xD;&#xA;      &lt;contentPane name=&quot;ModelLibraryScreenFactoryKey&quot; /&gt;&#xD;&#xA;    &lt;/splitPane&gt;&#xD;&#xA;  &lt;/panes&gt;&#xD;&#xA;  &lt;documents splitterOrientation=&quot;Vertical&quot;&gt;&#xD;&#xA;    &lt;splitPane name=&quot;Zbccdfe836542439d826d477d6dd49157&quot; splitterOrientation=&quot;Vertical&quot;&gt;&#xD;&#xA;      &lt;tabGroup name=&quot;Z033ff3f266c04cb29135d07189dfdbe3&quot; selectedIndex=&quot;0&quot;&gt;&#xD;&#xA;        &lt;contentPane name=&quot;FlowsheetScreenFactory&quot; /&gt;&#xD;&#xA;      &lt;/tabGroup&gt;&#xD;&#xA;    &lt;/splitPane&gt;&#xD;&#xA;  &lt;/documents&gt;&#xD;&#xA;&lt;/xamDockManager&gt;" NavigationGroupToSelect="Simulation" IsNavigationPaneMinimized="False" IsRibbonMinimized="False">
+      <ShellWorkspace.Screens>
+        <WorkspaceScreenData PaneName="FlowsheetScreenFactory" ScreenFactoryKey="FlowsheetScreenFactory">
+          <WorkspaceScreenData.ScreenSubject>
+            <atapi:StringScreenSubject subject="{assembly:Null}" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" />
+          </WorkspaceScreenData.ScreenSubject>
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState Zoom="1.3900009999999998" />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+        <WorkspaceScreenData PaneName="ModelLibraryScreenFactoryKey" ScreenFactoryKey="ModelLibraryScreenFactoryKey">
+          <WorkspaceScreenData.ScreenState>
+            <ScreenState />
+          </WorkspaceScreenData.ScreenState>
+        </WorkspaceScreenData>
+      </ShellWorkspace.Screens>
+    </ShellWorkspace>
+  </CommonShellSettings.CurrentWorkspace>
+  <CommonShellSettings.SavedWorkspaces>
+    <ShellWorkspaceFolder />
+  </CommonShellSettings.SavedWorkspaces>
+</CommonShellSettings>
+$_END_APWNSHELL_SETTINGS
+#
+PFSVData
+# of PFS Objects = 44
+SIZE -2.50464 10.336 -1.60957 6.6
+BLOCK
+ID: REACTOR1
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 1.100219 1.837046
+Label At -0.003024 0.567822
+Scale 1.000000 Modifier 0
+BLOCK
+ID: FILTER1
+Version: 1
+ICON: "ICON1"
+Flag 0
+Section GLOBAL
+At 4.100000 1.852160
+Label At -0.004674 0.498448
+Scale 1.000000 Modifier 0
+BLOCK
+ID: DECANTER
+Version: 1
+ICON: "V-DRUM"
+Flag 0
+Section GLOBAL
+At 6.503136 1.779007
+Label At -0.403136 0.517574
+Scale 1.000000 Modifier 0
+BLOCK
+ID: HX1
+Version: 1
+ICON: "GEN-HS"
+Flag 0
+Section GLOBAL
+At 7.000471 3.513236
+Label At 0.275000 0.375000
+Scale 1.000000 Modifier 7
+BLOCK
+ID: DISTILL1
+Version: 1
+ICON: "ICON2"
+Flag 0
+Section GLOBAL
+At 3.693815 4.904686
+Label At -0.593815 -0.104686
+Scale 1.000000 Modifier 1
+BLOCK
+ID: M101
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At -0.700000 3.700000
+Label At 0.325000 0.375000
+Scale 1.000000 Modifier 4
+BLOCK
+ID: H101
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At -0.703785 1.807284
+Label At -0.297432 0.192716
+Scale 1.000000 Modifier 0
+BLOCK
+ID: M102
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 3.104130 -0.295465
+Label At -0.304130 0.295465
+Scale 1.000000 Modifier 5
+BLOCK
+ID: DISTILL2
+Version: 1
+ICON: "ICON2"
+Flag 0
+Section GLOBAL
+At 7.896202 0.401798
+Label At 0.603798 -0.001798
+Scale 1.000000 Modifier 0
+BLOCK
+ID: M103
+Version: 1
+ICON: "TRIANGLE"
+Flag 0
+Section GLOBAL
+At 0.504869 6.097429
+Label At -0.204869 0.502571
+Scale 1.000000 Modifier 1
+BLOCK
+ID: H102
+Version: 1
+ICON: "HEATER"
+Flag 0
+Section GLOBAL
+At 1.096903 -0.284413
+Label At 0.303097 0.284413
+Scale 1.000000 Modifier 0
+STREAM
+ID: S103
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 3.101868 1.849300
+Label At -0.441291 0.000000
+ROUTE 0 0
+r r 3.101868 1.849300 0
+x x 1.753017 1.849300 0
+y 0 1.753017 1.851264 0
+t r 1.553017 1.851264 0
+$ D 0.002087 0.239874
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 3.101868 1.849300 0
+x x 3.649639 1.849300 0
+y x 3.649639 1.851264 0
+t l 3.849639 1.851264 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: R101
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 4.121768 0.627011
+Label At 0.000000 0.063696
+ROUTE 0 0
+r r 4.121768 0.627011 0
+y y 4.121768 1.356633 0
+x 0 4.116835 1.356633 0
+t d 4.116835 1.456633 0
+$ D -0.234808 -0.394631
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 4.121768 0.627011 0
+y y 4.121768 -0.015238 0
+x x 3.519041 -0.015238 0
+t r 3.419041 -0.015238 0
+$ D 0.014605 0.279107
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: S104
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 4.953986 1.849300
+Label At 0.234284 0.000000
+ROUTE 0 0
+r r 4.953986 1.849300 0
+x x 4.451643 1.849300 0
+y 0 4.451643 1.851264 0
+t r 4.351643 1.851264 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 4.953986 1.849300 0
+x x 6.154888 1.849300 0
+y x 6.154888 1.851264 0
+t l 6.254888 1.851264 0
+$ D 0.001546 0.071367
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: S105
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 6.951325 0.404085
+Label At 0.085346 0.000000
+ROUTE 0 0
+r r 6.951325 0.404085 0
+x y 6.502650 0.404085 0
+y y 6.502650 1.281004 0
+t d 6.502650 1.381004 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 6.951325 0.404085 0
+x x 7.570691 0.404085 0
+t l 7.670691 0.404085 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: S106
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 7.000000 2.337914
+Label At 0.000000 0.058875
+ROUTE 0 0
+r r 7.000000 2.337914 0
+y x 7.000000 1.779898 0
+x 0 6.855520 1.779898 0
+t r 6.755520 1.779898 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 7.000000 2.337914 0
+y y 7.000000 3.013679 0
+t d 7.000000 3.113679 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: S107
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 5.249764 4.902288
+Label At 0.309899 0.000000
+ROUTE 0 0
+r r 5.249764 4.902288 0
+x y 7.000000 4.902288 0
+y 0 7.000000 4.111794 0
+t u 7.000000 3.911793 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 5.249764 4.902288 0
+x x 4.119327 4.902288 0
+y x 4.119327 4.906974 0
+t r 3.919326 4.906974 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: P102
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 4.738159 3.527614
+Label At 0.385571 0.000000
+ROUTE 0 0
+r r 4.738159 3.527614 0
+x y 3.695132 3.527614 0
+y 0 3.695132 3.874253 0
+t d 3.695132 4.074253 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 4.738159 3.527614 0
+x x 6.552329 3.527614 0
+t l 6.752329 3.527614 0
+$ D 0.002801 -0.197386
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: P103
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 2
+At 8.701622 3.516619
+Label At -0.621765 0.000000
+ROUTE 0 0
+r l 8.701622 3.516619 0
+x 0 7.458093 3.516619 0
+t r 7.258093 3.516619 0
+$ D 0.007622 0.216147
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: R105
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At -0.701121 5.186940
+Label At 0.000000 -0.038632
+ROUTE 0 0
+r r -0.701121 5.186940 0
+y x -0.701121 6.096309 0
+x 0 0.004563 6.096309 0
+t l 0.204563 6.096309 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -0.701121 5.186940 0
+y y -0.701121 4.200306 0
+t u -0.701121 4.000306 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: OIL
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 1
+At -2.426306 3.546143
+Label At 0.663256 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -2.426306 3.546143 0
+x x -1.034769 3.546143 0
+t l -0.834769 3.546143 0
+$ D -0.133648 -0.454163
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: METHANOL
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 1
+At -2.504639 3.880435
+Label At 0.599983 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -2.504639 3.880435 0
+x x -1.291629 3.880435 0
+t l -1.091629 3.880435 0
+$ D -0.390508 -0.119871
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: S101
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At -0.696061 2.500000
+Label At 0.000000 0.207956
+ROUTE 0 0
+r r -0.696061 2.500000 0
+y 0 -0.696061 3.311028 0
+t d -0.696061 3.411028 0
+$ D 0.005060 0.011334
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r -0.696061 2.500000 0
+y y -0.696061 2.129421 0
+t u -0.696061 2.029421 0
+$ D 0.231880 0.222870
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: S102
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 0.237500 1.806551
+Label At -0.180887 0.000000
+ROUTE 0 0
+r r 0.237500 1.806551 0
+x 0 -0.380862 1.806551 0
+t r -0.480862 1.806551 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 0.237500 1.806551 0
+x x 0.547916 1.806551 0
+t l 0.647916 1.806551 0
+$ D -0.002645 -0.256151
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: S109
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 1.097914 0.900000
+Label At 0.000000 -0.230371
+ROUTE 0 0
+r r 1.097914 0.900000 0
+y y 1.097914 0.034591 0
+x 0 1.094817 0.034591 0
+t u 1.094817 -0.065409 0
+$ D -0.225009 0.219737
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 1.097914 0.900000 0
+y y 1.097914 1.304668 0
+t d 1.097914 1.404668 0
+$ D 0.447353 -0.658034
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: P101
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 2
+At 9.600220 -1.202716
+Label At -0.852668 0.000000
+ROUTE 0 0
+r l 9.600220 -1.202716 0
+x y 7.894885 -1.202716 0
+y 0 7.894885 -0.628635 0
+t d 7.894885 -0.428635 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: R103
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 2.397566 6.038842
+Label At -0.756306 0.000000
+ROUTE 0 0
+r r 2.397566 6.038842 0
+x y 3.695132 6.038842 0
+y 0 3.695132 5.930544 0
+t u 3.695132 5.730544 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 2.397566 6.038842 0
+x x 1.022465 6.038842 0
+t r 0.822465 6.038842 0
+$ D 0.017290 -0.057466
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: R104
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 4.479836 6.460109
+Label At 5.014377 -2.595992
+ROUTE 0 0
+r r 4.479836 6.460109 0
+x y 9.494213 6.460109 0
+y y 9.494213 1.427656 0
+x 0 7.894885 1.427656 0
+t u 7.894885 1.227656 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 4.479836 6.460109 0
+x x 1.009520 6.460109 0
+t r 0.809520 6.460109 0
+$ D 0.004345 0.363801
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: CAO
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 1
+At 5.303627 -0.611491
+Label At -0.970236 0.000000
+ROUTE 0 0
+$ $ 0.0 0.0
+ROUTE 1 0
+r l 5.303627 -0.611491 0
+x x 3.619041 -0.611491 0
+t r 3.419041 -0.611491 0
+$ D 0.014605 -0.317146
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+STREAM
+ID: S108
+Version: 2
+Flag 0
+TYPE 0 TERMINAL 0
+At 1.800000 -0.294345
+Label At 0.255794 0.000000
+ROUTE 0 0
+r r 1.800000 -0.294345 0
+x 0 2.703824 -0.294345 0
+t l 2.803824 -0.294345 0
+$ C 1.000000 0.0
+$ $ 0.0 0.0
+ROUTE 1 0
+r r 1.800000 -0.294345 0
+x x 1.407764 -0.294345 0
+y x 1.407764 -0.289003 0
+t r 1.307764 -0.289003 0
+$ D 0.435018 -0.003858
+$ C 0.000000 0.0
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 1
+$ $ 0.0 0.0
+ROUTE 1 1
+$ $ 0.0 0.0
+At 0.000000 0.000000
+Label At 0.000000 0.000000
+ROUTE 0 2
+$ $ 0.0 0.0
+ROUTE 1 2
+$ $ 0.0 0.0
+LEGEND
+Version: 2
+Unfixed
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 0 2.1775 0.542533 2.0225
+Tag
+Tag
+Base: 0 2.1
+Text: 0 0 0 1.09983 0
+Hot feed
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 1.7 1.75886 2.33406 0.841142
+Tag
+Tag
+Base: 1.7 1.3
+Text: 0 0 0 1.09983 0
+Products:
+Dirty CaO
+Glycerol
+Methanol
+Biodiesel
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 4.2 1.19594 5.28457 1.00406
+Tag
+Tag
+Base: 4.2 1.1
+Text: 0 0 0 1.20526 0
+Recovered CaO
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 6.6 1.29583 7.62215 1.10417
+Tag
+Tag
+Base: 6.6 1.2
+Text: 0 0 0 1.24635 0
+Dirty Glycerol
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 7.4 4.18581 8.39543 4.01419
+Tag
+Tag
+Base: 7.4 4.1
+Text: 0 0 0 1.09983 0
+Heat exchange
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 1 0 1 0
+Dim: 4.6 5.28799 5.8978 5.11201
+Tag
+Tag
+Base: 4.6 5.2
+Text: 0 0 0 1.09983 0
+Methanol + Biodiesel
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 1.3 5.70957 2.77918 5.49043
+Tag
+Tag
+Base: 1.3 5.6
+Text: 0 0 0 1.34222 0
+Methanol Recovery
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 4.8 3.30957 5.48481 3.09043
+Tag
+Tag
+Base: 4.8 3.2
+Text: 0 0 0 1.38331 0
+Biodiesel
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: -1.8 2.80957 -1.06041 2.59043
+Tag
+Tag
+Base: -1.8 2.7
+Text: 0 0 0 1.38331 0
+Cold feed
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: -0.1 0.103089 0.696594 -0.103089
+Tag
+Tag
+Base: -0.1 0
+Text: 0 0 0 1.27374 0
+Calcination
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 3.7 -0.88754 5.04952 -1.11246
+Tag
+Tag
+Base: 3.7 -1
+Text: 0 0 0 1.4107 0
+Makeup catalyst
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 8.3 -1.39043 9.382 -1.60957
+Tag
+Tag
+Base: 8.3 -1.5
+Text: 0 0 0 1.45072 0
+Pure glycerol
+Font: Tahoma
+DISPLAY
+Version: 2
+Type: T 255 0 0 1 0 0 1 0
+Dim: 8.7 1.31686 10.336 1.08314
+Tag
+Tag
+Base: 8.7 1.2
+Text: 0 0 0 1.45072 0
+Methanol Recovery
+Font: Tahoma
+# of PFS Objects = 0
+VIEWPORT -7.098431 14.929791 7.010478 -2.020049
+BOOKMARK
+0
+LAYOUT
+TableFormat 1
+Pages 1 1 1 1
+PAGESETUP
+PAPERSIZE 
+PAPERSOURCE 
+ORIENTATION -1
+PRINTPAGENO 1 1
+LEFTMARGIN 0.5"
+RIGHTMARGIN 0.5"
+TOPMARGIN 0.5"
+BOTTOMMARGIN 0.5"
+VISIBILITY 0.030000
+PFDFLAG 255 255
+PFDMODE 0
+SCALE 0.013050
