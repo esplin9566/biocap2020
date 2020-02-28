@@ -1,0 +1,3684 @@
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION HISTORY                     + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WINDOWS                                       FEBRUARY 27, 2020   
+ VERSION: 36.0   Build 249                               THURSDAY    
+ INSTALLATION:                                           9:44:16 P.M.        
+
+ THIS COPY OF ASPEN PLUS LICENSED TO RENSSELAER POLYTECHNIC I        
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+ *** INPUT SUMMARY ***
+
+ >>CURRENT RUN
+
+   ORIGINAL RUN                           FEBRUARY 27, 2020   
+   9:44:16 P.M.                           THURSDAY    
+   INPUT FILE: _3418lyb.inm
+   RUN ID : _3418lyb
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 36.0 at 21:44:15 Thu Feb 27, 2020
+          3    ;Directory E:\Dropbox\spring 2020\Capstone\biocap2020\Aspen\Reactor 1  Runid reactor 1
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         11            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         12
+         13    DEF-STREAMS CONVEN ALL
+         14
+         15    DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         16             / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+         17            'NISTV100 NIST-TRC' / NOASPENPCD
+         18
+         19    PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+         20            'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         21             / 'NISTV100 NIST-TRC'
+         22
+         23    COMPONENTS
+         24        LINOL-01 C18H32O2 /
+         25        OLEIC-01 C18H34O2 /
+         26        METHY-0 C19H36O2 /
+         27        METHY-L C19H34O2 /
+         28        METHA-01 CH4O /
+         29        CALCI-01 CAO /
+         30        GLYCE-01 C3H8O3 /
+         31        TRIOL-01 C57H104O6 /
+         32        TRILI-01 C57H98O6
+         33
+         34    CISOLID-COMPS CALCI-01
+         35
+         36    SOLVE
+         37        PARAM PROCESS=BATCH
+         38        RUN-MODE MODE=SIM
+         39
+         40    FLOWSHEET
+         41        BLOCK B1 IN=S5 OUT=S2
+         42        BLOCK B2 IN=S1 S3 S4 OUT=S5
+         43
+         44    PROPERTIES NRTL
+         45
+         46    PROP-DATA NRTL-1
+         47        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         48            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         49        PROP-LIST NRTL
+         50        BPVAL METHA-01 GLYCE-01 0.0 547.8301000 .3000000000 0.0  &
+         51            0.0 0.0 25.00000000 62.50000000
+         52        BPVAL GLYCE-01 METHA-01 0.0 -218.5217000 .3000000000 0.0  &
+         53            0.0 0.0 25.00000000 62.50000000
+         54
+         55    STREAM S1
+         56        SUBSTREAM MIXED TEMP=65. PRES=100. <kPa> MOLE-FLOW=100.
+         57        MOLE-FRAC TRIOL-01 0.6 / TRILI-01 0.4
+         58
+         59    STREAM S3
+         60        SUBSTREAM MIXED TEMP=65. PRES=100. <kPa> MOLE-FLOW=900.
+         61        MOLE-FLOW METHA-01 900.
+         62
+         63    STREAM S4
+         64        SUBSTREAM MIXED TEMP=65. PRES=100. <kPa> MOLE-FLOW=3.
+         65        MOLE-FLOW CALCI-01 3.
+         66
+         67    BLOCK B2 MIXER
+         68        PARAM
+         69
+         70    BLOCK B1 RSTOIC
+         71        PARAM TEMP=65. PRES=100. <kPa>
+         72        STOIC 1 MIXED TRILI-01 -1. / METHA-01 -3. / METHY-L 3. / &
+         73            GLYCE-01 1.
+         74        STOIC 2 MIXED TRIOL-01 -1. / METHA-01 -3. / METHY-0 3. / &
+         75            GLYCE-01 1.
+         76        CONV 1 MIXED TRILI-01 0.98
+         77        CONV 2 MIXED TRIOL-01 0.98
+         78
+         79    VAR-GROUP VG-1
+         80        DEFINE K MASS-FRAC STREAM=S2 SUBSTREAM=MIXED  &
+         81            COMPONENT=TRIOL-01
+         82
+         83    EO-CONV-OPTI
+         84
+         85    STREAM-REPOR MOLEFLOW
+         86    ;
+         87    ;
+         88    ;
+         89    ;
+         90    ;
+ *** INPUT TRANSLATOR MESSAGES ***
+
+  *** THIS RUN USES THE PROPERTIES ENTERPRISE DATABASE ***
+      SQLLOCALDB.APESV100 : (DATAVERSION - 36.0.0.1)                          
+      SQLLOCALDB.APV100 : (DATAVERSION - 36.0.0.21)                           
+      SQLLOCALDB.FACTV100 : (DATAVERSION - 36.0.0.1)                          
+      SQLLOCALDB.NISTV100 : (DATAVERSION - 36.0.0.15)                         
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (LOADMW.5)       
+      MW AVAILABLE FOR COMPONENT TRILI-01 IS DIFFERENT FROM MW                  
+      CALCULATED FROM FORMULA (ATOMNO/NOATOM).  CALCULATED VALUE IS USED.       
+      AVAILABLE MW =   879.3840     CALCULATED MW =   879.4015                  
+ 
+ 
+
+ PDF updated                                                                      TIME =      2.56
+
+ *** CALCULATION TRACE ***
+
+
+ *** FLOWSHEET ANALYSIS MESSAGES ***
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   S4         ----       B2             S3         ----       B2      
+   S1         ----       B2             S2         B1         ----    
+   S5         B2         B1                                           
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+
+   BLOCK        INLETS                         OUTLETS
+   B1           S5                             S2                          
+   B2           S1 S3 S4                       S5                          
+
+      BATCH CONVERGENCE BLOCK $BASVR01 HAS BEEN DEFINED
+
+      COMPUTATION ORDER FOR THE FLOWSHEET IS:
+      $BASVR01 B2 B1 
+      (RETURN $BASVR01) 
+
+Calculations begin                                                              time      0.26
+
+
+ SIMULATION CALCULATIONS BEGIN                                                    TIME =      0.26
+
+      Batch Convergence Block $BASVR01                                            TIME =      0.26
+
+  *   WARNING WHILE EXECUTING BATCH CONVERGENC BLOCK: "$BASVR01"                
+                                                               (WRTVARIN.1)     
+      No active unit procedure is detected. The simulation will run to          
+      the maximum integration time of 100.0 HR                                  
+
+      Start task machine for batch $BASVR01
+         # Tasks =    0 NVTEAR =    0 NVTASK =    0 NVVARG =    1
+
+      List of tracking variables in addition to time
+
+      VG-1
+      K
+
+      ENTHALPY CALCULATION FOR INLET STREAM S1 OF BLOCK B2                        TIME =      0.87
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      ENTHALPY CALCULATION FOR INLET STREAM S3 OF BLOCK B2                        TIME =      0.87
+      KODE = 2  NTRIAL =   1  T = 338.1500  P =  100000.      V =  1.00000      Q =  0.00000    
+
+      ENTHALPY CALCULATION FOR INLET STREAM S4 OF BLOCK B2                        TIME =      0.87
+      KODE = 2   NO. TEMP ITER =    1     TEMP =  338.150    
+      KPHASE =    3 KODE =    2 T =  338.150     P =  100000.     Q =  0.00000    
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      0.87
+      KODE = 1  NTRIAL =  10  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      0.87
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  0.00000E+00 HR
+     9.057594E-03
+
+      Integrating from  0.0000     to 0.10000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      1.07
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      1.07
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.10000E-01 to 0.20000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      1.69
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      1.69
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.20000E-01 to 0.30000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      1.74
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      1.74
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.30000E-01 to 0.40000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      1.79
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      1.79
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.40000E-01 to 0.50000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      1.84
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      1.84
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.50000E-01 to 0.60000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      1.90
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      1.90
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.60000E-01 to 0.70000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      1.95
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      1.95
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.70000E-01 to 0.80000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.00
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.00
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.80000E-01 to 0.90000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.06
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.06
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.00000E-02 HR
+     9.057594E-03
+
+      Integrating from 0.90000E-01 to 0.10000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.12
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.12
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.10000     to 0.11000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.17
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.17
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.11000     to 0.12000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.22
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.22
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.12000     to 0.13000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.26
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.26
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.13000     to 0.14000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.30
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.30
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.14000     to 0.15000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.36
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.36
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.15000     to 0.16000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.42
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.42
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.16000     to 0.17000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.48
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.48
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.17000     to 0.18000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.53
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.53
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.18000     to 0.19000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.57
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.57
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.19000     to 0.20000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.63
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.63
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.20000     to 0.21000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.70
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.70
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.21000     to 0.22000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.75
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.75
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.22000     to 0.23000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.23000     to 0.24000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.86
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.86
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.24000     to 0.25000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.90
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.90
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.25000     to 0.26000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      2.95
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      2.95
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.26000     to 0.27000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.27000     to 0.28000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.07
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.07
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.28000     to 0.29000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.13
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.13
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.29000     to 0.30000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.18
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.18
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.30000     to 0.31000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.24
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.24
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.31000     to 0.32000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.32
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.32
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.32000     to 0.33000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.37
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.37
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.33000     to 0.34000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.44
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.44
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.34000     to 0.35000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.49
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.49
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.35000     to 0.36000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.54
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.54
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.36000     to 0.37000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.59
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.59
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.37000     to 0.38000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.65
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.65
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.38000     to 0.39000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.71
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.71
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.39000     to 0.40000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.76
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.76
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.40000     to 0.41000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.81
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.81
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.41000     to 0.42000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.86
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.86
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.42000     to 0.43000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.91
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.91
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.43000     to 0.44000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      3.97
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      3.97
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.44000     to 0.45000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.45000     to 0.46000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.07
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.07
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.46000     to 0.47000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.14
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.15
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.47000     to 0.48000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.19
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.19
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.48000     to 0.49000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.25
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.25
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  4.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.49000     to 0.50000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.30
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.30
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.50000     to 0.51000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.36
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.37
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.51000     to 0.52000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.42
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.42
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.52000     to 0.53000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.48
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.48
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.53000     to 0.54000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.53
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.53
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.54000     to 0.55000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.58
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.58
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.55000     to 0.56000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.63
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.63
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.56000     to 0.57000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.69
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.70
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.57000     to 0.58000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.74
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.74
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.58000     to 0.59000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  5.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.59000     to 0.60000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.85
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.60000     to 0.61000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.90
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.90
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.61000     to 0.62000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      4.95
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      4.95
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.62000     to 0.63000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.01
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.01
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.63000     to 0.64000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.07
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.07
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.64000     to 0.65000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.15
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.15
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.65000     to 0.66000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.23
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.23
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.66000     to 0.67000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.30
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.30
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.67000     to 0.68000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.40
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.40
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.68000     to 0.69000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.45
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.46
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  6.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.69000     to 0.70000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.51
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.51
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.70000     to 0.71000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.56
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.56
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.71000     to 0.72000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.63
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.63
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.72000     to 0.73000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.72
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.72
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.73000     to 0.74000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.74000     to 0.75000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.85
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.75000     to 0.76000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.90
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.90
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.76000     to 0.77000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      5.96
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      5.96
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.77000     to 0.78000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.78000     to 0.79000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.07
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.07
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  7.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.79000     to 0.80000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.12
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.13
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.80000     to 0.81000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.21
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.21
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.81000     to 0.82000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.29
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.29
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.82000     to 0.83000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.34
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.34
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.83000     to 0.84000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.40
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.40
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.84000     to 0.85000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.46
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.46
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.85000     to 0.86000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.52
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.52
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.86000     to 0.87000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.56
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.57
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.87000     to 0.88000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.62
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.62
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.88000     to 0.89000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.66
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.66
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  8.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.89000     to 0.90000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.71
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.71
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.00000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.90000     to 0.91000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.77
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.77
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.10000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.91000     to 0.92000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.81
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.81
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.20000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.92000     to 0.93000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.86
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.30000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.93000     to 0.94000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.90
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.91
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.40000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.94000     to 0.95000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      6.95
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      6.95
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.50000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.95000     to 0.96000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.00
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.00
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.60000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.96000     to 0.97000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.06
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.06
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.70000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.97000     to 0.98000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.10
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.10
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.80000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.98000     to 0.99000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.14
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.14
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  9.90000E-01 HR
+     9.057594E-03
+
+      Integrating from 0.99000     to  1.0000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.20
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.20
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.00000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0000     to  1.0100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.26
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.26
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.01000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0100     to  1.0200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.31
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.31
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.02000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0200     to  1.0300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.36
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.36
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.03000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0300     to  1.0400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.40
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.40
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.04000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0400     to  1.0500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.47
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.47
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.05000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0500     to  1.0600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.54
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.54
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.06000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0600     to  1.0700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.59
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.59
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.07000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0700     to  1.0800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.64
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.64
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.08000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0800     to  1.0900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.69
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.69
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.09000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.0900     to  1.1000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.75
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.75
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.10000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1000     to  1.1100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.79
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.79
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.11000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1100     to  1.1200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.85
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.12000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1200     to  1.1300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.92
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.92
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.13000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1300     to  1.1400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      7.98
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      7.98
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.14000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1400     to  1.1500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.15000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1500     to  1.1600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.12
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.12
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.16000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1600     to  1.1700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.18
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.18
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.17000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1700     to  1.1800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.25
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.25
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.18000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1800     to  1.1900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.31
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.31
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.19000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.1900     to  1.2000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.35
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.35
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.20000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2000     to  1.2100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.41
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.41
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.21000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2100     to  1.2200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.46
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.47
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.22000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2200     to  1.2300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.52
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.52
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.23000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2300     to  1.2400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.57
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.57
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.24000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2400     to  1.2500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.61
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.61
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.25000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2500     to  1.2600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.65
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.65
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.26000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2600     to  1.2700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.70
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.70
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.27000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2700     to  1.2800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.76
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.76
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.28000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2800     to  1.2900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.81
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.81
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.29000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.2900     to  1.3000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.86
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.30000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3000     to  1.3100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.91
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.91
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.31000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3100     to  1.3200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      8.96
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      8.96
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.32000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3200     to  1.3300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.01
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.01
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.33000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3300     to  1.3400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.06
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.06
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.34000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3400     to  1.3500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.11
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.11
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.35000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3500     to  1.3600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.17
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.17
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.36000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3600     to  1.3700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.27
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.27
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.37000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3700     to  1.3800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.32
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.32
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.38000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3800     to  1.3900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.39
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.39
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.39000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.3900     to  1.4000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.50
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.50
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.40000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4000     to  1.4100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.56
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.56
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.41000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4100     to  1.4200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.62
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.62
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.42000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4200     to  1.4300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.69
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.69
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.43000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4300     to  1.4400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.75
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.75
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.44000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4400     to  1.4500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.45000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4500     to  1.4600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.85
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.46000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4600     to  1.4700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.90
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.90
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.47000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4700     to  1.4800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =      9.95
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =      9.95
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.48000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4800     to  1.4900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.49000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.4900     to  1.5000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.09
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.09
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.50000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5000     to  1.5100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.16
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.16
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.51000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5100     to  1.5200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.21
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.21
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.52000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5200     to  1.5300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.25
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.25
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.53000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5300     to  1.5400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.31
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.31
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.54000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5400     to  1.5500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.36
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.36
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.55000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5500     to  1.5600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.40
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.40
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.56000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5600     to  1.5700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.46
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.46
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.57000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5700     to  1.5800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.51
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.51
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.58000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5800     to  1.5900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.56
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.56
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.59000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.5900     to  1.6000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.61
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.61
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.60000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6000     to  1.6100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.67
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.67
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.61000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6100     to  1.6200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.72
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.72
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.62000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6200     to  1.6300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.76
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.77
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.63000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6300     to  1.6400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.82
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.82
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.64000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6400     to  1.6500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.87
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.87
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.65000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6500     to  1.6600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.92
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.92
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.66000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6600     to  1.6700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     10.97
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     10.97
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.67000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6700     to  1.6800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.03
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.03
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.68000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6800     to  1.6900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.08
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.08
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.69000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.6900     to  1.7000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.14
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.14
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.70000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7000     to  1.7100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.18
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.18
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.71000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7100     to  1.7200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.24
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.24
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.72000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7200     to  1.7300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.31
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.31
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.73000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7300     to  1.7400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.39
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.39
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.74000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7400     to  1.7500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.44
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.45
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.75000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7500     to  1.7600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.50
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.50
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.76000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7600     to  1.7700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.54
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.54
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.77000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7700     to  1.7800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.59
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.59
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.78000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7800     to  1.7900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.64
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.64
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.79000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.7900     to  1.8000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.68
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.68
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.80000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8000     to  1.8100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.73
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.73
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.81000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8100     to  1.8200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.82000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8200     to  1.8300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.87
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.87
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.83000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8300     to  1.8400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     11.94
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     11.94
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.84000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8400     to  1.8500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.03
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.03
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.85000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8500     to  1.8600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.11
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.12
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.86000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8600     to  1.8700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.18
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.18
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.87000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8700     to  1.8800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.24
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.24
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.88000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8800     to  1.8900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.30
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.30
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.89000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.8900     to  1.9000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.38
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.38
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.90000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9000     to  1.9100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.45
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.45
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.91000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9100     to  1.9200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.52
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.52
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.92000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9200     to  1.9300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.58
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.58
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.93000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9300     to  1.9400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.63
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.63
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.94000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9400     to  1.9500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.68
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.68
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.95000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9500     to  1.9600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.74
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.75
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.96000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9600     to  1.9700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.97000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9700     to  1.9800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.85
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.98000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9800     to  1.9900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.90
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.90
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  1.99000E+00 HR
+     9.057594E-03
+
+      Integrating from  1.9900     to  2.0000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     12.95
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     12.95
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.00000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0000     to  2.0100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.01
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.01
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.01000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0100     to  2.0200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.06
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.06
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.02000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0200     to  2.0300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.10
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.11
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.03000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0300     to  2.0400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.17
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.17
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.04000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0400     to  2.0500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.23
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.23
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.05000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0500     to  2.0600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.28
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.28
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.06000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0600     to  2.0700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.33
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.33
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.07000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0700     to  2.0800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.39
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.39
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.08000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0800     to  2.0900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.44
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.44
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.09000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.0900     to  2.1000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.49
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.49
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.10000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1000     to  2.1100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.55
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.55
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.11000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1100     to  2.1200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.59
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.59
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.12000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1200     to  2.1300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.64
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.64
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.13000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1300     to  2.1400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.69
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.69
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.14000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1400     to  2.1500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.75
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.75
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.15000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1500     to  2.1600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.16000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1600     to  2.1700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.86
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.87
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.17000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1700     to  2.1800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.91
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.91
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.18000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1800     to  2.1900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     13.97
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     13.97
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.19000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.1900     to  2.2000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.20000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2000     to  2.2100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.07
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.07
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.21000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2100     to  2.2200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.12
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.12
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.22000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2200     to  2.2300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.17
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.17
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.23000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2300     to  2.2400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.21
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.21
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.24000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2400     to  2.2500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.26
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.26
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.25000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2500     to  2.2600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.31
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.31
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.26000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2600     to  2.2700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.36
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.36
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.27000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2700     to  2.2800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.41
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.41
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.28000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2800     to  2.2900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.48
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.48
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.29000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.2900     to  2.3000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.53
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.53
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.30000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3000     to  2.3100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.59
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.59
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.31000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3100     to  2.3200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.64
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.64
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.32000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3200     to  2.3300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.69
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.69
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.33000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3300     to  2.3400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.75
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.75
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.34000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3400     to  2.3500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.35000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3500     to  2.3600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.85
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.36000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3600     to  2.3700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     14.92
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     14.92
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.37000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3700     to  2.3800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.38000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3800     to  2.3900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.07
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.07
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.39000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.3900     to  2.4000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.15
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.15
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.40000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4000     to  2.4100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.21
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.22
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.41000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4100     to  2.4200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.28
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.28
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.42000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4200     to  2.4300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.35
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.35
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.43000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4300     to  2.4400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.43
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.43
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.44000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4400     to  2.4500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.48
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.48
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.45000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4500     to  2.4600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.54
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.54
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.46000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4600     to  2.4700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.62
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.62
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.47000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4700     to  2.4800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.70
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.70
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.48000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4800     to  2.4900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.75
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.75
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.49000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.4900     to  2.5000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.81
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.81
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.50000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5000     to  2.5100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.86
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.86
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.51000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5100     to  2.5200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.91
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.91
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.52000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5200     to  2.5300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     15.97
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     15.97
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.53000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5300     to  2.5400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.54000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5400     to  2.5500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.08
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.08
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.55000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5500     to  2.5600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.13
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.13
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.56000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5600     to  2.5700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.18
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.18
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.57000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5700     to  2.5800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.22
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.22
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.58000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5800     to  2.5900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.27
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.27
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.59000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.5900     to  2.6000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.32
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.32
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.60000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6000     to  2.6100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.38
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.38
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.61000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6100     to  2.6200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.46
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.46
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.62000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6200     to  2.6300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.52
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.53
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.63000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6300     to  2.6400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.60
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.60
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.64000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6400     to  2.6500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.66
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.66
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.65000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6500     to  2.6600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.72
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.72
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.66000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6600     to  2.6700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.77
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.77
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.67000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6700     to  2.6800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.83
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.83
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.68000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6800     to  2.6900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.88
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.88
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.69000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.6900     to  2.7000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     16.95
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     16.95
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.70000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7000     to  2.7100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.02
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.02
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.71000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7100     to  2.7200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.07
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.07
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.72000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7200     to  2.7300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.12
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.12
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.73000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7300     to  2.7400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.19
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.19
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.74000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7400     to  2.7500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.25
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.25
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.75000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7500     to  2.7600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.31
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.32
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.76000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7600     to  2.7700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.38
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.38
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.77000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7700     to  2.7800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.48
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.48
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.78000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7800     to  2.7900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.55
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.55
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.79000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.7900     to  2.8000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.61
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.61
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.80000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8000     to  2.8100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.66
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.66
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.81000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8100     to  2.8200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.70
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.70
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.82000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8200     to  2.8300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.75
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.75
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.83000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8300     to  2.8400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.80
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.80
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.84000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8400     to  2.8500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.85
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.85
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.85000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8500     to  2.8600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.89
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.90
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.86000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8600     to  2.8700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.95
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.95
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.87000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8700     to  2.8800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     17.99
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     17.99
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.88000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8800     to  2.8900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.05
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.05
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.89000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.8900     to  2.9000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.09
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.09
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.90000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9000     to  2.9100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.15
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.15
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.91000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9100     to  2.9200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.20
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.20
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.92000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9200     to  2.9300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.25
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.25
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.93000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9300     to  2.9400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.30
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.30
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.94000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9400     to  2.9500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.36
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.36
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.95000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9500     to  2.9600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.42
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.42
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.96000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9600     to  2.9700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.49
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.49
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.97000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9700     to  2.9800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.55
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.55
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.98000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9800     to  2.9900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.60
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.60
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  2.99000E+00 HR
+     9.057594E-03
+
+      Integrating from  2.9900     to  3.0000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.66
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.66
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.00000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0000     to  3.0100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.71
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.71
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.01000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0100     to  3.0200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.76
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.76
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.02000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0200     to  3.0300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.82
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.82
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.03000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0300     to  3.0400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.87
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.87
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.04000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0400     to  3.0500     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.91
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.91
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.05000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0500     to  3.0600     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     18.97
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     18.97
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.06000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0600     to  3.0700     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     19.06
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     19.06
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.07000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0700     to  3.0800     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     19.14
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     19.14
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.08000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0800     to  3.0900     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     19.19
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     19.19
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.09000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.0900     to  3.1000     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     19.25
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     19.26
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.10000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.1000     to  3.1100     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     19.31
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     19.31
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.11000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.1100     to  3.1200     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     19.37
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     19.37
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.12000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.1200     to  3.1300     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     19.44
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     19.44
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.13000E+00 HR
+     9.057594E-03
+
+      Integrating from  3.1300     to  3.1400     by 0.10000E-01 HR
+
+      UOS BLOCK B2       MODEL: MIXER                                             TIME =     19.52
+      KODE = 1  NTRIAL =   1  T = 355.2331  P =  100000.      V = 0.794130      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RSTOIC                                            TIME =     19.52
+      KODE = 2  NTRIAL =   3  T = 338.1500  P =  100000.      V =  0.00000      Q =-1.065942E+07
+
+   Output value at time  3.14000E+00 HR
+     9.057594E-03
+
+      Leave batch convergence block $BASVR01
+
+ Report Writer entered                                                            Time =   3316.41
+
+ Results generated                                                                Time =   3316.48
+
+ Report Writer entered                                                            Time =   3316.67
+
+ Results generated                                                                Time =   3316.70
+
+RUN SAVED
+
+
+
+ *** SUMMARY OF ERRORS ***
+
+                  PHYSICAL
+                  PROPERTY  SYSTEM  SIMULATION
+ TERMINAL ERRORS      0        0         0
+   SEVERE ERRORS      0        0         0
+          ERRORS      0        0         0
+        WARNINGS      0        0         1
