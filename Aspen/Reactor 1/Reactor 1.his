@@ -3682,3 +3682,25 @@ RUN SAVED
    SEVERE ERRORS      0        0         0
           ERRORS      0        0         0
         WARNINGS      0        0         1
+
+ *** CALCULATION TRACE ***
+
+
+<set objective = None>
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
+<reset scope>
+
+RUN SAVED
+
+
+
+ NO ERRORS OR WARNINGS GENERATED
