@@ -1,0 +1,10 @@
+INPUT: Reactor 2.inm
+MODNAME: apmain
+RUNID: Reactor 2
+NEW_RUNID: Reactor 2
+OLD_RUNID: Reactor 2
+PDF: Reactor 2.appdf
+USERNAME: benjam2
+XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\xeq\apmain
+SPONLY:
+DBCONN: _2204jgv.ads

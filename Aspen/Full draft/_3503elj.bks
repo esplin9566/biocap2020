@@ -1,0 +1,17 @@
+ ? SETUP UNITS-SET SET1 ? \ UNITSET BASESET = MET (3 3 3 3 3 3 3 3 3 3 3 3 3 3  
+ 3 3 3 3 3 5 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3  
+ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 5 3 3 3 3 3 3 5 3 3 3 3 3 3 3 3 3 3  
+ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3  
+ 3 3 3 3 3 3 7 3 3 3 3 3 3 3 3) \                                               
+ ? BLOCK HIERARCHY B2 ? ? SETUP UNITS-SET SET2 ? \ UNITSET BASESET = MET (3 3 3 
+ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 5 3 4 3 3 3 3 3 3 3 3 4 3 3 3 3 3 3 3 3 3 3 3  
+ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 5 3 3 3 3 3 3  
+ 5 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3  
+ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 7 3 3 3 3 3 3 3 3) \                         
+ ? PROP-TABLE FLASHCURVE "$MMTXY" ? ; SET2 ; \ PROPERTIES OPSETNAME = SR-POLAR  
+ TRUE-COMPS = YES FRWATEROPSET = STEAM-TA SOLU-WATER = 3 \ \ MOLE-FLOW CID =    
+ GLYCEROL FLOW = 1.0 <-89> <3> / CID = METHA-01 FLOW = 1.0 <-89> <3> \ \ STATE  
+ VFRAC = 0.0 <0> <0> \ \ VARY 1 VARNAME = PRES / 2 VARNAME = MOLE-FRAC COMP =   
+ GLYCEROL \ \ VARY 1 LIST = (1.013250 <0> <0> ) / 2 LOWER = 0.0 <0> <0> UPPER = 
+ 1.0 <0> <0> NPOINT = 50 OPT-LIST = RANGE \ \ PARAM NPHASE = 3 \ \ ANALYSIS     
+ ANAL-TYPE = TXY \ "\@"                                                         

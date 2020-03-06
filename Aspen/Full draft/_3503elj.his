@@ -1,0 +1,3782 @@
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION HISTORY                     + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WINDOWS                                       MARCH 6, 2020       
+ VERSION: 36.0   Build 249                               FRIDAY      
+ INSTALLATION:                                           11:37:09 A.M.       
+
+ THIS COPY OF ASPEN PLUS LICENSED TO RENSSELAER POLYTECHNIC I        
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+ *** INPUT SUMMARY ***
+
+ >>CURRENT RUN
+
+   ORIGINAL RUN                           MARCH 6, 2020       
+   11:37:09 A.M.                          FRIDAY      
+   INPUT FILE: _3503elj.inm
+   RUN ID : _3503elj
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 36.0 at 11:37:07 Fri Mar 6, 2020
+          3    ;Directory E:\Dropbox\spring 2020\Capstone\biocap2020\Aspen\Full draft  Runid FULL DRAFT
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         11            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         12
+         13    DEF-STREAMS CONVEN ALL
+         14
+         15    MODEL-OPTION
+         16
+         17    DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         18             / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+         19            'NISTV100 NIST-TRC' / NOASPENPCD
+         20
+         21    PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+         22            'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         23             / 'NISTV100 NIST-TRC'
+         24
+         25    COMPONENTS
+         26        GLYCEROL C3H8O3 /
+         27        TRIOL-01 C57H104O6 /
+         28        TRILI-01 C57H98O6 /
+         29        METHA-01 CH4O /
+         30        METHY-01 C19H36O2 /
+         31        METHY-02 C19H34O2 /
+         32        UREA CH4N2O /
+         33        CALCI-01 CAO /
+         34        LANTH-01 LA2O3 /
+         35        AMMON-01 H3N /
+         36        GLYCE-01 C4H6O4-N1
+         37
+         38    CISOLID-COMPS CALCI-01 LANTH-01
+         39
+         40    SOLVE
+         41        RUN-MODE MODE=SIM
+         42
+         43    FLOWSHEET
+         44        BLOCK B4 IN=S6 OUT=S8 GLYCEROL
+         45        BLOCK B3 IN=S5 OUT=S6 CATOUT
+         46        BLOCK B1 IN=OILS METHANOL CATIN OUT=S4
+         47        HIERARCHY B2
+         48        CONNECT $C-1 IN=S1 OUT="B2.S4"
+         49        CONNECT $C-2 IN="B2.S5" OUT=S5
+         50        BLOCK B5 IN=S4 OUT=S1
+         51        BLOCK B6 IN=S2 OUT=S9 S3
+         52        BLOCK B7 IN=S8 OUT=S2
+         53        BLOCK B9 IN=GLYCEROL OUT=S10 S11
+         54
+         55    PROPERTIES SR-POLAR
+         56
+         57    ESTIMATE ALL
+         58
+         59    PROP-DATA PCES-1
+         60        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         61            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         62        PROP-LIST OMEGA / DHVLB / VB / RGYR / RKTZRA / VLSTD
+         63        PVAL UREA .5992461800 / 20985.95586 / 48.82570000 /  &
+         64            2.6000000E-10 / .2351731880 / 48.82570000
+         65        PROP-LIST RKTZRA / VLSTD
+         66        PVAL CALCI-01 .2918596200 / 298.9063450
+         67        PVAL GLYCE-01 .2037543860 / 69.23640000
+         68
+         69    PROP-DATA DHVLWT-1
+         70        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         71            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         72        PROP-LIST DHVLWT
+         73        PVAL CALCI-01 5.38817025E+5 3396.850000 .3800000000 0.0  &
+         74            3396.850000
+         75
+         76    PROP-DATA KLDIP-1
+         77        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         78            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         79        PROP-LIST KLDIP
+         80        PVAL UREA .0494897448 1.57543997E-3 -1.0085909E-5  &
+         81            2.44404255E-8 -2.254923E-11 191.8500000 424.8000000
+         82        PVAL CALCI-01 -.6218197112 7.78300188E-4 -2.8775749E-7  &
+         83            4.5627261E-11 -2.727830E-15 3396.850000 5686.650000
+         84
+         85    PROP-DATA MULAND-1
+         86        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         87            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         88        PROP-LIST MULAND
+         89        PVAL UREA 129.3349773 -7951.576030 -18.41338230 191.8500000  &
+         90            424.8000000
+         91        PVAL CALCI-01 81.01615608 -12127.32210 -10.25255770  &
+         92            1126.850000 1706.850000
+         93
+         94    PROP-DATA PLXANT-1
+         95        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         96            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         97        PROP-LIST PLXANT
+         98        PVAL UREA 77.19179774 -10639.35530 0.0 0.0 -8.846083610  &
+         99            3.4142003E-18 6.000000000 191.8500000 431.8500000
+        100
+        101    PROP-DATA SIGDIP-1
+        102        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        103            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        104        PROP-LIST SIGDIP
+        105        PVAL UREA 156.7709600 1.222222220 5.9537296E-10  &
+        106            -6.635066E-10 2.6632382E-10 191.8500000 417.7500000
+        107        PVAL GLYCE-01 156.3532160 1.222222220 5.9089352E-10  &
+        108            -6.640628E-10 2.6313812E-10 323.7990000 543.1900000
+        109        PVAL CALCI-01 139.2135830 1.222222220 -2.171954E-10  &
+        110            2.3955375E-10 -9.673330E-11 3396.850000 5626.450000
+        111
+        112    PROP-DATA HOCETA-1
+        113        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        114            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        115        PROP-LIST HOCETA
+        116        BPVAL METHA-01 METHA-01 1.630000000
+        117        BPVAL METHA-01 AMMON-01 .2000000000
+        118        BPVAL AMMON-01 METHA-01 .2000000000
+        119
+        120    STREAM CATIN
+        121        SUBSTREAM MIXED TEMP=25. PRES=5. MOLE-FLOW=3.
+        122        MOLE-FRAC CALCI-01 1.
+        123
+        124    STREAM METHANOL
+        125        SUBSTREAM MIXED TEMP=25. PRES=5. MOLE-FLOW=900.
+        126        MOLE-FRAC METHA-01 1.
+        127
+        128    STREAM OILS
+        129        SUBSTREAM MIXED TEMP=25. PRES=5. MOLE-FLOW=100.
+        130        MOLE-FRAC TRIOL-01 0.6 / TRILI-01 0.4
+        131
+        132    BLOCK B1 MIXER
+        133        PARAM PRES=5. NPHASE=1 PHASE=L TOL=0.01 T-EST=25.
+        134        BLOCK-OPTION FREE-WATER=NO
+        135
+        136    BLOCK B5 HEATER
+        137        PARAM PRES=3. DELT=75. NPHASE=1 PHASE=L DPPARMOPT=NO
+        138        BLOCK-OPTION FREE-WATER=NO
+        139
+        140    BLOCK B7 HEATER
+        141        PARAM TEMP=105. PRES=1. DPPARMOPT=NO
+        142
+        143    BLOCK B9 FLASH2
+        144        PARAM TEMP=150. PRES=0.2 MAXIT=30
+        145
+        146    BLOCK B4 DECANTER
+        147        PARAM TEMP=65. PRES=1. LL-METH=EQ-SOLVE L2-COMPS=METHA-01  &
+        148            L2-CUTOFF=0.5 MAXIT=30
+        149
+        150    BLOCK B6 RADFRAC
+        151        PARAM NSTAGE=3 ALGORITHM=NONIDEAL INIT-OPTION=STANDARD  &
+        152            MAXOL=25 DAMPING=NONE
+        153        COL-CONFIG CONDENSER=PARTIAL-V
+        154        FEEDS S2 2 ABOVE-STAGE
+        155        PRODUCTS S3 3 L / S9 1 V
+        156        P-SPEC 1 1. / 2 1.
+        157        COL-SPECS MASS-D:F=0.13 MASS-RR=3.
+        158        DB:F-PARAMS STREAMS=S2
+        159
+        160    HIERARCHY B2
+        161
+        162
+        163    DEF-STREAMS CONVEN ALL
+        164
+        165    SOLVE
+        166        PARAM METHOD=SM PROCESS=BATCH
+        167        RUN-MODE MODE=SIM
+        168
+        169    FLOWSHEET
+        170        BLOCK B1 IN=S4 OUT=S5
+        171
+        172    PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        173            TRUE-COMPS=YES
+        174
+        175    BLOCK B1 BATCHOP
+        176        PARAM TYPE=T-SPEC PRES=5. TEMP=100. NPHASE=1 PHASE=L
+        177        INIT-COND FEED-TIME=1.
+        178        DISCHARGE DISCHARGE-T=1.
+        179        REACTIONS RXN-IDS=R-1 R-2
+        180        BLOCK-OPTION FREE-WATER=NO
+        181
+        182    EO-CONV-OPTI
+        183
+        184    BATCH-OPTS
+        185        PARAM MAX-TIME=5. OUTPUT-INT=0.01
+        186
+        187    ENDHIERARCHY B2
+        188
+        189    BLOCK B3 CFUGE
+        190        PARAM TYPE=SOLIDS-SEP TEMP=40. PRES=100.
+        191        SOLIDS-SEP SOLID-SPLIT=1. FLUID-SPLIT=1.
+        192
+        193    EO-CONV-OPTI
+        194
+        195    STREAM-REPOR MOLEFLOW
+        196
+        197    PROPERTY-REP PCES
+        198
+        199    REACTIONS R-1 LHHW
+        200        REAC-DATA 1
+        201        RATE-CON 1 PRE-EXP=0.044 ACT-ENERGY=16.6 <kJ/mol>
+        202        STOIC 1 MIXED TRIOL-01 -1. / METHA-01 -3. / METHY-01 3. / &
+        203            GLYCEROL 1.
+        204        DFORCE-EXP-1 1 MIXED TRIOL-01 1. / MIXED METHA-01 0. /  &
+        205            MIXED METHY-01 0. / MIXED GLYCEROL 0.
+        206        DFORCE-EQ-1 REACNO=1 A=0.
+        207        DFORCE-EQ-2 REACNO=1 A=-52.95
+        208
+        209    REACTIONS R-2 LHHW
+        210        REAC-DATA 1
+        211        RATE-CON 1 PRE-EXP=0.044 ACT-ENERGY=16.6 <kJ/mol>
+        212        STOIC 1 MIXED TRILI-01 -1. / METHA-01 -3. / GLYCEROL 1. / &
+        213            METHY-02 3.
+        214        DFORCE-EXP-1 1 MIXED TRILI-01 1. / MIXED METHA-01 0. /  &
+        215            MIXED GLYCEROL 0. / MIXED METHY-02 0.
+        216        DFORCE-EQ-1 REACNO=1 A=0.
+        217        DFORCE-EQ-2 REACNO=1 A=-52.95
+        218
+        219    PROP-TABLE BINRY-2 PROPS
+        220        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        221            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        222        ANALYSIS ANAL-TYPE=GIBBS UNITS='cal/mol'
+        223        PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        224            TRUE-COMPS=YES
+        225        MOLE-FLOW GLYCEROL 1 /  METHY-01  1
+        226        STATE PRES=1.
+        227        VARY TEMP
+        228        RANGE LIST=40.
+        229        VARY MOLEFRAC COMP=GLYCEROL
+        230        RANGE VARVALUE=RANGE LOWER=0.0 UPPER=1.0 NPOINT=50
+        231        PARAM NPHASE=3
+        232    ;
+        233    ;
+        234    ;
+        235    ;
+        236    ;
+Added container block B2
+ *** INPUT TRANSLATOR MESSAGES ***
+
+  *** THIS RUN USES THE PROPERTIES ENTERPRISE DATABASE ***
+      SQLLOCALDB.APESV100 : (DATAVERSION - 36.0.0.1)                          
+      SQLLOCALDB.APV100 : (DATAVERSION - 36.0.0.21)                           
+      SQLLOCALDB.FACTV100 : (DATAVERSION - 36.0.0.1)                          
+      SQLLOCALDB.NISTV100 : (DATAVERSION - 36.0.0.15)                         
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT TRILI-01 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+      USE THE STRUCTURES PARAGRAPH TO DEFINE STRUCTURES OF THIS COMPONENT.      
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT UREA HAS NOT BEEN DEFINED.                        
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+      USE THE STRUCTURES PARAGRAPH TO DEFINE STRUCTURES OF THIS COMPONENT.      
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT CALCI-01 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+      USE THE STRUCTURES PARAGRAPH TO DEFINE STRUCTURES OF THIS COMPONENT.      
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT LANTH-01 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+      USE THE STRUCTURES PARAGRAPH TO DEFINE STRUCTURES OF THIS COMPONENT.      
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT GLYCE-01 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+      USE THE STRUCTURES PARAGRAPH TO DEFINE STRUCTURES OF THIS COMPONENT.      
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (LOADMW.5)       
+      MW AVAILABLE FOR COMPONENT TRILI-01 IS DIFFERENT FROM MW                  
+      CALCULATED FROM FORMULA (ATOMNO/NOATOM).  CALCULATED VALUE IS USED.       
+      AVAILABLE MW =   879.3840     CALCULATED MW =   879.4015                  
+
+  *   WARNING IN PHYSICAL PROPERTY SYSTEM                      (LCLIMS.4)       
+      PARAMETER DHVLWT/ELEMENT  1 (DATA SET 1)                                  
+      UPPER BOUND VIOLATED FOR COMPONENT CALCI-01                               
+      VALUE =  0.22559E+10, UPPER BOUND =  0.60000E+09                          
+
+  *   WARNING IN PHYSICAL PROPERTY SYSTEM                      (LCLIMS.4)       
+      PARAMETER DHVLWT/ELEMENT  5 (DATA SET 1)                                  
+      UPPER BOUND VIOLATED FOR COMPONENT CALCI-01                               
+      VALUE =   3670.0    , UPPER BOUND =   1500.0                              
+ 
+ 
+
+ PDF updated                                                                      TIME =      5.82
+
+
+ THE FOLLOWING PURE COMPONENT PARAMETERS ARE ESTIMATED FOR MODEL ESRKU:
+
+
+ COMPONENT GLYCEROL
+      POLAR PARAMETER RKUPP0 =    -0.065662
+                      RKUPP1 =     3.433459
+                      RKUPP2 =    -6.929989
+
+ COMPONENT TRIOL-01
+      POLAR PARAMETER RKUPP0 =     4.099804
+                      RKUPP1 =    -3.004889
+                      RKUPP2 =     2.162829
+
+ COMPONENT TRILI-01
+      POLAR PARAMETER RKUPP0 =     4.075085
+                      RKUPP1 =    -3.003402
+                      RKUPP2 =     2.160700
+
+ COMPONENT METHA-01
+      POLAR PARAMETER RKUPP0 =     0.162227
+                      RKUPP1 =    -1.430134
+                      RKUPP2 =     0.008900
+
+ COMPONENT METHY-01
+      POLAR PARAMETER RKUPP0 =    -0.028342
+                      RKUPP1 =   -11.709490
+                      RKUPP2 =    14.975620
+
+ COMPONENT METHY-02
+      POLAR PARAMETER RKUPP0 =     0.959016
+                      RKUPP1 =    -2.964248
+                      RKUPP2 =     2.123185
+
+ COMPONENT UREA    
+      POLAR PARAMETER RKUPP0 =    -0.323045
+                      RKUPP1 =    -2.966432
+                      RKUPP2 =     2.198500
+
+ COMPONENT CALCI-01
+      POLAR PARAMETER RKUPP0 =     0.711866
+                      RKUPP1 =    -4.328770
+                      RKUPP2 =    -5.480186
+
+ COMPONENT LANTH-01
+      POLAR PARAMETER RKUPP0 =     0.000000
+                      RKUPP1 =     0.000000
+                      RKUPP2 =     0.000000
+
+ COMPONENT AMMON-01
+      POLAR PARAMETER RKUPP0 =     0.036832
+                      RKUPP1 =    -0.837919
+                      RKUPP2 =    -0.809507
+
+ COMPONENT GLYCE-01
+      POLAR PARAMETER RKUPP0 =     0.000000
+                      RKUPP1 =     0.000000
+                      RKUPP2 =     0.000000
+
+ THE FOLLOWING BINARY-INTERACTION PARAMETERS ARE ESTIMATED FOR MODEL ESRKU:
+
+
+ BINARY GLYCEROL - TRIOL-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GENERATES VERY LOW OR HIGH PRESSURE DATA
+
+ BINARY GLYCEROL - TRILI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY GLYCEROL - METHA-01
+      RKUKA0 =   -0.121950    
+      RKUKA2 =     23.8381    
+      RKULA0 =    0.341113E-01
+      RKULA2 =    -10.0315    
+
+      FOR     298.15 (K) <= T <=    318.15 (K)
+
+
+ BINARY GLYCEROL - METHY-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GENERATES VERY LOW OR HIGH PRESSURE DATA
+
+ BINARY GLYCEROL - METHY-02
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GENERATES VERY LOW OR HIGH PRESSURE DATA
+
+ BINARY GLYCEROL - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY GLYCEROL - CALCI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY GLYCEROL - LANTH-01
+
+      INTERACTION PARAMETERS CANNOT BE PREDICTED USING UNIFAC
+
+ BINARY GLYCEROL - GLYCE-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRIOL-01 - TRILI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRIOL-01 - METHA-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GENERATES VERY LOW OR HIGH PRESSURE DATA
+
+ BINARY TRIOL-01 - METHY-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GENERATES VERY LOW OR HIGH PRESSURE DATA
+
+ BINARY TRIOL-01 - METHY-02
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GENERATES VERY LOW OR HIGH PRESSURE DATA
+
+ BINARY TRIOL-01 - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRIOL-01 - CALCI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRIOL-01 - LANTH-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRIOL-01 - GLYCE-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRILI-01 - METHA-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRILI-01 - METHY-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRILI-01 - METHY-02
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRILI-01 - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRILI-01 - CALCI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRILI-01 - LANTH-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRILI-01 - GLYCE-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHA-01 - METHY-01
+      RKUKA0 =   -0.597541E-01
+      RKUKA2 =     2.71431    
+      RKULA0 =   -0.139340E-01
+      RKULA2 =    -11.3968    
+
+      FOR     298.15 (K) <= T <=    318.15 (K)
+
+
+ BINARY METHA-01 - METHY-02
+      RKUKA0 =    0.153105E-01
+      RKUKA2 =    -25.2241    
+      RKULA0 =   -0.182201E-02
+      RKULA2 =    -16.6520    
+
+      FOR     298.15 (K) <= T <=    318.15 (K)
+
+
+ BINARY METHA-01 - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHA-01 - CALCI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHA-01 - LANTH-01
+
+      INTERACTION PARAMETERS CANNOT BE PREDICTED USING UNIFAC
+
+ BINARY METHA-01 - GLYCE-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHY-01 - METHY-02
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GENERATES VERY LOW OR HIGH PRESSURE DATA
+
+ BINARY METHY-01 - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHY-01 - CALCI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHY-01 - LANTH-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHY-01 - GLYCE-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHY-02 - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHY-02 - CALCI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHY-02 - LANTH-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHY-02 - GLYCE-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY UREA     - CALCI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY UREA     - LANTH-01
+
+      INTERACTION PARAMETERS CANNOT BE PREDICTED USING UNIFAC
+
+ BINARY UREA     - GLYCE-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY CALCI-01 - LANTH-01
+
+      INTERACTION PARAMETERS CANNOT BE PREDICTED USING UNIFAC
+
+ BINARY CALCI-01 - GLYCE-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY LANTH-01 - GLYCE-01
+
+      INTERACTION PARAMETERS CANNOT BE PREDICTED USING UNIFAC
+
+ *** CALCULATION TRACE ***
+
+
+ *** FLOWSHEET ANALYSIS MESSAGES ***
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+
+ FLOWSHEET SECTION GLOBAL  
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   CATIN      ----       B1             METHANOL   ----       B1      
+   OILS       ----       B1             S8         B4         B7      
+   GLYCEROL   B4         B9             S6         B3         B4      
+   CATOUT     B3         ----           S4         B1         B5      
+   S5         $C-2       B3             S1         B5         $C-1    
+   S9         B6         ----           S3         B6         ----    
+   S2         B7         B6             S10        B9         ----    
+   S11        B9         ----                                         
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+
+ FLOWSHEET SECTION GLOBAL  
+   BLOCK        INLETS                         OUTLETS
+   B4           S6                             S8 GLYCEROL                 
+   B3           S5                             S6 CATOUT                   
+   B1           OILS METHANOL CATIN            S4                          
+   $C-1         S1                             S4                          
+   $C-2         S5                             S5                          
+   B5           S4                             S1                          
+   B6           S2                             S9 S3                       
+   B7           S8                             S2                          
+   B9           GLYCEROL                       S10 S11                     
+
+      BATCH CONVERGENCE BLOCK $BASVR01 HAS BEEN DEFINED
+
+      COMPUTATION ORDER FOR THE FLOWSHEET IS:
+      B1 B5 $C-1 
+      B2.$BASVR01 B2.B1 
+      (RETURN B2.$BASVR01) 
+      $C-2 B3 B4 B7 B6 B9 
+
+Calculations begin                                                              time      0.35
+
+
+ SIMULATION CALCULATIONS BEGIN                                                    TIME =      0.35
+
+      ENTHALPY CALCULATION FOR INLET STREAM OILS OF BLOCK B1                      TIME =      0.35
+      KODE = 2  NTRIAL =   3  T = 298.1500  P =  500000.      V =  0.00000      Q =  0.00000    
+
+      ENTHALPY CALCULATION FOR INLET STREAM METHANOL OF BLOCK B1                  TIME =      0.37
+      KODE = 2  NTRIAL =   1  T = 298.1500  P =  500000.      V =  0.00000      Q =  0.00000    
+
+      ENTHALPY CALCULATION FOR INLET STREAM CATIN OF BLOCK B1                     TIME =      0.37
+      KODE = 2   NO. TEMP ITER =    1     TEMP =  298.150    
+      KPHASE =    3 KODE =    2 T =  298.150     P =  500000.     Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: MIXER                                             TIME =      0.38
+      KODE = 1   NO. TEMP ITER =    5     TEMP =  82.0108    
+      KPHASE =    2 KODE =    1 T =  82.0108     P =  500000.     Q =  0.00000    
+
+      UOS BLOCK B5       MODEL: HEATER                                            TIME =      0.39
+      KODE = 2   NO. TEMP ITER =    1     TEMP =  157.011    
+      KPHASE =    2 KODE =    2 T =  157.011     P =  300000.     Q = 2.746646E+06
+
+      UOS BLOCK $C-1     MODEL: DUPL                                              TIME =      0.39
+
+      Batch Convergence Block $BASVR01 Hierarchy: B2                              TIME =      0.39
+
+  *   WARNING WHILE EXECUTING BATCH CONVERGENC BLOCK: "$BASVR01" IN "B2"        
+                                                               (WRTVARIN.1)     
+      No active unit procedure is detected. The simulation will run to          
+      the maximum integration time of 5.000 HR                                  
+
+      Start task machine for batch B2.$BASVR01
+         # Tasks =    0 NVTEAR =    0 NVTASK =    0 NVVARG =    0
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      0.97
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      0.98
+      STREAM B2.S5 WILL BE FLASHED FOR PROPERTY CALCULATIONS.
+      KODE = 2   NO. TEMP ITER =    1     TEMP =  156.279    
+      KPHASE =    2 KODE =    2 T =  156.279     P =  500000.     Q = 2.781053E-04
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.11
+
+      Integrating from  0.0000     to 0.10000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.14
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.24
+
+      Integrating from 0.10000E-01 to 0.20000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.27
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.31
+
+      Integrating from 0.20000E-01 to 0.30000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.34
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.38
+
+      Integrating from 0.30000E-01 to 0.40000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.42
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.48
+
+      Integrating from 0.40000E-01 to 0.50000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.52
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.56
+
+      Integrating from 0.50000E-01 to 0.60000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.60
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.64
+
+      Integrating from 0.60000E-01 to 0.70000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.68
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.71
+
+      Integrating from 0.70000E-01 to 0.80000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.79
+
+      Integrating from 0.80000E-01 to 0.90000E-01 by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.83
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.87
+
+      Integrating from 0.90000E-01 to 0.10000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.95
+
+      Integrating from 0.10000     to 0.11000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      1.99
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.03
+
+      Integrating from 0.11000     to 0.12000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.11
+
+      Integrating from 0.12000     to 0.13000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.14
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.21
+
+      Integrating from 0.13000     to 0.14000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.24
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.29
+
+      Integrating from 0.14000     to 0.15000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.32
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.36
+
+      Integrating from 0.15000     to 0.16000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.40
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.45
+
+      Integrating from 0.16000     to 0.17000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.48
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.54
+
+      Integrating from 0.17000     to 0.18000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.62
+
+      Integrating from 0.18000     to 0.19000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.66
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.70
+
+      Integrating from 0.19000     to 0.20000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.77
+
+      Integrating from 0.20000     to 0.21000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.80
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.83
+
+      Integrating from 0.21000     to 0.22000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.87
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.93
+
+      Integrating from 0.22000     to 0.23000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      2.96
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.01
+
+      Integrating from 0.23000     to 0.24000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.05
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.09
+
+      Integrating from 0.24000     to 0.25000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.12
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.15
+
+      Integrating from 0.25000     to 0.26000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.19
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.24
+
+      Integrating from 0.26000     to 0.27000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.27
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.32
+
+      Integrating from 0.27000     to 0.28000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.35
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.40
+
+      Integrating from 0.28000     to 0.29000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.43
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.48
+
+      Integrating from 0.29000     to 0.30000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.52
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.56
+
+      Integrating from 0.30000     to 0.31000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.59
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.63
+
+      Integrating from 0.31000     to 0.32000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.66
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.70
+
+      Integrating from 0.32000     to 0.33000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.74
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.78
+
+      Integrating from 0.33000     to 0.34000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.81
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.85
+
+      Integrating from 0.34000     to 0.35000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.89
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.92
+
+      Integrating from 0.35000     to 0.36000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      3.96
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.01
+
+      Integrating from 0.36000     to 0.37000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.04
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.08
+
+      Integrating from 0.37000     to 0.38000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.12
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.15
+
+      Integrating from 0.38000     to 0.39000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.19
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.23
+
+      Integrating from 0.39000     to 0.40000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.27
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.31
+
+      Integrating from 0.40000     to 0.41000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.35
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.39
+
+      Integrating from 0.41000     to 0.42000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.43
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.47
+
+      Integrating from 0.42000     to 0.43000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.55
+
+      Integrating from 0.43000     to 0.44000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.63
+
+      Integrating from 0.44000     to 0.45000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.67
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.71
+
+      Integrating from 0.45000     to 0.46000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.79
+
+      Integrating from 0.46000     to 0.47000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.82
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.86
+
+      Integrating from 0.47000     to 0.48000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.94
+
+      Integrating from 0.48000     to 0.49000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      4.97
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.01
+
+      Integrating from 0.49000     to 0.50000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.05
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.09
+
+      Integrating from 0.50000     to 0.51000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.13
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.17
+
+      Integrating from 0.51000     to 0.52000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.21
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.25
+
+      Integrating from 0.52000     to 0.53000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.29
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.33
+
+      Integrating from 0.53000     to 0.54000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.37
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.40
+
+      Integrating from 0.54000     to 0.55000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.44
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.48
+
+      Integrating from 0.55000     to 0.56000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.56
+
+      Integrating from 0.56000     to 0.57000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.59
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.63
+
+      Integrating from 0.57000     to 0.58000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.66
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.72
+
+      Integrating from 0.58000     to 0.59000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.76
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.79
+
+      Integrating from 0.59000     to 0.60000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.82
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.86
+
+      Integrating from 0.60000     to 0.61000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.89
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.93
+
+      Integrating from 0.61000     to 0.62000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      5.97
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.01
+
+      Integrating from 0.62000     to 0.63000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.04
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.09
+
+      Integrating from 0.63000     to 0.64000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.13
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.17
+
+      Integrating from 0.64000     to 0.65000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.20
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.24
+
+      Integrating from 0.65000     to 0.66000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.27
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.31
+
+      Integrating from 0.66000     to 0.67000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.35
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.39
+
+      Integrating from 0.67000     to 0.68000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.43
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.47
+
+      Integrating from 0.68000     to 0.69000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.55
+
+      Integrating from 0.69000     to 0.70000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.62
+
+      Integrating from 0.70000     to 0.71000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.65
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.70
+
+      Integrating from 0.71000     to 0.72000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.76
+
+      Integrating from 0.72000     to 0.73000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.79
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.83
+
+      Integrating from 0.73000     to 0.74000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.86
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.89
+
+      Integrating from 0.74000     to 0.75000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.93
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      6.97
+
+      Integrating from 0.75000     to 0.76000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.00
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.04
+
+      Integrating from 0.76000     to 0.77000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.08
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.13
+
+      Integrating from 0.77000     to 0.78000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.17
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.20
+
+      Integrating from 0.78000     to 0.79000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.23
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.28
+
+      Integrating from 0.79000     to 0.80000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.31
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.35
+
+      Integrating from 0.80000     to 0.81000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.39
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.43
+
+      Integrating from 0.81000     to 0.82000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.47
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.50
+
+      Integrating from 0.82000     to 0.83000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.54
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.58
+
+      Integrating from 0.83000     to 0.84000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.61
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.65
+
+      Integrating from 0.84000     to 0.85000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.68
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.72
+
+      Integrating from 0.85000     to 0.86000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.76
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.80
+
+      Integrating from 0.86000     to 0.87000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.84
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.88
+
+      Integrating from 0.87000     to 0.88000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.91
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      7.96
+
+      Integrating from 0.88000     to 0.89000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.00
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.04
+
+      Integrating from 0.89000     to 0.90000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.12
+
+      Integrating from 0.90000     to 0.91000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.15
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.20
+
+      Integrating from 0.91000     to 0.92000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.23
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.27
+
+      Integrating from 0.92000     to 0.93000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.30
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.35
+
+      Integrating from 0.93000     to 0.94000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.38
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.43
+
+      Integrating from 0.94000     to 0.95000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.46
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.50
+
+      Integrating from 0.95000     to 0.96000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.53
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.57
+
+      Integrating from 0.96000     to 0.97000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.61
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.64
+
+      Integrating from 0.97000     to 0.98000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.67
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.71
+
+      Integrating from 0.98000     to 0.99000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.74
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.79
+
+      Integrating from 0.99000     to  1.0000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.82
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.85
+
+      Integrating from  1.0000     to  1.0100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.88
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.92
+
+      Integrating from  1.0100     to  1.0200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      8.96
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.00
+
+      Integrating from  1.0200     to  1.0300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.04
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.08
+
+      Integrating from  1.0300     to  1.0400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.12
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.16
+
+      Integrating from  1.0400     to  1.0500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.20
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.25
+
+      Integrating from  1.0500     to  1.0600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.29
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.33
+
+      Integrating from  1.0600     to  1.0700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.37
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.41
+
+      Integrating from  1.0700     to  1.0800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.44
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.47
+
+      Integrating from  1.0800     to  1.0900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.55
+
+      Integrating from  1.0900     to  1.1000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.59
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.63
+
+      Integrating from  1.1000     to  1.1100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.67
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.72
+
+      Integrating from  1.1100     to  1.1200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.79
+
+      Integrating from  1.1200     to  1.1300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.82
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.87
+
+      Integrating from  1.1300     to  1.1400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.94
+
+      Integrating from  1.1400     to  1.1500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =      9.98
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.02
+
+      Integrating from  1.1500     to  1.1600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.05
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.09
+
+      Integrating from  1.1600     to  1.1700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.12
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.17
+
+      Integrating from  1.1700     to  1.1800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.20
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.25
+
+      Integrating from  1.1800     to  1.1900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.28
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.32
+
+      Integrating from  1.1900     to  1.2000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.36
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.40
+
+      Integrating from  1.2000     to  1.2100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.43
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.47
+
+      Integrating from  1.2100     to  1.2200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.50
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.55
+
+      Integrating from  1.2200     to  1.2300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.62
+
+      Integrating from  1.2300     to  1.2400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.65
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.71
+
+      Integrating from  1.2400     to  1.2500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.81
+
+      Integrating from  1.2500     to  1.2600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.85
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.89
+
+      Integrating from  1.2600     to  1.2700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.92
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.96
+
+      Integrating from  1.2700     to  1.2800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     10.99
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.04
+
+      Integrating from  1.2800     to  1.2900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.12
+
+      Integrating from  1.2900     to  1.3000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.15
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.19
+
+      Integrating from  1.3000     to  1.3100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.22
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.26
+
+      Integrating from  1.3100     to  1.3200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.30
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.34
+
+      Integrating from  1.3200     to  1.3300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.38
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.42
+
+      Integrating from  1.3300     to  1.3400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.46
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.50
+
+      Integrating from  1.3400     to  1.3500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.53
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.57
+
+      Integrating from  1.3500     to  1.3600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.61
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.64
+
+      Integrating from  1.3600     to  1.3700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.67
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.72
+
+      Integrating from  1.3700     to  1.3800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.79
+
+      Integrating from  1.3800     to  1.3900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.83
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.86
+
+      Integrating from  1.3900     to  1.4000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.94
+
+      Integrating from  1.4000     to  1.4100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     11.98
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.01
+
+      Integrating from  1.4100     to  1.4200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.05
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.09
+
+      Integrating from  1.4200     to  1.4300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.12
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.17
+
+      Integrating from  1.4300     to  1.4400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.21
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.25
+
+      Integrating from  1.4400     to  1.4500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.29
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.33
+
+      Integrating from  1.4500     to  1.4600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.37
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.41
+
+      Integrating from  1.4600     to  1.4700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.44
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.48
+
+      Integrating from  1.4700     to  1.4800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.55
+
+      Integrating from  1.4800     to  1.4900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.61
+
+      Integrating from  1.4900     to  1.5000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.64
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.67
+
+      Integrating from  1.5000     to  1.5100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.71
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.75
+
+      Integrating from  1.5100     to  1.5200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.78
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.82
+
+      Integrating from  1.5200     to  1.5300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.85
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.90
+
+      Integrating from  1.5300     to  1.5400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.93
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     12.97
+
+      Integrating from  1.5400     to  1.5500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.00
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.05
+
+      Integrating from  1.5500     to  1.5600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.08
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.11
+
+      Integrating from  1.5600     to  1.5700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.14
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.19
+
+      Integrating from  1.5700     to  1.5800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.22
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.25
+
+      Integrating from  1.5800     to  1.5900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.29
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.32
+
+      Integrating from  1.5900     to  1.6000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.35
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.44
+
+      Integrating from  1.6000     to  1.6100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.47
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.51
+
+      Integrating from  1.6100     to  1.6200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.54
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.58
+
+      Integrating from  1.6200     to  1.6300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.62
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.66
+
+      Integrating from  1.6300     to  1.6400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.69
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.74
+
+      Integrating from  1.6400     to  1.6500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.78
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.82
+
+      Integrating from  1.6500     to  1.6600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.86
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.90
+
+      Integrating from  1.6600     to  1.6700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.93
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     13.97
+
+      Integrating from  1.6700     to  1.6800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.01
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.06
+
+      Integrating from  1.6800     to  1.6900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.09
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.14
+
+      Integrating from  1.6900     to  1.7000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.18
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.23
+
+      Integrating from  1.7000     to  1.7100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.26
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.31
+
+      Integrating from  1.7100     to  1.7200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.33
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.38
+
+      Integrating from  1.7200     to  1.7300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.41
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.46
+
+      Integrating from  1.7300     to  1.7400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.49
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.54
+
+      Integrating from  1.7400     to  1.7500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.57
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.62
+
+      Integrating from  1.7500     to  1.7600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.65
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.69
+
+      Integrating from  1.7600     to  1.7700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.72
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.76
+
+      Integrating from  1.7700     to  1.7800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.80
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.84
+
+      Integrating from  1.7800     to  1.7900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.87
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.93
+
+      Integrating from  1.7900     to  1.8000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     14.96
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.01
+
+      Integrating from  1.8000     to  1.8100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.04
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.09
+
+      Integrating from  1.8100     to  1.8200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.12
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.16
+
+      Integrating from  1.8200     to  1.8300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.19
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.24
+
+      Integrating from  1.8300     to  1.8400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.27
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.31
+
+      Integrating from  1.8400     to  1.8500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.34
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.38
+
+      Integrating from  1.8500     to  1.8600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.42
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.47
+
+      Integrating from  1.8600     to  1.8700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.50
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.55
+
+      Integrating from  1.8700     to  1.8800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.62
+
+      Integrating from  1.8800     to  1.8900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.66
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.70
+
+      Integrating from  1.8900     to  1.9000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.77
+
+      Integrating from  1.9000     to  1.9100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.81
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.85
+
+      Integrating from  1.9100     to  1.9200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.88
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.93
+
+      Integrating from  1.9200     to  1.9300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     15.96
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.00
+
+      Integrating from  1.9300     to  1.9400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.02
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.07
+
+      Integrating from  1.9400     to  1.9500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.10
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.13
+
+      Integrating from  1.9500     to  1.9600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.16
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.20
+
+      Integrating from  1.9600     to  1.9700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.24
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.29
+
+      Integrating from  1.9700     to  1.9800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.32
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.36
+
+      Integrating from  1.9800     to  1.9900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.40
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.44
+
+      Integrating from  1.9900     to  2.0000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.48
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.52
+
+      Integrating from  2.0000     to  2.0100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.55
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.60
+
+      Integrating from  2.0100     to  2.0200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.63
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.67
+
+      Integrating from  2.0200     to  2.0300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.69
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.73
+
+      Integrating from  2.0300     to  2.0400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.77
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.80
+
+      Integrating from  2.0400     to  2.0500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.84
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.88
+
+      Integrating from  2.0500     to  2.0600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.91
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     16.97
+
+      Integrating from  2.0600     to  2.0700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.00
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.04
+
+      Integrating from  2.0700     to  2.0800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.08
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.12
+
+      Integrating from  2.0800     to  2.0900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.15
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.19
+
+      Integrating from  2.0900     to  2.1000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.22
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.26
+
+      Integrating from  2.1000     to  2.1100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.29
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.33
+
+      Integrating from  2.1100     to  2.1200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.36
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.40
+
+      Integrating from  2.1200     to  2.1300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.43
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.47
+
+      Integrating from  2.1300     to  2.1400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.55
+
+      Integrating from  2.1400     to  2.1500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.59
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.63
+
+      Integrating from  2.1500     to  2.1600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.67
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.71
+
+      Integrating from  2.1600     to  2.1700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.79
+
+      Integrating from  2.1700     to  2.1800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.83
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.87
+
+      Integrating from  2.1800     to  2.1900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.94
+
+      Integrating from  2.1900     to  2.2000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     17.97
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.01
+
+      Integrating from  2.2000     to  2.2100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.04
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.10
+
+      Integrating from  2.2100     to  2.2200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.13
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.17
+
+      Integrating from  2.2200     to  2.2300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.20
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.24
+
+      Integrating from  2.2300     to  2.2400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.28
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.32
+
+      Integrating from  2.2400     to  2.2500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.36
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.41
+
+      Integrating from  2.2500     to  2.2600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.44
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.49
+
+      Integrating from  2.2600     to  2.2700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.53
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.57
+
+      Integrating from  2.2700     to  2.2800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.61
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.65
+
+      Integrating from  2.2800     to  2.2900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.68
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.73
+
+      Integrating from  2.2900     to  2.3000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.76
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.81
+
+      Integrating from  2.3000     to  2.3100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.84
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.89
+
+      Integrating from  2.3100     to  2.3200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.92
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     18.97
+
+      Integrating from  2.3200     to  2.3300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.00
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.05
+
+      Integrating from  2.3300     to  2.3400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.08
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.12
+
+      Integrating from  2.3400     to  2.3500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.15
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.19
+
+      Integrating from  2.3500     to  2.3600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.22
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.27
+
+      Integrating from  2.3600     to  2.3700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.30
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.35
+
+      Integrating from  2.3700     to  2.3800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.38
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.43
+
+      Integrating from  2.3800     to  2.3900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.46
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.51
+
+      Integrating from  2.3900     to  2.4000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.54
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.59
+
+      Integrating from  2.4000     to  2.4100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.62
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.67
+
+      Integrating from  2.4100     to  2.4200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.71
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.74
+
+      Integrating from  2.4200     to  2.4300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.77
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.82
+
+      Integrating from  2.4300     to  2.4400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.85
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.90
+
+      Integrating from  2.4400     to  2.4500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.94
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     19.98
+
+      Integrating from  2.4500     to  2.4600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.02
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.06
+
+      Integrating from  2.4600     to  2.4700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.09
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.14
+
+      Integrating from  2.4700     to  2.4800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.18
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.23
+
+      Integrating from  2.4800     to  2.4900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.27
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.33
+
+      Integrating from  2.4900     to  2.5000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.36
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.42
+
+      Integrating from  2.5000     to  2.5100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.45
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.50
+
+      Integrating from  2.5100     to  2.5200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.53
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.58
+
+      Integrating from  2.5200     to  2.5300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.61
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.66
+
+      Integrating from  2.5300     to  2.5400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.69
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.74
+
+      Integrating from  2.5400     to  2.5500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.77
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.82
+
+      Integrating from  2.5500     to  2.5600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.85
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.89
+
+      Integrating from  2.5600     to  2.5700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.92
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     20.96
+
+      Integrating from  2.5700     to  2.5800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.00
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.05
+
+      Integrating from  2.5800     to  2.5900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.08
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.13
+
+      Integrating from  2.5900     to  2.6000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.17
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.21
+
+      Integrating from  2.6000     to  2.6100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.24
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.28
+
+      Integrating from  2.6100     to  2.6200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.31
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.37
+
+      Integrating from  2.6200     to  2.6300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.40
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.44
+
+      Integrating from  2.6300     to  2.6400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.47
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.51
+
+      Integrating from  2.6400     to  2.6500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.55
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.59
+
+      Integrating from  2.6500     to  2.6600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.62
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.67
+
+      Integrating from  2.6600     to  2.6700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.71
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.75
+
+      Integrating from  2.6700     to  2.6800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.79
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.83
+
+      Integrating from  2.6800     to  2.6900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.86
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.91
+
+      Integrating from  2.6900     to  2.7000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.94
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     21.98
+
+      Integrating from  2.7000     to  2.7100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.01
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.06
+
+      Integrating from  2.7100     to  2.7200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.09
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.14
+
+      Integrating from  2.7200     to  2.7300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.18
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.22
+
+      Integrating from  2.7300     to  2.7400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.25
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.29
+
+      Integrating from  2.7400     to  2.7500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.32
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.36
+
+      Integrating from  2.7500     to  2.7600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.39
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.43
+
+      Integrating from  2.7600     to  2.7700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.46
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.52
+
+      Integrating from  2.7700     to  2.7800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.55
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.60
+
+      Integrating from  2.7800     to  2.7900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.63
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.68
+
+      Integrating from  2.7900     to  2.8000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.71
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.75
+
+      Integrating from  2.8000     to  2.8100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.79
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.84
+
+      Integrating from  2.8100     to  2.8200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.87
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.91
+
+      Integrating from  2.8200     to  2.8300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     22.94
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.00
+
+      Integrating from  2.8300     to  2.8400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.03
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.07
+
+      Integrating from  2.8400     to  2.8500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.10
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.16
+
+      Integrating from  2.8500     to  2.8600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.19
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.24
+
+      Integrating from  2.8600     to  2.8700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.27
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.33
+
+      Integrating from  2.8700     to  2.8800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.36
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.41
+
+      Integrating from  2.8800     to  2.8900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.44
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.49
+
+      Integrating from  2.8900     to  2.9000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.52
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.57
+
+      Integrating from  2.9000     to  2.9100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.60
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.64
+
+      Integrating from  2.9100     to  2.9200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.67
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.72
+
+      Integrating from  2.9200     to  2.9300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.79
+
+      Integrating from  2.9300     to  2.9400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.83
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.87
+
+      Integrating from  2.9400     to  2.9500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.91
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.96
+
+      Integrating from  2.9500     to  2.9600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     23.99
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.04
+
+      Integrating from  2.9600     to  2.9700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.12
+
+      Integrating from  2.9700     to  2.9800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.16
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.20
+
+      Integrating from  2.9800     to  2.9900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.24
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.29
+
+      Integrating from  2.9900     to  3.0000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.32
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.38
+
+      Integrating from  3.0000     to  3.0100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.42
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.47
+
+      Integrating from  3.0100     to  3.0200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.55
+
+      Integrating from  3.0200     to  3.0300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.63
+
+      Integrating from  3.0300     to  3.0400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.66
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.70
+
+      Integrating from  3.0400     to  3.0500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.74
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.79
+
+      Integrating from  3.0500     to  3.0600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.83
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.88
+
+      Integrating from  3.0600     to  3.0700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.92
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     24.98
+
+      Integrating from  3.0700     to  3.0800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.01
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.06
+
+      Integrating from  3.0800     to  3.0900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.09
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.13
+
+      Integrating from  3.0900     to  3.1000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.17
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.23
+
+      Integrating from  3.1000     to  3.1100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.26
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.31
+
+      Integrating from  3.1100     to  3.1200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.34
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.39
+
+      Integrating from  3.1200     to  3.1300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.43
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.47
+
+      Integrating from  3.1300     to  3.1400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.50
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.54
+
+      Integrating from  3.1400     to  3.1500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.62
+
+      Integrating from  3.1500     to  3.1600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.65
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.70
+
+      Integrating from  3.1600     to  3.1700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.78
+
+      Integrating from  3.1700     to  3.1800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.82
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.86
+
+      Integrating from  3.1800     to  3.1900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.95
+
+      Integrating from  3.1900     to  3.2000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     25.98
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.03
+
+      Integrating from  3.2000     to  3.2100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.11
+
+      Integrating from  3.2100     to  3.2200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.15
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.21
+
+      Integrating from  3.2200     to  3.2300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.25
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.29
+
+      Integrating from  3.2300     to  3.2400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.33
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.37
+
+      Integrating from  3.2400     to  3.2500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.41
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.47
+
+      Integrating from  3.2500     to  3.2600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.56
+
+      Integrating from  3.2600     to  3.2700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.60
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.64
+
+      Integrating from  3.2700     to  3.2800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.67
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.72
+
+      Integrating from  3.2800     to  3.2900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.76
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.80
+
+      Integrating from  3.2900     to  3.3000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.84
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.88
+
+      Integrating from  3.3000     to  3.3100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.92
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.96
+
+      Integrating from  3.3100     to  3.3200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     26.99
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.03
+
+      Integrating from  3.3200     to  3.3300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.11
+
+      Integrating from  3.3300     to  3.3400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.14
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.19
+
+      Integrating from  3.3400     to  3.3500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.23
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.28
+
+      Integrating from  3.3500     to  3.3600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.31
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.36
+
+      Integrating from  3.3600     to  3.3700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.39
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.44
+
+      Integrating from  3.3700     to  3.3800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.48
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.53
+
+      Integrating from  3.3800     to  3.3900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.56
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.60
+
+      Integrating from  3.3900     to  3.4000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.64
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.69
+
+      Integrating from  3.4000     to  3.4100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.72
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.77
+
+      Integrating from  3.4100     to  3.4200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.80
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.85
+
+      Integrating from  3.4200     to  3.4300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.89
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.94
+
+      Integrating from  3.4300     to  3.4400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     27.97
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.02
+
+      Integrating from  3.4400     to  3.4500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.05
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.11
+
+      Integrating from  3.4500     to  3.4600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.14
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.19
+
+      Integrating from  3.4600     to  3.4700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.22
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.27
+
+      Integrating from  3.4700     to  3.4800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.31
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.36
+
+      Integrating from  3.4800     to  3.4900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.40
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.45
+
+      Integrating from  3.4900     to  3.5000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.48
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.54
+
+      Integrating from  3.5000     to  3.5100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.57
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.61
+
+      Integrating from  3.5100     to  3.5200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.65
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.70
+
+      Integrating from  3.5200     to  3.5300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.79
+
+      Integrating from  3.5300     to  3.5400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.82
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.87
+
+      Integrating from  3.5400     to  3.5500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.96
+
+      Integrating from  3.5500     to  3.5600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     28.99
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.04
+
+      Integrating from  3.5600     to  3.5700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.13
+
+      Integrating from  3.5700     to  3.5800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.16
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.22
+
+      Integrating from  3.5800     to  3.5900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.26
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.30
+
+      Integrating from  3.5900     to  3.6000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.34
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.39
+
+      Integrating from  3.6000     to  3.6100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.43
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.47
+
+      Integrating from  3.6100     to  3.6200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.55
+
+      Integrating from  3.6200     to  3.6300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.58
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.63
+
+      Integrating from  3.6300     to  3.6400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.66
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.70
+
+      Integrating from  3.6400     to  3.6500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.78
+
+      Integrating from  3.6500     to  3.6600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.81
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.87
+
+      Integrating from  3.6600     to  3.6700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.94
+
+      Integrating from  3.6700     to  3.6800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     29.97
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.02
+
+      Integrating from  3.6800     to  3.6900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.05
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.11
+
+      Integrating from  3.6900     to  3.7000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.15
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.19
+
+      Integrating from  3.7000     to  3.7100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.23
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.27
+
+      Integrating from  3.7100     to  3.7200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.30
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.35
+
+      Integrating from  3.7200     to  3.7300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.38
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.43
+
+      Integrating from  3.7300     to  3.7400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.46
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.51
+
+      Integrating from  3.7400     to  3.7500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.55
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.59
+
+      Integrating from  3.7500     to  3.7600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.62
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.66
+
+      Integrating from  3.7600     to  3.7700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.69
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.73
+
+      Integrating from  3.7700     to  3.7800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.76
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.81
+
+      Integrating from  3.7800     to  3.7900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.84
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.88
+
+      Integrating from  3.7900     to  3.8000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.92
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     30.97
+
+      Integrating from  3.8000     to  3.8100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.01
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.06
+
+      Integrating from  3.8100     to  3.8200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.09
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.14
+
+      Integrating from  3.8200     to  3.8300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.17
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.22
+
+      Integrating from  3.8300     to  3.8400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.25
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.30
+
+      Integrating from  3.8400     to  3.8500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.33
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.38
+
+      Integrating from  3.8500     to  3.8600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.41
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.45
+
+      Integrating from  3.8600     to  3.8700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.49
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.53
+
+      Integrating from  3.8700     to  3.8800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.57
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.62
+
+      Integrating from  3.8800     to  3.8900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.65
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.70
+
+      Integrating from  3.8900     to  3.9000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.78
+
+      Integrating from  3.9000     to  3.9100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.81
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.86
+
+      Integrating from  3.9100     to  3.9200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.90
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.96
+
+      Integrating from  3.9200     to  3.9300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     31.99
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.04
+
+      Integrating from  3.9300     to  3.9400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.11
+
+      Integrating from  3.9400     to  3.9500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.14
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.18
+
+      Integrating from  3.9500     to  3.9600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.22
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.25
+
+      Integrating from  3.9600     to  3.9700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.28
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.33
+
+      Integrating from  3.9700     to  3.9800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.37
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.42
+
+      Integrating from  3.9800     to  3.9900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.45
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.50
+
+      Integrating from  3.9900     to  4.0000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.53
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.57
+
+      Integrating from  4.0000     to  4.0100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.60
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.65
+
+      Integrating from  4.0100     to  4.0200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.68
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.73
+
+      Integrating from  4.0200     to  4.0300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.77
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.81
+
+      Integrating from  4.0300     to  4.0400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.85
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.89
+
+      Integrating from  4.0400     to  4.0500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.93
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     32.98
+
+      Integrating from  4.0500     to  4.0600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.02
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.06
+
+      Integrating from  4.0600     to  4.0700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.09
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.14
+
+      Integrating from  4.0700     to  4.0800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.17
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.23
+
+      Integrating from  4.0800     to  4.0900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.27
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.32
+
+      Integrating from  4.0900     to  4.1000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.35
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.40
+
+      Integrating from  4.1000     to  4.1100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.44
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.48
+
+      Integrating from  4.1100     to  4.1200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.52
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.57
+
+      Integrating from  4.1200     to  4.1300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.61
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.66
+
+      Integrating from  4.1300     to  4.1400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.69
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.74
+
+      Integrating from  4.1400     to  4.1500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.77
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.82
+
+      Integrating from  4.1500     to  4.1600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.85
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.91
+
+      Integrating from  4.1600     to  4.1700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.94
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     33.99
+
+      Integrating from  4.1700     to  4.1800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.02
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.06
+
+      Integrating from  4.1800     to  4.1900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.09
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.13
+
+      Integrating from  4.1900     to  4.2000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.16
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.20
+
+      Integrating from  4.2000     to  4.2100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.24
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.29
+
+      Integrating from  4.2100     to  4.2200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.32
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.38
+
+      Integrating from  4.2200     to  4.2300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.41
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.46
+
+      Integrating from  4.2300     to  4.2400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.49
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.54
+
+      Integrating from  4.2400     to  4.2500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.57
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.62
+
+      Integrating from  4.2500     to  4.2600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.67
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.71
+
+      Integrating from  4.2600     to  4.2700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.79
+
+      Integrating from  4.2700     to  4.2800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.83
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.88
+
+      Integrating from  4.2800     to  4.2900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.92
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     34.97
+
+      Integrating from  4.2900     to  4.3000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.00
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.05
+
+      Integrating from  4.3000     to  4.3100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.08
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.13
+
+      Integrating from  4.3100     to  4.3200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.17
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.21
+
+      Integrating from  4.3200     to  4.3300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.25
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.29
+
+      Integrating from  4.3300     to  4.3400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.32
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.37
+
+      Integrating from  4.3400     to  4.3500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.40
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.45
+
+      Integrating from  4.3500     to  4.3600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.48
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.53
+
+      Integrating from  4.3600     to  4.3700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.56
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.61
+
+      Integrating from  4.3700     to  4.3800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.65
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.70
+
+      Integrating from  4.3800     to  4.3900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.77
+
+      Integrating from  4.3900     to  4.4000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.80
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.85
+
+      Integrating from  4.4000     to  4.4100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.88
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.93
+
+      Integrating from  4.4100     to  4.4200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     35.97
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.02
+
+      Integrating from  4.4200     to  4.4300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.05
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.10
+
+      Integrating from  4.4300     to  4.4400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.13
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.18
+
+      Integrating from  4.4400     to  4.4500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.22
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.27
+
+      Integrating from  4.4500     to  4.4600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.31
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.35
+
+      Integrating from  4.4600     to  4.4700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.39
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.44
+
+      Integrating from  4.4700     to  4.4800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.47
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.51
+
+      Integrating from  4.4800     to  4.4900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.55
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.59
+
+      Integrating from  4.4900     to  4.5000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.63
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.68
+
+      Integrating from  4.5000     to  4.5100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.79
+
+      Integrating from  4.5100     to  4.5200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.82
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.88
+
+      Integrating from  4.5200     to  4.5300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.91
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.96
+
+      Integrating from  4.5300     to  4.5400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     36.99
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.04
+
+      Integrating from  4.5400     to  4.5500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.12
+
+      Integrating from  4.5500     to  4.5600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.15
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.20
+
+      Integrating from  4.5600     to  4.5700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.23
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.27
+
+      Integrating from  4.5700     to  4.5800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.30
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.35
+
+      Integrating from  4.5800     to  4.5900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.39
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.44
+
+      Integrating from  4.5900     to  4.6000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.47
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.53
+
+      Integrating from  4.6000     to  4.6100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.56
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.61
+
+      Integrating from  4.6100     to  4.6200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.64
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.69
+
+      Integrating from  4.6200     to  4.6300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.77
+
+      Integrating from  4.6300     to  4.6400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.80
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.85
+
+      Integrating from  4.6400     to  4.6500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.89
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.94
+
+      Integrating from  4.6500     to  4.6600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     37.97
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.02
+
+      Integrating from  4.6600     to  4.6700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.06
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.11
+
+      Integrating from  4.6700     to  4.6800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.14
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.19
+
+      Integrating from  4.6800     to  4.6900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.22
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.28
+
+      Integrating from  4.6900     to  4.7000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.31
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.36
+
+      Integrating from  4.7000     to  4.7100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.40
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.46
+
+      Integrating from  4.7100     to  4.7200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.49
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.53
+
+      Integrating from  4.7200     to  4.7300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.57
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.63
+
+      Integrating from  4.7300     to  4.7400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.66
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.71
+
+      Integrating from  4.7400     to  4.7500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.75
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.79
+
+      Integrating from  4.7500     to  4.7600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.83
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.88
+
+      Integrating from  4.7600     to  4.7700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.91
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.96
+
+      Integrating from  4.7700     to  4.7800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     38.99
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.04
+
+      Integrating from  4.7800     to  4.7900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.07
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.12
+
+      Integrating from  4.7900     to  4.8000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.15
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.21
+
+      Integrating from  4.8000     to  4.8100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.25
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.29
+
+      Integrating from  4.8100     to  4.8200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.33
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.38
+
+      Integrating from  4.8200     to  4.8300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.42
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.48
+
+      Integrating from  4.8300     to  4.8400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.51
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.56
+
+      Integrating from  4.8400     to  4.8500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.59
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.65
+
+      Integrating from  4.8500     to  4.8600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.68
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.74
+
+      Integrating from  4.8600     to  4.8700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.77
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.83
+
+      Integrating from  4.8700     to  4.8800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.86
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.93
+
+      Integrating from  4.8800     to  4.8900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     39.96
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.01
+
+      Integrating from  4.8900     to  4.9000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.05
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.09
+
+      Integrating from  4.9000     to  4.9100     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.12
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.17
+
+      Integrating from  4.9100     to  4.9200     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.21
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.26
+
+      Integrating from  4.9200     to  4.9300     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.29
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.35
+
+      Integrating from  4.9300     to  4.9400     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.38
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.44
+
+      Integrating from  4.9400     to  4.9500     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.47
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.52
+
+      Integrating from  4.9500     to  4.9600     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.56
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.61
+
+      Integrating from  4.9600     to  4.9700     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.65
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.70
+
+      Integrating from  4.9700     to  4.9800     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.73
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.79
+
+      Integrating from  4.9800     to  4.9900     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.82
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.87
+
+      Integrating from  4.9900     to  5.0000     by 0.10000E-01 HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.90
+
+      Maximum integration time (  5.0000     HR) reached.
+
+      Batch process finished at time  5.00000     HR
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     40.96
+
+      UOS BLOCK B1       MODEL: BATCHOP      HIERARCHY: B2                        TIME =     41.00
+
+      Exit batch convergence block B2.$BASVR01
+
+      UOS BLOCK $C-2     MODEL: DUPL                                              TIME =     41.00
+
+      UOS BLOCK B3       MODEL: CFUGE                                             TIME =     41.00
+
+      UOS BLOCK B4       MODEL: DECANTER                                          TIME =     41.00
+      T =   338.15        P =  0.10000E+06  B =  0.64097      Q =  0.19436E+06
+
+      UOS BLOCK B7       MODEL: HEATER                                            TIME =     41.01
+      KODE = 2  NTRIAL =   5  T = 378.1500  P =  100000.      V = 0.408313      Q = 4.061139E+06
+
+      UOS BLOCK B6       MODEL: RADFRAC                                           TIME =     41.01
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1    8      3820.1    
+          2    1    2      430.22    
+          3    1    4      84.059    
+          4    1    3      13.448    
+          5    1    3      1.2375    
+          6    1    4     0.46350    
+
+      UOS BLOCK B9       MODEL: FLASH2                                            TIME =     41.01
+      KODE = 2  NTRIAL =   3  T = 423.1500  P =  20000.0      V = 0.747739      Q = 3.658793E+06
+
+      GENERATING RESULTS FOR UOS BLOCK B5       MODEL: HEATER                     TIME =     41.01
+
+      GENERATING RESULTS FOR UOS BLOCK B7       MODEL: HEATER                     TIME =     41.01
+      STREAM CATOUT WILL BE FLASHED FOR PROPERTY CALCULATIONS.
+      KODE = 1   NO. TEMP ITER =    1     TEMP =  313.150    
+      KPHASE =    3 KODE =    1 T =  313.150     P = 1.000000E+07 Q =  0.00000    
+
+
+*** INPUT SPECIFICATION MESSAGES ***
+
+ PROP-TABLE   $MMTXY   IS NEW 03/06/2020   11:46:27:86 
+ PROP-TABLE $MMTXY FLASHCURVE
+     IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+     ANALYSIS ANAL-TYPE=TXY
+     PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+         TRUE-COMPS=YES
+     MOLE-FLOW GLYCEROL 1 /  METHA-01  1
+     STATE VFRAC=0.0
+     VARY PRES
+     RANGE LIST=1.013250000
+     VARY MOLEFRAC COMP=GLYCEROL
+     RANGE VARVALUE=RANGE LOWER=0.0 UPPER=1.0 NPOINT=50
+     PARAM NPHASE=3
+
+ PDF updated                                                                      TIME =    553.61
+ THIS COPY OF ASPEN PLUS LICENSED TO RENSSELAER POLYTECHNIC I        
+ 
+ 
+
+      BEGIN CALCULATIONS FOR PROP-TABLE $MMTXY                                    TIME =    553.69
+      KODE = 3  NTRIAL =   4  T = 337.5821  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  0.00000    
+      KODE = 3  NTRIAL =   5  T = 338.1162  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  212.110    
+      KODE = 3  NTRIAL =   5  T = 338.6841  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  208.633    
+      KODE = 3  NTRIAL =   5  T = 339.2874  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  205.401    
+      KODE = 3  NTRIAL =   5  T = 339.9271  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  202.448    
+      KODE = 3  NTRIAL =   4  T = 340.6038  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  199.800    
+      KODE = 3  NTRIAL =   4  T = 341.3177  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  197.475    
+      KODE = 3  NTRIAL =   4  T = 342.0689  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  195.487    
+      KODE = 3  NTRIAL =   4  T = 342.8573  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  193.845    
+      KODE = 3  NTRIAL =   4  T = 343.6828  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  192.555    
+      KODE = 3  NTRIAL =   4  T = 344.5452  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  191.620    
+      KODE = 3  NTRIAL =   4  T = 345.4443  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  191.042    
+      KODE = 3  NTRIAL =   4  T = 346.3802  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  190.822    
+      KODE = 3  NTRIAL =   4  T = 347.3527  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  190.960    
+      KODE = 3  NTRIAL =   4  T = 348.3619  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  191.459    
+      KODE = 3  NTRIAL =   4  T = 349.4081  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  192.318    
+      KODE = 3  NTRIAL =   4  T = 350.4915  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  193.541    
+      KODE = 3  NTRIAL =   4  T = 351.6128  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  195.133    
+      KODE = 3  NTRIAL =   4  T = 352.7725  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  197.100    
+      KODE = 3  NTRIAL =   4  T = 353.9716  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  199.452    
+      KODE = 3  NTRIAL =   4  T = 355.2112  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  202.200    
+      KODE = 3  NTRIAL =   4  T = 356.4928  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  205.364    
+      KODE = 3  NTRIAL =   3  T = 357.8180  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  208.963    
+      KODE = 3  NTRIAL =   3  T = 359.1889  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  213.025    
+      KODE = 3  NTRIAL =   3  T = 360.6080  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  217.584    
+      KODE = 3  NTRIAL =   3  T = 362.0783  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  222.684    
+      KODE = 3  NTRIAL =   3  T = 363.6031  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  228.377    
+      KODE = 3  NTRIAL =   3  T = 365.1868  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  234.727    
+      KODE = 3  NTRIAL =   3  T = 366.8341  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  241.814    
+      KODE = 3  NTRIAL =   3  T = 368.5508  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  249.738    
+      KODE = 3  NTRIAL =   3  T = 370.3438  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  258.621    
+      KODE = 3  NTRIAL =   3  T = 372.2214  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  268.615    
+      KODE = 3  NTRIAL =   4  T = 374.1932  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  279.910    
+      KODE = 3  NTRIAL =   4  T = 376.2712  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  292.747    
+      KODE = 3  NTRIAL =   4  T = 378.4695  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  307.433    
+      KODE = 3  NTRIAL =   4  T = 380.8056  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  324.364    
+      KODE = 3  NTRIAL =   4  T = 383.3012  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  344.058    
+      KODE = 3  NTRIAL =   4  T = 385.9833  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  367.202    
+      KODE = 3  NTRIAL =   4  T = 388.8860  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  394.730    
+      KODE = 3  NTRIAL =   4  T = 392.0537  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  427.929    
+      KODE = 3  NTRIAL =   4  T = 395.5444  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  468.630    
+      KODE = 3  NTRIAL =   4  T = 399.4368  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  519.513    
+      KODE = 3  NTRIAL =   4  T = 403.8398  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  584.647    
+      KODE = 3  NTRIAL =   4  T = 408.9105  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  670.487    
+      KODE = 3  NTRIAL =   4  T = 414.8854  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  787.868    
+      KODE = 3  NTRIAL =   4  T = 422.1428  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  956.301    
+      KODE = 3  NTRIAL =   5  T = 431.3364  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  1214.33    
+      KODE = 3  NTRIAL =   5  T = 443.7255  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  1648.41    
+      KODE = 3  NTRIAL =   5  T = 462.1509  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  2490.36    
+      KODE = 3  NTRIAL =   7  T = 494.5557  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  4525.00    
+      KODE = 3  NTRIAL =   6  T = 560.7465  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  9904.13    

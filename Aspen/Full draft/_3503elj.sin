@@ -1,0 +1,243 @@
+ >>ORIGINAL RUN                           MARCH 6, 2020       
+   11:37:09 A.M.                          FRIDAY      
+   INPUT FILE: _3503elj.inm
+   RUN ID : _3503elj
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 36.0 at 11:37:07 Fri Mar 6, 2020
+          3    ;Directory E:\Dropbox\spring 2020\Capstone\biocap2020\Aspen\Full draft  Runid FULL DRAFT
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         11            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         12
+         13    DEF-STREAMS CONVEN ALL
+         14
+         15    MODEL-OPTION
+         16
+         17    DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         18             / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+         19            'NISTV100 NIST-TRC' / NOASPENPCD
+         20
+         21    PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+         22            'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         23             / 'NISTV100 NIST-TRC'
+         24
+         25    COMPONENTS
+         26        GLYCEROL C3H8O3 /
+         27        TRIOL-01 C57H104O6 /
+         28        TRILI-01 C57H98O6 /
+         29        METHA-01 CH4O /
+         30        METHY-01 C19H36O2 /
+         31        METHY-02 C19H34O2 /
+         32        UREA CH4N2O /
+         33        CALCI-01 CAO /
+         34        LANTH-01 LA2O3 /
+         35        AMMON-01 H3N /
+         36        GLYCE-01 C4H6O4-N1
+         37
+         38    CISOLID-COMPS CALCI-01 LANTH-01
+         39
+         40    SOLVE
+         41        RUN-MODE MODE=SIM
+         42
+         43    FLOWSHEET
+         44        BLOCK B4 IN=S6 OUT=S8 GLYCEROL
+         45        BLOCK B3 IN=S5 OUT=S6 CATOUT
+         46        BLOCK B1 IN=OILS METHANOL CATIN OUT=S4
+         47        HIERARCHY B2
+         48        CONNECT $C-1 IN=S1 OUT="B2.S4"
+         49        CONNECT $C-2 IN="B2.S5" OUT=S5
+         50        BLOCK B5 IN=S4 OUT=S1
+         51        BLOCK B6 IN=S2 OUT=S9 S3
+         52        BLOCK B7 IN=S8 OUT=S2
+         53        BLOCK B9 IN=GLYCEROL OUT=S10 S11
+         54
+         55    PROPERTIES SR-POLAR
+         56
+         57    ESTIMATE ALL
+         58
+         59    PROP-DATA PCES-1
+         60        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         61            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         62        PROP-LIST OMEGA / DHVLB / VB / RGYR / RKTZRA / VLSTD
+         63        PVAL UREA .5992461800 / 20985.95586 / 48.82570000 /  &
+         64            2.6000000E-10 / .2351731880 / 48.82570000
+         65        PROP-LIST RKTZRA / VLSTD
+         66        PVAL CALCI-01 .2918596200 / 298.9063450
+         67        PVAL GLYCE-01 .2037543860 / 69.23640000
+         68
+         69    PROP-DATA DHVLWT-1
+         70        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         71            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         72        PROP-LIST DHVLWT
+         73        PVAL CALCI-01 5.38817025E+5 3396.850000 .3800000000 0.0  &
+         74            3396.850000
+         75
+         76    PROP-DATA KLDIP-1
+         77        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         78            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         79        PROP-LIST KLDIP
+         80        PVAL UREA .0494897448 1.57543997E-3 -1.0085909E-5  &
+         81            2.44404255E-8 -2.254923E-11 191.8500000 424.8000000
+         82        PVAL CALCI-01 -.6218197112 7.78300188E-4 -2.8775749E-7  &
+         83            4.5627261E-11 -2.727830E-15 3396.850000 5686.650000
+         84
+         85    PROP-DATA MULAND-1
+         86        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         87            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         88        PROP-LIST MULAND
+         89        PVAL UREA 129.3349773 -7951.576030 -18.41338230 191.8500000  &
+         90            424.8000000
+         91        PVAL CALCI-01 81.01615608 -12127.32210 -10.25255770  &
+         92            1126.850000 1706.850000
+         93
+         94    PROP-DATA PLXANT-1
+         95        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         96            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         97        PROP-LIST PLXANT
+         98        PVAL UREA 77.19179774 -10639.35530 0.0 0.0 -8.846083610  &
+         99            3.4142003E-18 6.000000000 191.8500000 431.8500000
+        100
+        101    PROP-DATA SIGDIP-1
+        102        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        103            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        104        PROP-LIST SIGDIP
+        105        PVAL UREA 156.7709600 1.222222220 5.9537296E-10  &
+        106            -6.635066E-10 2.6632382E-10 191.8500000 417.7500000
+        107        PVAL GLYCE-01 156.3532160 1.222222220 5.9089352E-10  &
+        108            -6.640628E-10 2.6313812E-10 323.7990000 543.1900000
+        109        PVAL CALCI-01 139.2135830 1.222222220 -2.171954E-10  &
+        110            2.3955375E-10 -9.673330E-11 3396.850000 5626.450000
+        111
+        112    PROP-DATA HOCETA-1
+        113        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        114            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        115        PROP-LIST HOCETA
+        116        BPVAL METHA-01 METHA-01 1.630000000
+        117        BPVAL METHA-01 AMMON-01 .2000000000
+        118        BPVAL AMMON-01 METHA-01 .2000000000
+        119
+        120    STREAM CATIN
+        121        SUBSTREAM MIXED TEMP=25. PRES=5. MOLE-FLOW=3.
+        122        MOLE-FRAC CALCI-01 1.
+        123
+        124    STREAM METHANOL
+        125        SUBSTREAM MIXED TEMP=25. PRES=5. MOLE-FLOW=900.
+        126        MOLE-FRAC METHA-01 1.
+        127
+        128    STREAM OILS
+        129        SUBSTREAM MIXED TEMP=25. PRES=5. MOLE-FLOW=100.
+        130        MOLE-FRAC TRIOL-01 0.6 / TRILI-01 0.4
+        131
+        132    BLOCK B1 MIXER
+        133        PARAM PRES=5. NPHASE=1 PHASE=L TOL=0.01 T-EST=25.
+        134        BLOCK-OPTION FREE-WATER=NO
+        135
+        136    BLOCK B5 HEATER
+        137        PARAM PRES=3. DELT=75. NPHASE=1 PHASE=L DPPARMOPT=NO
+        138        BLOCK-OPTION FREE-WATER=NO
+        139
+        140    BLOCK B7 HEATER
+        141        PARAM TEMP=105. PRES=1. DPPARMOPT=NO
+        142
+        143    BLOCK B9 FLASH2
+        144        PARAM TEMP=150. PRES=0.2 MAXIT=30
+        145
+        146    BLOCK B4 DECANTER
+        147        PARAM TEMP=65. PRES=1. LL-METH=EQ-SOLVE L2-COMPS=METHA-01  &
+        148            L2-CUTOFF=0.5 MAXIT=30
+        149
+        150    BLOCK B6 RADFRAC
+        151        PARAM NSTAGE=3 ALGORITHM=NONIDEAL INIT-OPTION=STANDARD  &
+        152            MAXOL=25 DAMPING=NONE
+        153        COL-CONFIG CONDENSER=PARTIAL-V
+        154        FEEDS S2 2 ABOVE-STAGE
+        155        PRODUCTS S3 3 L / S9 1 V
+        156        P-SPEC 1 1. / 2 1.
+        157        COL-SPECS MASS-D:F=0.13 MASS-RR=3.
+        158        DB:F-PARAMS STREAMS=S2
+        159
+        160    HIERARCHY B2
+        161
+        162
+        163    DEF-STREAMS CONVEN ALL
+        164
+        165    SOLVE
+        166        PARAM METHOD=SM PROCESS=BATCH
+        167        RUN-MODE MODE=SIM
+        168
+        169    FLOWSHEET
+        170        BLOCK B1 IN=S4 OUT=S5
+        171
+        172    PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        173            TRUE-COMPS=YES
+        174
+        175    BLOCK B1 BATCHOP
+        176        PARAM TYPE=T-SPEC PRES=5. TEMP=100. NPHASE=1 PHASE=L
+        177        INIT-COND FEED-TIME=1.
+        178        DISCHARGE DISCHARGE-T=1.
+        179        REACTIONS RXN-IDS=R-1 R-2
+        180        BLOCK-OPTION FREE-WATER=NO
+        181
+        182    EO-CONV-OPTI
+        183
+        184    BATCH-OPTS
+        185        PARAM MAX-TIME=5. OUTPUT-INT=0.01
+        186
+        187    ENDHIERARCHY B2
+        188
+        189    BLOCK B3 CFUGE
+        190        PARAM TYPE=SOLIDS-SEP TEMP=40. PRES=100.
+        191        SOLIDS-SEP SOLID-SPLIT=1. FLUID-SPLIT=1.
+        192
+        193    EO-CONV-OPTI
+        194
+        195    STREAM-REPOR MOLEFLOW
+        196
+        197    PROPERTY-REP PCES
+        198
+        199    REACTIONS R-1 LHHW
+        200        REAC-DATA 1
+        201        RATE-CON 1 PRE-EXP=0.044 ACT-ENERGY=16.6 <kJ/mol>
+        202        STOIC 1 MIXED TRIOL-01 -1. / METHA-01 -3. / METHY-01 3. / &
+        203            GLYCEROL 1.
+        204        DFORCE-EXP-1 1 MIXED TRIOL-01 1. / MIXED METHA-01 0. /  &
+        205            MIXED METHY-01 0. / MIXED GLYCEROL 0.
+        206        DFORCE-EQ-1 REACNO=1 A=0.
+        207        DFORCE-EQ-2 REACNO=1 A=-52.95
+        208
+        209    REACTIONS R-2 LHHW
+        210        REAC-DATA 1
+        211        RATE-CON 1 PRE-EXP=0.044 ACT-ENERGY=16.6 <kJ/mol>
+        212        STOIC 1 MIXED TRILI-01 -1. / METHA-01 -3. / GLYCEROL 1. / &
+        213            METHY-02 3.
+        214        DFORCE-EXP-1 1 MIXED TRILI-01 1. / MIXED METHA-01 0. /  &
+        215            MIXED GLYCEROL 0. / MIXED METHY-02 0.
+        216        DFORCE-EQ-1 REACNO=1 A=0.
+        217        DFORCE-EQ-2 REACNO=1 A=-52.95
+        218
+        219    PROP-TABLE BINRY-2 PROPS
+        220        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        221            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        222        ANALYSIS ANAL-TYPE=GIBBS UNITS='cal/mol'
+        223        PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        224            TRUE-COMPS=YES
+        225        MOLE-FLOW GLYCEROL 1 /  METHY-01  1
+        226        STATE PRES=1.
+        227        VARY TEMP
+        228        RANGE LIST=40.
+        229        VARY MOLEFRAC COMP=GLYCEROL
+        230        RANGE VARVALUE=RANGE LOWER=0.0 UPPER=1.0 NPOINT=50
+        231        PARAM NPHASE=3
+        232    ;
+        233    ;
+        234    ;
+        235    ;
+        236    ;
+
+   SIMULATION STARTED     MODULE USED: apmain  
+   LOCATED IN:C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\\xeq
