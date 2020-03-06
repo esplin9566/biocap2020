@@ -1,0 +1,543 @@
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION HISTORY                     + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WINDOWS                                       MARCH 5, 2020       
+ VERSION: 36.0   Build 249                               THURSDAY    
+ INSTALLATION:                                           7:37:54 P.M.        
+
+ THIS COPY OF ASPEN PLUS LICENSED TO RENSSELAER POLYTECHNIC I        
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+ *** INPUT SUMMARY ***
+
+ >>CURRENT RUN
+
+   ORIGINAL RUN                           MARCH 5, 2020       
+   7:37:54 P.M.                           THURSDAY    
+   INPUT FILE: _3445wqy.inm
+   RUN ID : _3445wqy
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 36.0 at 19:37:53 Thu Mar 5, 2020
+          3    ;Directory C:\Users\benjam2\Dropbox\spring 2020\Capstone\biocap2020\Aspen\Gylc GC dist  Runid GLYCEROL GLYCERINE CARBO DISTILLATION
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         11            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         12
+         13    DEF-STREAMS CONVEN ALL
+         14
+         15    MODEL-OPTION
+         16
+         17    DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         18             / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+         19            'NISTV100 NIST-TRC' / NOASPENPCD
+         20
+         21    PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+         22            'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         23             / 'NISTV100 NIST-TRC'
+         24
+         25    COMPONENTS
+         26        GLYCE-01 C3H8O3 /
+         27        GLYCE-02 C4H6O4-N1 /
+         28        METHA-01 CH4O /
+         29        AMMON-01 H3N /
+         30        UREA CH4N2O
+         31
+         32    SOLVE
+         33        RUN-MODE MODE=SIM
+         34
+         35    FLOWSHEET
+         36        BLOCK B1 IN=GLYCPROD OUT=METH+AMO GLYCEROL GC
+         37
+         38    PROPERTIES SR-POLAR
+         39
+         40    ESTIMATE ALL
+         41
+         42    PROP-DATA PCES-1
+         43        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         44            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         45        PROP-LIST OMEGA / DHVLB / VB / RGYR / RKTZRA / VLSTD
+         46        PVAL UREA .5992461800 / 20985.95586 / 48.82570000 /  &
+         47            2.6000000E-10 / .2351731880 / 48.82570000
+         48        PROP-LIST RKTZRA / VLSTD
+         49        PVAL GLYCE-02 .2037543860 / 69.23640000
+         50
+         51    PROP-DATA KLDIP-1
+         52        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         53            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         54        PROP-LIST KLDIP
+         55        PVAL UREA .0494897448 1.57543997E-3 -1.0085909E-5  &
+         56            2.44404255E-8 -2.254923E-11 191.8500000 424.8000000
+         57
+         58    PROP-DATA MULAND-1
+         59        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         60            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         61        PROP-LIST MULAND
+         62        PVAL UREA 129.3349773 -7951.576030 -18.41338230 191.8500000  &
+         63            424.8000000
+         64
+         65    PROP-DATA PLXANT-1
+         66        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         67            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         68        PROP-LIST PLXANT
+         69        PVAL UREA 77.19179774 -10639.35530 0.0 0.0 -8.846083610  &
+         70            3.4142003E-18 6.000000000 191.8500000 431.8500000
+         71
+         72    PROP-DATA SIGDIP-1
+         73        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         74            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         75        PROP-LIST SIGDIP
+         76        PVAL GLYCE-02 156.3532160 1.222222220 5.9089352E-10  &
+         77            -6.640628E-10 2.6313812E-10 323.7990000 543.1900000
+         78        PVAL UREA 156.7709600 1.222222220 5.9537296E-10  &
+         79            -6.635066E-10 2.6632382E-10 191.8500000 417.7500000
+         80
+         81    PROP-DATA HOCETA-1
+         82        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         83            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         84        PROP-LIST HOCETA
+         85        BPVAL METHA-01 METHA-01 1.630000000
+         86        BPVAL METHA-01 AMMON-01 .2000000000
+         87        BPVAL AMMON-01 METHA-01 .2000000000
+         88
+         89    STREAM GLYCPROD
+         90        SUBSTREAM MIXED TEMP=140. PRES=100. <kPa> MASS-FLOW=100.
+         91        MASS-FLOW GLYCE-01 0.1141 / GLYCE-02 0.8307 / METHA-01  &
+         92            0.0071 / AMMON-01 0.0066 / UREA 0.0415
+         93
+         94    BLOCK B1 RADFRAC
+         95        PARAM NSTAGE=16 ALGORITHM=STANDARD HYDRAULIC=NO MAXOL=25  &
+         96            DAMPING=NONE
+         97        PARAM2 STATIC-DP=NO
+         98        COL-CONFIG CONDENSER=PARTIAL-V-L CA-CONFIG=INT-1
+         99        FEEDS GLYCPROD 10
+        100        PRODUCTS GC 16 L / METH+AMO 1 V / GLYCEROL 1 L
+        101        P-SPEC 1 100. <kPa>
+        102        COL-SPECS MASS-D:F=0.1505 MASS-RDV=0.097 MOLE-RR=3.
+        103        REPORT NOHYDRAULIC
+        104
+        105    EO-CONV-OPTI
+        106
+        107    STREAM-REPOR MOLEFLOW
+        108
+        109    PROPERTY-REP PCES
+        110
+        111    PROP-TABLE BINRY-1 FLASHCURVE
+        112        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        113            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        114        ANALYSIS ANAL-TYPE=TXY
+        115        MOLE-FLOW GLYCE-01 1 /  GLYCE-02  1
+        116        STATE VFRAC=0.0
+        117        VARY PRES
+        118        RANGE LIST=1.013250000
+        119        VARY MOLEFRAC COMP=GLYCE-01
+        120        RANGE VARVALUE=RANGE LOWER=0.0 UPPER=1.0 NPOINT=50
+        121        PARAM NPHASE=3
+        122
+        123    PROP-TABLE BINRY-2 FLASHCURVE
+        124        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        125            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        126        ANALYSIS ANAL-TYPE=TXY
+        127        MOLE-FLOW GLYCE-01 1 /  GLYCE-02  1
+        128        STATE VFRAC=0.0
+        129        VARY PRES
+        130        RANGE LIST=1.013250000
+        131        VARY MOLEFRAC COMP=GLYCE-01
+        132        RANGE VARVALUE=RANGE LOWER=0.0 UPPER=1.0 NPOINT=50
+        133        PARAM NPHASE=3
+        134
+        135    PROP-TABLE PURE-1 PROPS
+        136        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        137            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        138        ANALYSIS ANAL-TYPE=PURE PURE-PROP='PL' PURE-PHASES= L
+        139        MOLE-FLOW UREA 1
+        140        VARY TEMP
+        141        RANGE VARVALUE=RANGE LOWER=0 UPPER=100.0000000 NPOINT=50
+        142        VARY PRES
+        143        RANGE LIST=1.013250000
+        144        PARAM
+        145    ;
+        146    ;
+        147    ;
+        148    ;
+        149    ;
+ *** INPUT TRANSLATOR MESSAGES ***
+
+  *** THIS RUN USES THE PROPERTIES ENTERPRISE DATABASE ***
+      SQLLOCALDB.APESV100 : (DATAVERSION - 36.0.0.1)                          
+      SQLLOCALDB.APV100 : (DATAVERSION - 36.0.0.21)                           
+      SQLLOCALDB.FACTV100 : (DATAVERSION - 36.0.0.1)                          
+      SQLLOCALDB.NISTV100 : (DATAVERSION - 36.0.0.15)                         
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT GLYCE-02 HAS NOT BEEN DEFINED.                    
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+      USE THE STRUCTURES PARAGRAPH TO DEFINE STRUCTURES OF THIS COMPONENT.      
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (PCERTE.10)      
+      STRUCTURE FOR COMPONENT UREA HAS NOT BEEN DEFINED.                        
+      PCES CANNOT USE GROUP-CONTRIBUTION METHODS TO ESTIMATE MISSING PROPERTIES.
+      USE THE STRUCTURES PARAGRAPH TO DEFINE STRUCTURES OF THIS COMPONENT.      
+
+  *   WARNING IN THE "STREAM" PARAGRAPH WHICH BEGINS ON LINE 89                 
+      STREAM NAME: GLYCPROD                                    (STSTRM.30)      
+      COMPONENT MASS FLOWS OF SUBSTREAM: "MIXED"                                
+      ARE NORMALIZED TO THE TOTAL MASS FLOW VALUE.                              
+ 
+ 
+
+ PDF updated                                                                      TIME =      2.35
+
+
+ THE FOLLOWING PURE COMPONENT PARAMETERS ARE ESTIMATED FOR MODEL ESRKU:
+
+
+ COMPONENT GLYCE-01
+      POLAR PARAMETER RKUPP0 =    -0.065662
+                      RKUPP1 =     3.433459
+                      RKUPP2 =    -6.929989
+
+ COMPONENT GLYCE-02
+      POLAR PARAMETER RKUPP0 =     0.000000
+                      RKUPP1 =     0.000000
+                      RKUPP2 =     0.000000
+
+ COMPONENT METHA-01
+      POLAR PARAMETER RKUPP0 =     0.162227
+                      RKUPP1 =    -1.430134
+                      RKUPP2 =     0.008900
+
+ COMPONENT AMMON-01
+      POLAR PARAMETER RKUPP0 =     0.036832
+                      RKUPP1 =    -0.837919
+                      RKUPP2 =    -0.809507
+
+ COMPONENT UREA    
+      POLAR PARAMETER RKUPP0 =    -0.323045
+                      RKUPP1 =    -2.966432
+                      RKUPP2 =     2.198500
+
+ THE FOLLOWING BINARY-INTERACTION PARAMETERS ARE ESTIMATED FOR MODEL ESRKU:
+
+
+ BINARY GLYCE-01 - GLYCE-02
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY GLYCE-01 - METHA-01
+      RKUKA0 =   -0.121950    
+      RKUKA2 =     23.8381    
+      RKULA0 =    0.341113E-01
+      RKULA2 =    -10.0315    
+
+      FOR     298.15 (K) <= T <=    318.15 (K)
+
+
+ BINARY GLYCE-01 - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY GLYCE-02 - METHA-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY GLYCE-02 - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHA-01 - UREA    
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ *** CALCULATION TRACE ***
+
+
+ *** FLOWSHEET ANALYSIS MESSAGES ***
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   GLYCPROD   ----       B1             METH+AMO   B1         ----    
+   GLYCEROL   B1         ----           GC         B1         ----    
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+
+   BLOCK        INLETS                         OUTLETS
+   B1           GLYCPROD                       METH+AMO GLYCEROL GC        
+
+      COMPUTATION ORDER FOR THE FLOWSHEET IS:
+      B1 
+
+Calculations begin                                                              time      0.05
+
+
+ SIMULATION CALCULATIONS BEGIN                                                    TIME =      0.05
+
+      ENTHALPY CALCULATION FOR INLET STREAM GLYCPROD OF BLOCK B1                  TIME =      0.05
+      KODE = 2  NTRIAL =   3  T = 413.1500  P =  100000.      V = 4.444984E-02  Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: RADFRAC                                           TIME =      0.05
+
+       Convergence iterations:
+         OL   ML   IL     Err/Tol
+          1    1   10      1183.6    
+          2    1    5      469.03    
+          3    1    6      203.68    
+          4    1    4      17.826    
+          5    1    3      8.1143    
+          6    1    3      1.1417    
+          7    1    4     0.49482    
+
+ Report Writer entered                                                            Time =    174.10
+
+      BEGIN CALCULATIONS FOR PROP-TABLE BINRY-1                                   TIME =    174.13
+      KODE = 3  NTRIAL =   7  T = 595.6832  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  0.00000    
+      KODE = 3  NTRIAL =   8  T = 594.7197  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -457.578    
+      KODE = 3  NTRIAL =   8  T = 593.7695  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -456.536    
+      KODE = 3  NTRIAL =   7  T = 592.8323  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -455.551    
+      KODE = 3  NTRIAL =   7  T = 591.9083  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -454.559    
+      KODE = 3  NTRIAL =   7  T = 590.9973  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -453.638    
+      KODE = 3  NTRIAL =   7  T = 590.0990  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.762    
+      KODE = 3  NTRIAL =   7  T = 589.2134  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.932    
+      KODE = 3  NTRIAL =   7  T = 588.3403  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.149    
+      KODE = 3  NTRIAL =   7  T = 587.4796  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -450.414    
+      KODE = 3  NTRIAL =   7  T = 586.6311  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.728    
+      KODE = 3  NTRIAL =   7  T = 585.7946  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.092    
+      KODE = 3  NTRIAL =   7  T = 584.9700  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.507    
+      KODE = 3  NTRIAL =   7  T = 584.1571  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.973    
+      KODE = 3  NTRIAL =   7  T = 583.3557  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.489    
+      KODE = 3  NTRIAL =   7  T = 582.5657  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.058    
+      KODE = 3  NTRIAL =   7  T = 581.7868  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.678    
+      KODE = 3  NTRIAL =   7  T = 581.0190  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.351    
+      KODE = 3  NTRIAL =   7  T = 580.2620  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.075    
+      KODE = 3  NTRIAL =   7  T = 579.5156  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.852    
+      KODE = 3  NTRIAL =   7  T = 578.7797  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.681    
+      KODE = 3  NTRIAL =   7  T = 578.0541  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.561    
+      KODE = 3  NTRIAL =   7  T = 577.3387  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.494    
+      KODE = 3  NTRIAL =   7  T = 576.6331  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.479    
+      KODE = 3  NTRIAL =   7  T = 575.9373  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.515    
+      KODE = 3  NTRIAL =   7  T = 575.2511  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.603    
+      KODE = 3  NTRIAL =   7  T = 574.5743  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.742    
+      KODE = 3  NTRIAL =   7  T = 573.9068  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.932    
+      KODE = 3  NTRIAL =   7  T = 573.2483  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.173    
+      KODE = 3  NTRIAL =   7  T = 572.5988  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.464    
+      KODE = 3  NTRIAL =   7  T = 571.9580  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.806    
+      KODE = 3  NTRIAL =   7  T = 571.3258  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.197    
+      KODE = 3  NTRIAL =   7  T = 570.7020  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.639    
+      KODE = 3  NTRIAL =   7  T = 570.0864  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.129    
+      KODE = 3  NTRIAL =   7  T = 569.4790  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.669    
+      KODE = 3  NTRIAL =   7  T = 568.8796  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.258    
+      KODE = 3  NTRIAL =   7  T = 568.2879  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.895    
+      KODE = 3  NTRIAL =   7  T = 567.7039  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -450.581    
+      KODE = 3  NTRIAL =   7  T = 567.1274  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.315    
+      KODE = 3  NTRIAL =   7  T = 566.5583  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.097    
+      KODE = 3  NTRIAL =   7  T = 565.9964  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.926    
+      KODE = 3  NTRIAL =   7  T = 565.4417  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -453.803    
+      KODE = 3  NTRIAL =   7  T = 564.8938  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -454.727    
+      KODE = 3  NTRIAL =   7  T = 564.3528  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -455.698    
+      KODE = 3  NTRIAL =   7  T = 563.8185  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -456.716    
+      KODE = 3  NTRIAL =   7  T = 563.2908  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -457.780    
+      KODE = 3  NTRIAL =   7  T = 562.7696  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -458.891    
+      KODE = 3  NTRIAL =   7  T = 562.2546  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -460.049    
+      KODE = 3  NTRIAL =   7  T = 561.7459  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -461.253    
+      KODE = 3  NTRIAL =   7  T = 561.2432  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -462.503    
+      KODE = 3  NTRIAL =   6  T = 560.7465  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -463.798    
+
+      BEGIN CALCULATIONS FOR PROP-TABLE BINRY-2                                   TIME =    174.15
+      KODE = 3  NTRIAL =   7  T = 595.6832  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  0.00000    
+      KODE = 3  NTRIAL =   8  T = 594.7197  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -457.578    
+      KODE = 3  NTRIAL =   8  T = 593.7695  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -456.536    
+      KODE = 3  NTRIAL =   7  T = 592.8323  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -455.551    
+      KODE = 3  NTRIAL =   7  T = 591.9083  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -454.559    
+      KODE = 3  NTRIAL =   7  T = 590.9973  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -453.638    
+      KODE = 3  NTRIAL =   7  T = 590.0990  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.762    
+      KODE = 3  NTRIAL =   7  T = 589.2134  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.932    
+      KODE = 3  NTRIAL =   7  T = 588.3403  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.149    
+      KODE = 3  NTRIAL =   7  T = 587.4796  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -450.414    
+      KODE = 3  NTRIAL =   7  T = 586.6311  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.728    
+      KODE = 3  NTRIAL =   7  T = 585.7946  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.092    
+      KODE = 3  NTRIAL =   7  T = 584.9700  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.507    
+      KODE = 3  NTRIAL =   7  T = 584.1571  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.973    
+      KODE = 3  NTRIAL =   7  T = 583.3557  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.489    
+      KODE = 3  NTRIAL =   7  T = 582.5657  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.058    
+      KODE = 3  NTRIAL =   7  T = 581.7868  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.678    
+      KODE = 3  NTRIAL =   7  T = 581.0190  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.351    
+      KODE = 3  NTRIAL =   7  T = 580.2620  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.075    
+      KODE = 3  NTRIAL =   7  T = 579.5156  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.852    
+      KODE = 3  NTRIAL =   7  T = 578.7797  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.681    
+      KODE = 3  NTRIAL =   7  T = 578.0541  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.561    
+      KODE = 3  NTRIAL =   7  T = 577.3387  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.494    
+      KODE = 3  NTRIAL =   7  T = 576.6331  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.479    
+      KODE = 3  NTRIAL =   7  T = 575.9373  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.515    
+      KODE = 3  NTRIAL =   7  T = 575.2511  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.603    
+      KODE = 3  NTRIAL =   7  T = 574.5743  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.742    
+      KODE = 3  NTRIAL =   7  T = 573.9068  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.932    
+      KODE = 3  NTRIAL =   7  T = 573.2483  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.173    
+      KODE = 3  NTRIAL =   7  T = 572.5988  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.464    
+      KODE = 3  NTRIAL =   7  T = 571.9580  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.806    
+      KODE = 3  NTRIAL =   7  T = 571.3258  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.197    
+      KODE = 3  NTRIAL =   7  T = 570.7020  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.639    
+      KODE = 3  NTRIAL =   7  T = 570.0864  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.129    
+      KODE = 3  NTRIAL =   7  T = 569.4790  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.669    
+      KODE = 3  NTRIAL =   7  T = 568.8796  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.258    
+      KODE = 3  NTRIAL =   7  T = 568.2879  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.895    
+      KODE = 3  NTRIAL =   7  T = 567.7039  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -450.581    
+      KODE = 3  NTRIAL =   7  T = 567.1274  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.315    
+      KODE = 3  NTRIAL =   7  T = 566.5583  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.097    
+      KODE = 3  NTRIAL =   7  T = 565.9964  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.926    
+      KODE = 3  NTRIAL =   7  T = 565.4417  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -453.803    
+      KODE = 3  NTRIAL =   7  T = 564.8938  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -454.727    
+      KODE = 3  NTRIAL =   7  T = 564.3528  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -455.698    
+      KODE = 3  NTRIAL =   7  T = 563.8185  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -456.716    
+      KODE = 3  NTRIAL =   7  T = 563.2908  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -457.780    
+      KODE = 3  NTRIAL =   7  T = 562.7696  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -458.891    
+      KODE = 3  NTRIAL =   7  T = 562.2546  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -460.049    
+      KODE = 3  NTRIAL =   7  T = 561.7459  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -461.253    
+      KODE = 3  NTRIAL =   7  T = 561.2432  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -462.503    
+      KODE = 3  NTRIAL =   6  T = 560.7465  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -463.798    
+
+      BEGIN CALCULATIONS FOR PROP-TABLE PURE-1                                    TIME =    174.18
+
+ Results generated                                                                Time =    174.18
+
+ Report Writer entered                                                            Time =    174.52
+
+      BEGIN CALCULATIONS FOR PROP-TABLE BINRY-1                                   TIME =    174.55
+      KODE = 3  NTRIAL =   7  T = 595.6832  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  0.00000    
+      KODE = 3  NTRIAL =   8  T = 594.7197  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -457.578    
+      KODE = 3  NTRIAL =   8  T = 593.7695  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -456.536    
+      KODE = 3  NTRIAL =   7  T = 592.8323  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -455.551    
+      KODE = 3  NTRIAL =   7  T = 591.9083  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -454.559    
+      KODE = 3  NTRIAL =   7  T = 590.9973  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -453.638    
+      KODE = 3  NTRIAL =   7  T = 590.0990  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.762    
+      KODE = 3  NTRIAL =   7  T = 589.2134  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.932    
+      KODE = 3  NTRIAL =   7  T = 588.3403  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.149    
+      KODE = 3  NTRIAL =   7  T = 587.4796  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -450.414    
+      KODE = 3  NTRIAL =   7  T = 586.6311  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.728    
+      KODE = 3  NTRIAL =   7  T = 585.7946  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.092    
+      KODE = 3  NTRIAL =   7  T = 584.9700  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.507    
+      KODE = 3  NTRIAL =   7  T = 584.1571  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.973    
+      KODE = 3  NTRIAL =   7  T = 583.3557  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.489    
+      KODE = 3  NTRIAL =   7  T = 582.5657  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.058    
+      KODE = 3  NTRIAL =   7  T = 581.7868  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.678    
+      KODE = 3  NTRIAL =   7  T = 581.0190  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.351    
+      KODE = 3  NTRIAL =   7  T = 580.2620  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.075    
+      KODE = 3  NTRIAL =   7  T = 579.5156  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.852    
+      KODE = 3  NTRIAL =   7  T = 578.7797  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.681    
+      KODE = 3  NTRIAL =   7  T = 578.0541  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.561    
+      KODE = 3  NTRIAL =   7  T = 577.3387  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.494    
+      KODE = 3  NTRIAL =   7  T = 576.6331  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.479    
+      KODE = 3  NTRIAL =   7  T = 575.9373  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.515    
+      KODE = 3  NTRIAL =   7  T = 575.2511  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.603    
+      KODE = 3  NTRIAL =   7  T = 574.5743  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.742    
+      KODE = 3  NTRIAL =   7  T = 573.9068  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.932    
+      KODE = 3  NTRIAL =   7  T = 573.2483  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.173    
+      KODE = 3  NTRIAL =   7  T = 572.5988  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.464    
+      KODE = 3  NTRIAL =   7  T = 571.9580  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.806    
+      KODE = 3  NTRIAL =   7  T = 571.3258  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.197    
+      KODE = 3  NTRIAL =   7  T = 570.7020  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.639    
+      KODE = 3  NTRIAL =   7  T = 570.0864  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.129    
+      KODE = 3  NTRIAL =   7  T = 569.4790  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.669    
+      KODE = 3  NTRIAL =   7  T = 568.8796  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.258    
+      KODE = 3  NTRIAL =   7  T = 568.2879  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.895    
+      KODE = 3  NTRIAL =   7  T = 567.7039  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -450.581    
+      KODE = 3  NTRIAL =   7  T = 567.1274  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.315    
+      KODE = 3  NTRIAL =   7  T = 566.5583  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.097    
+      KODE = 3  NTRIAL =   7  T = 565.9964  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.926    
+      KODE = 3  NTRIAL =   7  T = 565.4417  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -453.803    
+      KODE = 3  NTRIAL =   7  T = 564.8938  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -454.727    
+      KODE = 3  NTRIAL =   7  T = 564.3528  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -455.698    
+      KODE = 3  NTRIAL =   7  T = 563.8185  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -456.716    
+      KODE = 3  NTRIAL =   7  T = 563.2908  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -457.780    
+      KODE = 3  NTRIAL =   7  T = 562.7696  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -458.891    
+      KODE = 3  NTRIAL =   7  T = 562.2546  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -460.049    
+      KODE = 3  NTRIAL =   7  T = 561.7459  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -461.253    
+      KODE = 3  NTRIAL =   7  T = 561.2432  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -462.503    
+      KODE = 3  NTRIAL =   6  T = 560.7465  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -463.798    
+
+      BEGIN CALCULATIONS FOR PROP-TABLE BINRY-2                                   TIME =    174.57
+      KODE = 3  NTRIAL =   7  T = 595.6832  P =  101325.      V =  0.00000      BETA =  1.00000      Q =  0.00000    
+      KODE = 3  NTRIAL =   8  T = 594.7197  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -457.578    
+      KODE = 3  NTRIAL =   8  T = 593.7695  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -456.536    
+      KODE = 3  NTRIAL =   7  T = 592.8323  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -455.551    
+      KODE = 3  NTRIAL =   7  T = 591.9083  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -454.559    
+      KODE = 3  NTRIAL =   7  T = 590.9973  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -453.638    
+      KODE = 3  NTRIAL =   7  T = 590.0990  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.762    
+      KODE = 3  NTRIAL =   7  T = 589.2134  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.932    
+      KODE = 3  NTRIAL =   7  T = 588.3403  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.149    
+      KODE = 3  NTRIAL =   7  T = 587.4796  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -450.414    
+      KODE = 3  NTRIAL =   7  T = 586.6311  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.728    
+      KODE = 3  NTRIAL =   7  T = 585.7946  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.092    
+      KODE = 3  NTRIAL =   7  T = 584.9700  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.507    
+      KODE = 3  NTRIAL =   7  T = 584.1571  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.973    
+      KODE = 3  NTRIAL =   7  T = 583.3557  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.489    
+      KODE = 3  NTRIAL =   7  T = 582.5657  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.058    
+      KODE = 3  NTRIAL =   7  T = 581.7868  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.678    
+      KODE = 3  NTRIAL =   7  T = 581.0190  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.351    
+      KODE = 3  NTRIAL =   7  T = 580.2620  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.075    
+      KODE = 3  NTRIAL =   7  T = 579.5156  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.852    
+      KODE = 3  NTRIAL =   7  T = 578.7797  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.681    
+      KODE = 3  NTRIAL =   7  T = 578.0541  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.561    
+      KODE = 3  NTRIAL =   7  T = 577.3387  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.494    
+      KODE = 3  NTRIAL =   7  T = 576.6331  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.479    
+      KODE = 3  NTRIAL =   7  T = 575.9373  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.515    
+      KODE = 3  NTRIAL =   7  T = 575.2511  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.603    
+      KODE = 3  NTRIAL =   7  T = 574.5743  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.742    
+      KODE = 3  NTRIAL =   7  T = 573.9068  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -445.932    
+      KODE = 3  NTRIAL =   7  T = 573.2483  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.173    
+      KODE = 3  NTRIAL =   7  T = 572.5988  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.464    
+      KODE = 3  NTRIAL =   7  T = 571.9580  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -446.806    
+      KODE = 3  NTRIAL =   7  T = 571.3258  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.197    
+      KODE = 3  NTRIAL =   7  T = 570.7020  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -447.639    
+      KODE = 3  NTRIAL =   7  T = 570.0864  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.129    
+      KODE = 3  NTRIAL =   7  T = 569.4790  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -448.669    
+      KODE = 3  NTRIAL =   7  T = 568.8796  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.258    
+      KODE = 3  NTRIAL =   7  T = 568.2879  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -449.895    
+      KODE = 3  NTRIAL =   7  T = 567.7039  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -450.581    
+      KODE = 3  NTRIAL =   7  T = 567.1274  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -451.315    
+      KODE = 3  NTRIAL =   7  T = 566.5583  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.097    
+      KODE = 3  NTRIAL =   7  T = 565.9964  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -452.926    
+      KODE = 3  NTRIAL =   7  T = 565.4417  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -453.803    
+      KODE = 3  NTRIAL =   7  T = 564.8938  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -454.727    
+      KODE = 3  NTRIAL =   7  T = 564.3528  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -455.698    
+      KODE = 3  NTRIAL =   7  T = 563.8185  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -456.716    
+      KODE = 3  NTRIAL =   7  T = 563.2908  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -457.780    
+      KODE = 3  NTRIAL =   7  T = 562.7696  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -458.891    
+      KODE = 3  NTRIAL =   7  T = 562.2546  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -460.049    
+      KODE = 3  NTRIAL =   7  T = 561.7459  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -461.253    
+      KODE = 3  NTRIAL =   7  T = 561.2432  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -462.503    
+      KODE = 3  NTRIAL =   6  T = 560.7465  P =  101325.      V =  0.00000      BETA =  1.00000      Q = -463.798    
+
+      BEGIN CALCULATIONS FOR PROP-TABLE PURE-1                                    TIME =    174.60
+
+ Results generated                                                                Time =    174.60
+
+RUN SAVED
+
+
+
+ NO ERRORS OR WARNINGS GENERATED

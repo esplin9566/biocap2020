@@ -1,0 +1,27 @@
+
+ BLOCK:  B4       MODEL: DECANTER        
+ --------------------------------
+   INLET STREAM:          S6      
+   FIRST LIQUID OUTLET:   S8      
+   SECOND LIQUID OUTLET:  GLYCEROL
+   PROPERTY OPTION SET:   SR-POLAR  REDLICH-KWONG-UNIFAC EQUATION OF STATE      
+
+
+     ***********************************************************************
+     *                                                                     *
+     *     ZERO FEED TO BLOCK                                              *   
+     *                                                                     *
+     ***********************************************************************
+
+
+                          ***  INPUT DATA  ***
+
+   LIQUID-LIQUID SPLIT, TP SPECIFICATION
+   SPECIFIED TEMPERATURE               C                         65.0000     
+   SPECIFIED PRESSURE                  BAR                     1.00000    
+   CONVERGENCE TOLERANCE ON EQUILIBRIUM                       0.10000E-03
+   MAXIMUM NO ITERATIONS ON EQUILIBRIUM                       30
+   EQUILIBRIUM METHOD                           EQUATION-SOLVING
+   KLL COEFFICIENTS FROM                       OPTION SET OR EOS
+   KLL BASIS                                                MOLE
+   KEY COMPONENT(S):       METHA-01                              
