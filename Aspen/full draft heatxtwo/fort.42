@@ -1,0 +1,44 @@
+
+ BLOCK:  B13      MODEL: FLASH2          
+ ------------------------------
+   INLET STREAM:          S15     
+   OUTLET VAPOR STREAM:   AMMONIA 
+   OUTLET LIQUID STREAM:  S17     
+   PROPERTY OPTION SET:   SR-POLAR  REDLICH-KWONG-UNIFAC EQUATION OF STATE      
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            5.93218         5.93218        0.149722E-15
+       MASS(KG/HR   )            310.686         310.686        0.182961E-15
+       ENTHALPY(CAL/SEC )       -119659.        -119659.       -0.423040E-10
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+                          ***  INPUT DATA  ***
+   TWO    PHASE  PQ  FLASH
+   SPECIFIED PRESSURE    BAR                                 0.50000    
+   SPECIFIED HEAT DUTY   CAL/SEC                             0.0        
+   MAXIMUM NO. ITERATIONS                                   30
+   CONVERGENCE TOLERANCE                                     0.000100000
+
+                           ***  RESULTS  ***
+   OUTLET TEMPERATURE    C                                    150.94    
+   OUTLET PRESSURE       BAR                                 0.50000    
+   VAPOR FRACTION                                            0.64127    
+
+
+
+   V-L PHASE EQUILIBRIUM : 
+
+      COMP              F(I)           X(I)           Y(I)           K(I)      
+      GLYCEROL         0.53753E-01    0.14667        0.17753E-02    0.12104E-01
+      METHA-01         0.31093E-01    0.13382E-02    0.47738E-01     35.672    
+      UREA             0.13567E-02    0.20346E-02    0.97744E-03    0.48041    
+      AMMON-01         0.60920        0.31297E-02    0.94823         302.98    
+      GLYCE-01         0.30460        0.84683        0.12783E-02    0.15096E-02

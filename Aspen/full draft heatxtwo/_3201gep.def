@@ -1,0 +1,10 @@
+SLAVE:
+INPUT: _3201gep.inm
+MODNAME: apmain
+RUNID: _3201gep
+NEW_RUNID: _3201gep
+OLD_RUNID: _3201gep
+PDF: _3201gep.appdf
+USERNAME: benjam2
+XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\xeq\apmain
+DBCONN: _3201gep.ads
