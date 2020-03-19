@@ -1,0 +1,10 @@
+INPUT: Mixer 1.inm
+MODNAME: apmain
+RUNID: Mixer 1
+NEW_RUNID: Mixer 1
+OLD_RUNID: Mixer 1
+PDF: Mixer 1.appdf
+USERNAME: MATYB
+XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\xeq\apmain
+SPONLY:
+DBCONN: _1043brq.ads

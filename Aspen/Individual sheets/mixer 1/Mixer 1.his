@@ -1,0 +1,243 @@
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION HISTORY                     + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WINDOWS                                       MARCH 7, 2020       
+ VERSION: 36.0   Build 249                               SATURDAY    
+ INSTALLATION:                                           10:37:51 P.M.       
+
+ THIS COPY OF ASPEN PLUS LICENSED TO RENSSELAER POLYTECHNIC I        
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+ *** INPUT SUMMARY ***
+
+ >>CURRENT RUN
+
+   ORIGINAL RUN                           MARCH 7, 2020       
+   10:37:51 P.M.                          SATURDAY    
+   INPUT FILE: _1043brq.inm
+   RUN ID : _1043brq
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 36.0 at 22:37:51 Sat Mar 7, 2020
+          3    ;Directory C:\Users\MATYB\Documents\AspenTech\Aspen Plus V10.0  Runid _UNNAMED
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         11            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         12
+         13    DEF-STREAMS CONVEN ALL
+         14
+         15    DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         16             / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+         17            'NISTV100 NIST-TRC' / NOASPENPCD
+         18
+         19    PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+         20            'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         21             / 'NISTV100 NIST-TRC'
+         22
+         23    COMPONENTS
+         24        CAO CAO /
+         25        METHANOL CH4O /
+         26        TRIOLEUM C57H104O6 /
+         27        TRILI-01 C57H98O6
+         28
+         29    SOLVE
+         30        RUN-MODE MODE=SIM
+         31
+         32    FLOWSHEET
+         33        BLOCK B1 IN=S1 S2 S3 OUT=S5
+         34
+         35    PROPERTIES SR-POLAR
+         36
+         37    PROP-DATA HOCETA-1
+         38        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         39            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         40        PROP-LIST HOCETA
+         41        BPVAL METHANOL METHANOL 1.630000000
+         42
+         43    PROP-SET PS-1 HXS SUBSTREAM=MIXED PHASE=L
+         44
+         45    STREAM S1
+         46        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=3.
+         47        MOLE-FLOW CAO 3.
+         48
+         49    STREAM S2
+         50        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=100.
+         51        MOLE-FLOW TRIOLEUM 60. / TRILI-01 40.
+         52
+         53    STREAM S3
+         54        SUBSTREAM MIXED TEMP=140. PRES=1. MOLE-FLOW=900.
+         55        MOLE-FLOW METHANOL 900.
+         56
+         57    BLOCK B1 MIXER
+         58        PARAM PRES=1. NPHASE=2 MAXIT=300 T-EST=25.
+         59        BLOCK-OPTION FREE-WATER=NO
+         60
+         61    EO-CONV-OPTI
+         62
+         63    STREAM-REPOR MOLEFLOW
+         64
+         65    PROP-TABLE MIX-1 FLASHCURVE
+         66        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         67            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         68        MOLE-FLOW METHANOL 900. / CAO 3. / TRIOLEUM 60. /  &
+         69            TRILI-01 40.
+         70        VARY PRES
+         71        RANGE VARVALUE=LIST LIST=1.013250000
+         72        VARY TEMP
+         73        RANGE VARVALUE=RANGE LOWER=-100. UPPER=150. INCR=1.
+         74        PARAM
+         75        TABULATE PROPERTIES=PS-1
+         76
+         77    DISABLE
+         78        PROP-TABLE MIX-1
+         79    ;
+         80    ;
+         81    ;
+         82    ;
+         83    ;
+ *** INPUT TRANSLATOR MESSAGES ***
+
+  *** THIS RUN USES THE PROPERTIES ENTERPRISE DATABASE ***
+      SQLLOCALDB.APESV100 : (DATAVERSION - 36.0.0.1)                          
+      SQLLOCALDB.APV100 : (DATAVERSION - 36.0.0.21)                           
+      SQLLOCALDB.FACTV100 : (DATAVERSION - 36.0.0.1)                          
+      SQLLOCALDB.NISTV100 : (DATAVERSION - 36.0.0.15)                         
+
+      INFORMATION IN PHYSICAL PROPERTY SYSTEM                  (LOADMW.5)       
+      MW AVAILABLE FOR COMPONENT TRILI-01 IS DIFFERENT FROM MW                  
+      CALCULATED FROM FORMULA (ATOMNO/NOATOM).  CALCULATED VALUE IS USED.       
+      AVAILABLE MW =   879.3840     CALCULATED MW =   879.4015                  
+
+
+ 
+ 
+
+ PDF updated                                                                      TIME =      1.31
+
+
+ THE FOLLOWING PURE COMPONENT PARAMETERS ARE ESTIMATED FOR MODEL ESRKU:
+
+
+ COMPONENT CAO     
+      POLAR PARAMETER RKUPP0 =     0.711866
+                      RKUPP1 =    -4.328770
+                      RKUPP2 =    -5.480186
+
+ COMPONENT METHANOL
+      POLAR PARAMETER RKUPP0 =     0.162227
+                      RKUPP1 =    -1.430134
+                      RKUPP2 =     0.008900
+
+ COMPONENT TRIOLEUM
+      POLAR PARAMETER RKUPP0 =     4.099804
+                      RKUPP1 =    -3.004889
+                      RKUPP2 =     2.162829
+
+ COMPONENT TRILI-01
+      POLAR PARAMETER RKUPP0 =     4.075085
+                      RKUPP1 =    -3.003402
+                      RKUPP2 =     2.160700
+
+ THE FOLLOWING BINARY-INTERACTION PARAMETERS ARE ESTIMATED FOR MODEL ESRKU:
+
+
+ BINARY CAO      - METHANOL
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY CAO      - TRIOLEUM
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY CAO      - TRILI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY METHANOL - TRIOLEUM
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GENERATES VERY LOW OR HIGH PRESSURE DATA
+
+ BINARY METHANOL - TRILI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ BINARY TRIOLEUM - TRILI-01
+
+      INTERACTION PARAMETERS NOT PREDICTED BECAUSE UNIFAC GROUP PARAMETERS ARE MISSING
+
+ *** CALCULATION TRACE ***
+
+
+ *** FLOWSHEET ANALYSIS MESSAGES ***
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   S3         ----       B1             S2         ----       B1      
+   S1         ----       B1             S5         B1         ----    
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+
+   BLOCK        INLETS                         OUTLETS
+   B1           S1 S2 S3                       S5                          
+
+      COMPUTATION ORDER FOR THE FLOWSHEET IS:
+      B1 
+
+Calculations begin                                                              time      0.05
+
+
+ SIMULATION CALCULATIONS BEGIN                                                    TIME =      0.05
+
+      ENTHALPY CALCULATION FOR INLET STREAM S1 OF BLOCK B1                        TIME =      0.05
+      KODE = 2  NTRIAL =   3  T = 298.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      ENTHALPY CALCULATION FOR INLET STREAM S2 OF BLOCK B1                        TIME =      0.05
+      KODE = 2  NTRIAL =   2  T = 298.1500  P =  100000.      V =  0.00000      Q =  0.00000    
+
+      ENTHALPY CALCULATION FOR INLET STREAM S3 OF BLOCK B1                        TIME =      0.05
+      KODE = 2  NTRIAL =   1  T = 413.1500  P =  100000.      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK B1       MODEL: MIXER                                             TIME =      0.05
+      KODE = 1  NTRIAL =   9  T = 338.6074  P =  100000.      V = 0.882475      Q =  0.00000    
+
+ Report Writer entered                                                            Time =      0.06
+
+ Results generated                                                                Time =      0.07
+
+RUN SAVED
+
+
+
+ *** SUMMARY OF ERRORS ***
+
+                  PHYSICAL
+                  PROPERTY  SYSTEM  SIMULATION
+ TERMINAL ERRORS      0        0         0
+   SEVERE ERRORS      0        0         0
+          ERRORS      0        0         0
+        WARNINGS     44        0         0

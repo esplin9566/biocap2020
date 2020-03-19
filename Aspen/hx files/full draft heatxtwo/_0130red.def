@@ -1,0 +1,10 @@
+SLAVE:
+INPUT: _0130red.inm
+MODNAME: apmain
+RUNID: _0130red
+NEW_RUNID: _0130red
+OLD_RUNID: _0130red
+PDF: _0130red.appdf
+USERNAME: benjam2
+XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\xeq\apmain
+DBCONN: _0130red.ads
