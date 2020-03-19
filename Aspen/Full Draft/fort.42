@@ -1,0 +1,182 @@
+
+ BLOCK:  B6       MODEL: RADFRAC         
+ -------------------------------
+    INLETS   - S2       STAGE   2
+    OUTLETS  - METHOUT  STAGE   1
+               BIOEXIN  STAGE   3
+   PROPERTY OPTION SET:   IDEAL     IDEAL LIQUID / IDEAL GAS                    
+
+                      ***  MASS AND ENERGY BALANCE  ***
+                                    IN              OUT        RELATIVE DIFF.
+    TOTAL BALANCE
+       MOLE(KMOL/HR )            14.3726         14.3726       -0.171948E-06
+       MASS(KG/HR   )            2204.66         2204.67       -0.485351E-07
+       ENTHALPY(CAL/SEC )       -384900.        -296974.       -0.228438    
+
+                      ***  CO2 EQUIVALENT SUMMARY ***
+    FEED STREAMS CO2E             0.00000      KG/HR           
+    PRODUCT STREAMS CO2E          0.00000      KG/HR           
+    NET STREAMS CO2E PRODUCTION   0.00000      KG/HR           
+    UTILITIES CO2E PRODUCTION     0.00000      KG/HR           
+    TOTAL CO2E PRODUCTION         0.00000      KG/HR           
+
+
+
+                         **********************
+                         ****  INPUT DATA  ****
+                         **********************
+
+   ****   INPUT PARAMETERS   ****
+
+    NUMBER OF STAGES                                         3
+    ALGORITHM OPTION                                      NONIDEAL    
+    ABSORBER OPTION                                       NO      
+    INITIALIZATION OPTION                                 STANDARD    
+    HYDRAULIC PARAMETER CALCULATIONS                      NO      
+    INSIDE LOOP CONVERGENCE METHOD                        BROYDEN 
+    DESIGN SPECIFICATION METHOD                           NESTED  
+    MAXIMUM NO. OF OUTSIDE LOOP ITERATIONS                 200
+    MAXIMUM NO. OF INSIDE LOOP ITERATIONS                   10
+    MAXIMUM NUMBER OF FLASH ITERATIONS                      30
+    FLASH TOLERANCE                                          0.000100000
+    OUTSIDE LOOP CONVERGENCE TOLERANCE                       0.000100000
+
+   ****   COL-SPECS   ****
+
+    MOLAR VAPOR DIST / TOTAL DIST                            1.00000    
+    MASS REFLUX RATIO                                        3.00000    
+    MASS DISTILLATE TO FEED RATIO                            0.17000    
+
+   ****    PROFILES   ****
+
+    P-SPEC          STAGE   1  PRES, BAR                     1.00000    
+                            2                                1.00000    
+
+                          *******************
+                          ****  RESULTS  ****
+                          *******************
+
+
+   ***   COMPONENT SPLIT FRACTIONS   ***
+
+                             OUTLET STREAMS 
+                             --------------
+                  METHOUT      BIOEXIN 
+    COMPONENT:
+    GLYCEROL    .73220       .26780    
+    TRIOL-01    .27079E-10   1.0000    
+    TRILI-01    .28859E-10   1.0000    
+    METHA-01    1.0000       .34513E-05
+    METHY-01    .64966E-01   .93503    
+    METHY-02    .61809E-01   .93819    
+
+ 
+   ***    SUMMARY OF KEY RESULTS    ***
+
+    TOP STAGE TEMPERATURE          C                       237.763      
+    BOTTOM STAGE TEMPERATURE       C                       344.453      
+    TOP STAGE LIQUID FLOW          KMOL/HR                   3.87635    
+    BOTTOM STAGE LIQUID FLOW       KMOL/HR                   6.12387    
+    TOP STAGE VAPOR FLOW           KMOL/HR                   8.24870    
+    BOILUP VAPOR FLOW              KMOL/HR                  21.9201     
+    MOLAR REFLUX RATIO                                       0.46993    
+    MOLAR BOILUP RATIO                                       3.57945    
+    CONDENSER DUTY (W/O SUBCOOL)   CAL/SEC             -34,775.3        
+    REBOILER DUTY                  CAL/SEC             122,701.         
+
+   ****   MAXIMUM FINAL RELATIVE ERRORS   ****
+
+    DEW POINT                       0.18435E-04  STAGE=  1
+    BUBBLE POINT                    0.79677E-05  STAGE=  1
+    COMPONENT MASS BALANCE          0.53658E-06  STAGE=  1 COMP=METHY-01
+    ENERGY BALANCE                  0.39750E-05  STAGE=  1
+
+
+   ****    PROFILES   ****
+
+   **NOTE** REPORTED VALUES FOR STAGE LIQUID AND VAPOR RATES ARE THE FLOWS
+            FROM THE STAGE INCLUDING ANY SIDE PRODUCT.
+
+                                          ENTHALPY
+ STAGE TEMPERATURE   PRESSURE             CAL/MOL            HEAT DUTY
+       C             BAR            LIQUID       VAPOR        CAL/SEC 
+
+   1   237.76        1.0000      -0.12836E+06  -48870.      -.34775+05
+   2   326.00        1.0000      -0.11195E+06  -78943.                
+   3   344.45        1.0000      -0.10875E+06  -92694.       .12270+06
+
+ STAGE     FLOW RATE                  FEED RATE               PRODUCT RATE
+            KMOL/HR                    KMOL/HR                  KMOL/HR 
+       LIQUID     VAPOR       LIQUID    VAPOR    MIXED      LIQUID    VAPOR
+   1  3.876      8.249                   5.7059                         8.2487
+   2  28.04      6.419         8.6665                                         
+   3  6.124      21.92                                        6.1238          
+
+    ****  MASS FLOW PROFILES  ****
+
+ STAGE     FLOW RATE                  FEED RATE               PRODUCT RATE
+            KG/HR                      KG/HR                    KG/HR   
+       LIQUID     VAPOR       LIQUID    VAPOR    MIXED      LIQUID    VAPOR
+   1  1124.      374.8                 182.8884                       374.7930
+   2  8280.      1316.      2021.7765                                         
+   3  1830.      6450.                                     1829.8720          
+
+                         ****   MOLE-X-PROFILE     ****
+   STAGE     GLYCEROL      TRIOL-01      TRILI-01      METHA-01      METHY-01
+      1    0.12333E-01   0.16191E-06   0.11218E-06   0.11938E-01   0.60122    
+      2    0.44130E-02   0.76223E-03   0.50818E-03   0.11983E-02   0.60289    
+      3    0.14145E-02   0.34866E-02   0.23244E-02   0.44024E-05   0.59486    
+
+                         ****   MOLE-X-PROFILE     ****
+   STAGE     METHY-02
+      1    0.37451    
+      2    0.39023    
+      3    0.39791    
+
+                         ****   MOLE-Y-PROFILE     ****
+   STAGE     GLYCEROL      TRIOL-01      TRILI-01      METHA-01      METHY-01
+      1    0.28713E-02   0.70094E-13   0.49801E-13   0.94698       0.30684E-01
+      2    0.11136E-01   0.97775E-07   0.67743E-07   0.33523       0.40248    
+      3    0.52507E-02   0.11191E-05   0.77611E-06   0.15318E-02   0.60514    
+
+                         ****   MOLE-Y-PROFILE     ****
+   STAGE     METHY-02
+      1    0.19462E-01
+      2    0.25115    
+      3    0.38808    
+
+                         ****   K-VALUES           ****
+   STAGE     GLYCEROL      TRIOL-01      TRILI-01      METHA-01      METHY-01
+      1    0.23282       0.43295E-06   0.44398E-06    79.326       0.51038E-01
+      2     2.5235       0.12828E-03   0.13330E-03    279.77       0.66758    
+      3     3.7120       0.32096E-03   0.33390E-03    347.95        1.0173    
+
+                         ****   K-VALUES           ****
+   STAGE     METHY-02
+      1    0.51967E-01
+      2    0.64361    
+      3    0.97529    
+
+                         ****   MASS-X-PROFILE     ****
+   STAGE     GLYCEROL      TRIOL-01      TRILI-01      METHA-01      METHY-01
+      1    0.39157E-02   0.49426E-06   0.34010E-06   0.13187E-02   0.61455    
+      2    0.13766E-02   0.22861E-02   0.15137E-02   0.13005E-03   0.60547    
+      3    0.43597E-03   0.10332E-01   0.68408E-02   0.47208E-06   0.59025    
+
+                         ****   MASS-X-PROFILE     ****
+   STAGE     METHY-02
+      1    0.38021    
+      2    0.38923    
+      3    0.39214    
+
+                         ****   MASS-Y-PROFILE     ****
+   STAGE     GLYCEROL      TRIOL-01      TRILI-01      METHA-01      METHY-01
+      1    0.58199E-02   0.13660E-11   0.96387E-12   0.66782       0.20023    
+      2    0.50014E-02   0.42220E-06   0.29052E-06   0.52383E-01   0.58194    
+      3    0.16435E-02   0.33677E-05   0.23196E-05   0.16681E-03   0.60978    
+
+                         ****   MASS-Y-PROFILE     ****
+   STAGE     METHY-02
+      1    0.12613    
+      2    0.36067    
+      3    0.38840    
