@@ -1,0 +1,10 @@
+INPUT: full recycle test.inm
+MODNAME: apmain
+RUNID: full recycle test
+NEW_RUNID: full recycle test
+OLD_RUNID: full recycle test
+PDF: full recycle test.appdf
+USERNAME: benjam2
+XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\xeq\apmain
+SPONLY:
+DBCONN: _0218ooh.ads

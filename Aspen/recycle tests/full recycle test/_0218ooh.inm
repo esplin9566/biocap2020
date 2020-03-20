@@ -1,0 +1,22 @@
+;
+;Input file created by Aspen Plus Rel. 36.0 at 03:13:13 Fri Mar 20, 2020
+;Directory   Runid full recycle test
+;
+
+
+DYNAMICS
+    DYNAMICS RESULTS=ON
+
+BLOCK B22 HEATX 
+    PARAM CALC-TYPE=SIMULATION AREA=10. 
+    FEEDS HOT=S24 COLD=BIO 
+    OUTLETS-HOT WASTEH2O 
+    OUTLETS-COLD S25 
+    HOT-SIDE DPPARMOPT=NO 
+    COLD-SIDE DPPARMOPT=NO 
+    TQ-PARAM CURVE=YES 
+;
+;
+;
+;
+;
