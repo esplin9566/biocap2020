@@ -1,0 +1,19 @@
+;
+;Input file created by Aspen Plus Rel. 36.0 at 04:02:41 Fri Mar 20, 2020
+;Directory   Runid full recycle test
+;
+
+
+DYNAMICS
+    DYNAMICS RESULTS=ON
+
+BLOCK B23 HEATER 
+    PARAM TEMP=115. PRES=1. DPPARMOPT=NO 
+
+BLOCK B26 FLASH2 
+    PARAM PRES=0.2 DUTY=0. 
+;
+;
+;
+;
+;
