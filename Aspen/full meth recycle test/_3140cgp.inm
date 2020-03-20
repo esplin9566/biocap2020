@@ -1,0 +1,17 @@
+;
+;Input file created by Aspen Plus Rel. 36.0 at 02:46:19 Fri Mar 20, 2020
+;Directory   Runid full meth recycle test
+;
+
+
+DYNAMICS
+    DYNAMICS RESULTS=ON
+
+STREAM UREAIN 
+    SUBSTREAM MIXED TEMP=25. PRES=1. MASS-FLOW=150. 
+    MOLE-FRAC UREA 1. 
+;
+;
+;
+;
+;
