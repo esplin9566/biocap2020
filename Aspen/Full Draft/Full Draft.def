@@ -1,10 +1,10 @@
-INPUT: full draft.inm
+INPUT: Full Draft.inm
 MODNAME: apmain
-RUNID: full draft
-NEW_RUNID: full draft
-OLD_RUNID: full draft
-PDF: full draft.appdf
-USERNAME: benjam2
+RUNID: Full Draft
+NEW_RUNID: Full Draft
+OLD_RUNID: Full Draft
+PDF: Full Draft.appdf
+USERNAME: conbor
 XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\xeq\apmain
 SPONLY:
-DBCONN: _1834prd.ads
+DBCONN: _0414moc.ads

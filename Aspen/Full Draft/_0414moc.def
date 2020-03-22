@@ -1,0 +1,11 @@
+SLAVE:
+INPUT: _0414moc.inm
+MODNAME: apmain
+RUNID: _0414moc
+NEW_RUNID: _0414moc
+OLD_RUNID: _0414moc
+PDF: _0414moc.appdf
+USERNAME: conbor
+XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\xeq\apmain
+SPONLY:
+DBCONN: _0414moc
