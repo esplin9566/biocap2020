@@ -1,0 +1,498 @@
+ >>ORIGINAL RUN                           MARCH 27, 2020      
+   4:20:49 P.M.                           FRIDAY      
+   INPUT FILE: _4547caa.inm
+   RUN ID : _4547caa
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 36.0 at 16:20:46 Fri Mar 27, 2020
+          3    ;Directory   Runid FULL DRAFT B21 TEST (1)
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         11            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         12
+         13    DEF-STREAMS CONVEN ALL
+         14
+         15    MODEL-OPTION
+         16
+         17    DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         18             / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+         19            'NISTV100 NIST-TRC' / NOASPENPCD
+         20
+         21    PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+         22            'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         23             / 'NISTV100 NIST-TRC'
+         24
+         25    COMPONENTS
+         26        GLYCEROL C3H8O3 /
+         27        TRIOL-01 C57H104O6 /
+         28        TRILI-01 C57H98O6 /
+         29        METHA-01 CH4O /
+         30        METHY-01 C19H36O2 /
+         31        METHY-02 C19H34O2 /
+         32        UREA CH4N2O /
+         33        CALCI-01 CAO /
+         34        LANTH-01 LA2O3 /
+         35        AMMON-01 H3N /
+         36        GLYCE-01 C4H6O4-N1 /
+         37        NITROGEN N2 /
+         38        WATER H2O /
+         39        AIR AIR
+         40
+         41    CISOLID-COMPS CALCI-01 LANTH-01
+         42
+         43    SOLVE
+         44        RUN-MODE MODE=SIM
+         45
+         46    FLOWSHEET
+         47        HIERARCHY B2
+         48        CONNECT $C-1 IN=S103 OUT="B2.S4"
+         49        CONNECT $C-3 IN=CA101 OUT="B2.CATIN"
+         50        CONNECT $C-2 IN="B2.S5" OUT=S104
+         51        BLOCK B4 IN=S105 OUT=S106 S201
+         52        BLOCK B3 IN=S104 OUT=S105 R101
+         53        BLOCK B1 IN=OILS METHANOL OUT=S101
+         54        BLOCK B6 IN=S107 OUT=R104 P101
+         55        BLOCK B9 IN=S201 OUT=R201 S202
+         56        BLOCK B8 IN=S204 CA201 OUT=S205
+         57        BLOCK B12 IN=S205 OUT=S206 R204
+         58        BLOCK B13 IN=S206 OUT=D203 S207
+         59        BLOCK B14 IN=S208 OUT=R207 P201
+         60        BLOCK B15 IN=S207 OUT=S208
+         61        BLOCK HEATX1 IN=W101 S106 OUT=W102 S107
+         62        BLOCK B11 IN=UREA S202 R208 OUT=S203
+         63        BLOCK HEATX2 IN=P201 S203 OUT=P202 S204
+         64        BLOCK B7 IN=R201 OUT=R202 D201
+         65        BLOCK B17 IN=S101 R106 OUT=S102
+         66        BLOCK B16 IN=R105 WATER OUT=R106 W101
+         67        BLOCK B19 IN=R202 OUT=R203
+         68        BLOCK B10 IN=S102 OUT=S103
+         69        BLOCK B18 IN=R203 R104 OUT=R105
+         70        BLOCK B5 IN=R207 W102 OUT=R208 W103
+         71        BLOCK B20 IN=D203 W103 OUT=D204 W104
+         72        BLOCK B21 IN=P202 W104 OUT=P203 W105
+         73        BLOCK B23 IN=P101 OUT=P102
+         74        BLOCK B26 IN=P102 OUT=D102 P103
+         75        BLOCK B22 IN=R101 OUT=R102 D101
+         76        BLOCK B25 IN=CAO R102 OUT=R103
+         77        BLOCK B27 IN=R204 OUT=R205 D202
+         78        BLOCK B28 IN=LAO R205 OUT=R206
+         79        BLOCK B24 IN=R206 OUT=CA201
+         80        BLOCK B29 IN=R103 OUT=CA101
+         81        BLOCK COOLT IN=AIR W105 OUT=W107 W106
+         82
+         83    PROPERTIES SR-POLAR
+         84        PROPERTIES IDEAL / NRTL
+         85
+         86    ESTIMATE ALL
+         87
+         88    PROP-DATA PCES-1
+         89        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+         90            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+         91        PROP-LIST OMEGA / DHVLB / VB / RGYR / RKTZRA / VLSTD
+         92        PVAL UREA .5992461800 / 20985.95586 / 48.82570000 /  &
+         93            2.6000000E-10 / .2351731880 / 48.82570000
+         94        PROP-LIST RKTZRA / VLSTD
+         95        PVAL CALCI-01 .2918596200 / 298.9063450
+         96        PVAL GLYCE-01 .2037543860 / 69.23640000
+         97        PROP-LIST VLSTD
+         98        PVAL AIR 32.91470000
+         99
+        100    PROP-DATA DHVLWT-1
+        101        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        102            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        103        PROP-LIST DHVLWT
+        104        PVAL CALCI-01 5.38817025E+5 3396.850000 .3800000000 0.0  &
+        105            3396.850000
+        106
+        107    PROP-DATA KLDIP-1
+        108        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        109            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        110        PROP-LIST KLDIP
+        111        PVAL UREA .0494897448 1.57543997E-3 -1.0085909E-5  &
+        112            2.44404255E-8 -2.254923E-11 191.8500000 424.8000000
+        113        PVAL CALCI-01 -.6218197112 7.78300188E-4 -2.8775749E-7  &
+        114            4.5627261E-11 -2.727830E-15 3396.850000 5686.650000
+        115
+        116    PROP-DATA MULAND-1
+        117        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        118            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        119        PROP-LIST MULAND
+        120        PVAL UREA 129.3349773 -7951.576030 -18.41338230 191.8500000  &
+        121            424.8000000
+        122        PVAL CALCI-01 81.01615608 -12127.32210 -10.25255770  &
+        123            1126.850000 1706.850000
+        124
+        125    PROP-DATA PLXANT-1
+        126        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        127            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        128        PROP-LIST PLXANT
+        129        PVAL UREA 77.19179774 -10639.35530 0.0 0.0 -8.846083610  &
+        130            3.4142003E-18 6.000000000 191.8500000 431.8500000
+        131
+        132    PROP-DATA SIGDIP-1
+        133        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        134            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        135        PROP-LIST SIGDIP
+        136        PVAL UREA 156.7709600 1.222222220 5.9537296E-10  &
+        137            -6.635066E-10 2.6632382E-10 191.8500000 417.7500000
+        138        PVAL GLYCE-01 156.3532160 1.222222220 5.9089352E-10  &
+        139            -6.640628E-10 2.6313812E-10 323.7990000 543.1900000
+        140        PVAL CALCI-01 139.2135830 1.222222220 -2.171954E-10  &
+        141            2.3955375E-10 -9.673330E-11 3396.850000 5626.450000
+        142
+        143    PROP-DATA SIGDIP-1
+        144        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        145            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        146        PROP-LIST SIGDIP
+        147        PVAL AIR 26.91910850 1.222222220 4.4891197E-10  &
+        148            -4.938161E-10 1.9962172E-10 -194.4800000 -143.3490000
+        149
+        150    PROP-DATA BWRKT-1
+        151        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        152            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        153        PROP-LIST BWRKT
+        154        BPVAL NITROGEN WATER -.3032300000
+        155        BPVAL WATER NITROGEN -.3032300000
+        156
+        157    PROP-DATA BWRKV-1
+        158        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        159            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        160        PROP-LIST BWRKV
+        161        BPVAL NITROGEN WATER .1032000000
+        162        BPVAL WATER NITROGEN .1032000000
+        163
+        164    PROP-DATA HOCETA-1
+        165        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        166            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        167        PROP-LIST HOCETA
+        168        BPVAL METHA-01 METHA-01 1.630000000
+        169        BPVAL METHA-01 AMMON-01 .2000000000
+        170        BPVAL METHA-01 WATER 1.550000000
+        171        BPVAL AMMON-01 METHA-01 .2000000000
+        172        BPVAL AMMON-01 WATER .2000000000
+        173        BPVAL WATER METHA-01 1.550000000
+        174        BPVAL WATER AMMON-01 .2000000000
+        175        BPVAL WATER WATER 1.700000000
+        176
+        177    PROP-DATA NRTL-1
+        178        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        179            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        180        PROP-LIST NRTL
+        181        BPVAL GLYCEROL METHA-01 0.0 -218.5217000 .3000000000 0.0  &
+        182            0.0 0.0 25.00000000 62.50000000
+        183        BPVAL METHA-01 GLYCEROL 0.0 547.8301000 .3000000000 0.0  &
+        184            0.0 0.0 25.00000000 62.50000000
+        185        BPVAL GLYCEROL WATER -.7318000000 170.9167000 .3000000000  &
+        186            0.0 0.0 0.0 25.00000000 290.0000000
+        187        BPVAL WATER GLYCEROL -1.251500000 272.6075000 .3000000000  &
+        188            0.0 0.0 0.0 25.00000000 290.0000000
+        189        BPVAL METHA-01 WATER -.6930000000 172.9871000 .3000000000  &
+        190            0.0 0.0 0.0 24.99000000 100.0000000
+        191        BPVAL WATER METHA-01 2.732200000 -617.2687000 .3000000000  &
+        192            0.0 0.0 0.0 24.99000000 100.0000000
+        193        BPVAL AMMON-01 WATER 9.612100000 -3232.815900 .3000000000  &
+        194            0.0 0.0 0.0 10.00000000 91.50000000
+        195        BPVAL WATER AMMON-01 -6.268400000 1525.454300 .3000000000  &
+        196            0.0 0.0 0.0 10.00000000 91.50000000
+        197
+        198    STREAM AIR
+        199        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=225.
+        200        MOLE-FRAC AIR 1.
+        201
+        202    STREAM CAO
+        203        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=66. <mol/hr>
+        204        MOLE-FRAC CALCI-01 1.
+        205
+        206    STREAM LAO
+        207        SUBSTREAM MIXED TEMP=25. PRES=1. MASS-FLOW=2.
+        208        MOLE-FRAC LANTH-01 1.
+        209
+        210    STREAM METHANOL
+        211        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=14536. <mol/hr>
+        212        MOLE-FRAC METHA-01 1.
+        213
+        214    STREAM OILS
+        215        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=2200. <mol/hr>
+        216        MOLE-FRAC TRIOL-01 0.6 / TRILI-01 0.4
+        217
+        218    STREAM UREA
+        219        SUBSTREAM MIXED TEMP=25. PRES=1. MASS-FLOW=150.
+        220        MOLE-FRAC UREA 1.
+        221
+        222    STREAM WATER
+        223        SUBSTREAM MIXED TEMP=25. PRES=1. MOLE-FLOW=225.
+        224        MOLE-FRAC WATER 1.
+        225
+        226    BLOCK B1 MIXER
+        227        PARAM PRES=1. NPHASE=1 PHASE=L TOL=0.01 T-EST=25.
+        228        PROPERTIES IDEAL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        229            TRUE-COMPS=YES
+        230        BLOCK-OPTION FREE-WATER=NO
+        231
+        232    BLOCK B11 MIXER
+        233        PARAM PRES=1.
+        234
+        235    BLOCK B17 MIXER
+        236        PARAM PRES=1. NPHASE=1 PHASE=L
+        237        PROPERTIES IDEAL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        238            TRUE-COMPS=YES
+        239        BLOCK-OPTION FREE-WATER=NO
+        240
+        241    BLOCK B18 MIXER
+        242        PARAM
+        243
+        244    BLOCK B25 MIXER
+        245        PARAM PRES=1. NPHASE=1 PHASE=S
+        246        BLOCK-OPTION FREE-WATER=NO
+        247
+        248    BLOCK B28 MIXER
+        249        PARAM PRES=1. NPHASE=1 PHASE=S
+        250        BLOCK-OPTION FREE-WATER=NO
+        251
+        252    BLOCK B7 FSPLIT
+        253        FRAC R202 0.99
+        254
+        255    BLOCK B22 FSPLIT
+        256        FRAC R102 0.9
+        257
+        258    BLOCK B27 FSPLIT
+        259        FRAC R205 0.9
+        260
+        261    BLOCK B10 HEATER
+        262        PARAM TEMP=65. PRES=1. NPHASE=1 PHASE=L DPPARMOPT=NO
+        263        BLOCK-OPTION FREE-WATER=NO
+        264
+        265    BLOCK B23 HEATER
+        266        PARAM TEMP=115. PRES=1. DPPARMOPT=NO
+        267        PROPERTIES NRTL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        268            TRUE-COMPS=YES
+        269
+        270    BLOCK B24 HEATER
+        271        PARAM TEMP=600. PRES=1. NPHASE=1 PHASE=S DPPARMOPT=NO
+        272        BLOCK-OPTION FREE-WATER=NO
+        273
+        274    BLOCK B29 HEATER
+        275        PARAM TEMP=600. PRES=1. NPHASE=1 PHASE=S DPPARMOPT=NO
+        276        BLOCK-OPTION FREE-WATER=NO
+        277
+        278    BLOCK B9 FLASH2
+        279        PARAM TEMP=100. PRES=0.2 MAXIT=30
+        280        PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        281            TRUE-COMPS=YES
+        282
+        283    BLOCK B13 FLASH2
+        284        PARAM PRES=0.5 DUTY=0.
+        285
+        286    BLOCK B26 FLASH2
+        287        PARAM PRES=0.2 DUTY=0.
+        288        PROPERTIES NRTL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        289            TRUE-COMPS=YES
+        290
+        291    BLOCK COOLT FLASH2
+        292        PARAM PRES=1. DUTY=0.
+        293
+        294    BLOCK B4 DECANTER
+        295        PARAM TEMP=65. PRES=1. LL-METH=EQ-SOLVE L2-COMPS=METHA-01  &
+        296            L2-CUTOFF=0.5 MAXIT=30
+        297
+        298    BLOCK B5 HEATX
+        299        PARAM T-HOT=140. CALC-TYPE=DESIGN U-OPTION=PHASE  &
+        300            F-OPTION=CONSTANT CALC-METHOD=SHORTCUT
+        301        FEEDS HOT=R207 COLD=W102
+        302        OUTLETS-HOT R208
+        303        OUTLETS-COLD W103
+        304        HOT-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        305        COLD-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        306        TQ-PARAM CURVE=YES
+        307
+        308    BLOCK B16 HEATX
+        309        PARAM T-HOT=63. CALC-TYPE=DESIGN TYPE=COUNTERCURRE  &
+        310            PRES-HOT=1. U-OPTION=PHASE F-OPTION=CONSTANT  &
+        311            CALC-METHOD=SHORTCUT
+        312        FEEDS HOT=R105 COLD=WATER
+        313        OUTLETS-HOT R106
+        314        OUTLETS-COLD W101
+        315        PROPERTIES NRTL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        316            TRUE-COMPS=YES / STEAM-TA FREE-WATER=STEAM-TA  &
+        317            SOLU-WATER=3 TRUE-COMPS=YES
+        318        HOT-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        319        COLD-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        320        TQ-PARAM CURVE=YES
+        321
+        322    BLOCK B20 HEATX
+        323        PARAM T-HOT=90. CALC-TYPE=DESIGN U-OPTION=PHASE  &
+        324            F-OPTION=CONSTANT CALC-METHOD=SHORTCUT
+        325        FEEDS HOT=D203 COLD=W103
+        326        OUTLETS-HOT D204
+        327        OUTLETS-COLD W104
+        328        HOT-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        329        COLD-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        330        TQ-PARAM CURVE=YES
+        331
+        332    BLOCK B21 HEATX
+        333        PARAM CALC-TYPE=SIMULATION PRES-HOT=0.998848186  &
+        334            PRES-COLD=0.968636366 LMTD-CORRECT=0.928772334  &
+        335            U-OPTION=CONSTANT F-OPTION=CONSTANT CALC-METHOD=SHORTCUT  &
+        336            UA=126.294659
+        337        FEEDS HOT=P202 COLD=W104
+        338        OUTLETS-HOT P203
+        339        OUTLETS-COLD W105
+        340        HEAT-TR-COEF U=0.00931773042
+        341        HOT-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        342        COLD-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        343        TQ-PARAM CURVE=YES
+        344
+        345    BLOCK HEATX1 HEATX
+        346        PARAM T-COLD=80. CALC-TYPE=DESIGN TYPE=COUNTERCURRE  &
+        347            U-OPTION=PHASE F-OPTION=CONSTANT CALC-METHOD=SHORTCUT
+        348        FEEDS HOT=W101 COLD=S106
+        349        OUTLETS-HOT W102
+        350        OUTLETS-COLD S107
+        351        PROPERTIES NRTL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        352            TRUE-COMPS=YES / NRTL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        353            TRUE-COMPS=YES
+        354        HOT-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        355        COLD-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        356        TQ-PARAM CURVE=YES
+        357
+        358    BLOCK HEATX2 HEATX
+        359        PARAM T-COLD=140. CALC-TYPE=DESIGN U-OPTION=PHASE  &
+        360            F-OPTION=CONSTANT CALC-METHOD=SHORTCUT
+        361        FEEDS HOT=P201 COLD=S203
+        362        OUTLETS-HOT P202
+        363        OUTLETS-COLD S204
+        364        HOT-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        365        COLD-SIDE DP-OPTION=CONSTANT DPPARMOPT=NO
+        366        TQ-PARAM CURVE=YES
+        367
+        368    BLOCK B6 RADFRAC
+        369        PARAM NSTAGE=3 ALGORITHM=NONIDEAL INIT-OPTION=STANDARD  &
+        370            MAXOL=200 DAMPING=NONE
+        371        COL-CONFIG CONDENSER=PARTIAL-V
+        372        FEEDS S107 2 ON-STAGE
+        373        PRODUCTS P101 3 L / R104 1 V
+        374        P-SPEC 1 1. / 2 1.
+        375        COL-SPECS MASS-D:F=0.17 MASS-RR=3.
+        376        PROPERTIES IDEAL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        377            TRUE-COMPS=YES
+        378
+        379    BLOCK B14 RADFRAC
+        380        PARAM NSTAGE=16 ALGORITHM=STANDARD MAXOL=25 DAMPING=NONE
+        381        COL-CONFIG CONDENSER=PARTIAL-V
+        382        FEEDS S208 10
+        383        PRODUCTS R207 1 V / P201 16 L
+        384        P-SPEC 1 1.
+        385        COL-SPECS MASS-D:F=0.18 MOLE-RR=3.
+        386
+        387    BLOCK B8 RSTOIC
+        388        PARAM TEMP=140. PRES=3. <kPa>
+        389        STOIC 1 MIXED GLYCEROL -1. / UREA -1. / AMMON-01 2. /  &
+        390            GLYCE-01 1.
+        391        CONV 1 MIXED GLYCEROL 0.85
+        392
+        393    HIERARCHY B2
+        394
+        395
+        396    DEF-STREAMS CONVEN ALL
+        397
+        398    SOLVE
+        399        PARAM METHOD=SM PROCESS=BATCH
+        400        RUN-MODE MODE=SIM
+        401
+        402    FLOWSHEET
+        403        BLOCK B1 IN=S1 OUT=S5
+        404        BLOCK B2 IN=S4 CATIN OUT=S1
+        405
+        406    PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        407            TRUE-COMPS=YES
+        408        PROPERTIES IDEAL / NRTL
+        409
+        410    BLOCK B2 MIXER
+        411        PARAM PRES=1. NPHASE=1 PHASE=L
+        412        PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        413            TRUE-COMPS=YES
+        414        BLOCK-OPTION FREE-WATER=NO
+        415
+        416    BLOCK B1 BATCHOP
+        417        PARAM TYPE=T-SPEC PRES=1. TEMP=65. NPHASE=1 PHASE=L
+        418        INIT-COND FEED-TIME=1.
+        419        DISCHARGE DISCHARGE-T=1.
+        420        REACTIONS RXN-IDS=R-1 R-2
+        421        BLOCK-OPTION FREE-WATER=NO
+        422
+        423    EO-CONV-OPTI
+        424
+        425    BATCH-OPTS
+        426        PARAM MAX-TIME=6. OUTPUT-INT=0.05
+        427
+        428    ENDHIERARCHY B2
+        429
+        430    BLOCK B15 PUMP
+        431        PARAM DELP=0.5
+        432
+        433    BLOCK B19 COMPR
+        434        PARAM TYPE=ISENTROPIC DELP=0.8 NPHASE=2 SB-MAXIT=30  &
+        435            SB-TOL=0.0001
+        436        BLOCK-OPTION FREE-WATER=NO
+        437
+        438    BLOCK B3 CFUGE
+        439        PARAM TYPE=SOLIDS-SEP NPHASE=2 PRES=1. DELT=0.
+        440        SOLIDS-SEP SOLID-SPLIT=1. FLUID-SPLIT=1.
+        441        PROPERTIES NRTL FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        442            TRUE-COMPS=YES
+        443
+        444    BLOCK B12 CFUGE
+        445        PARAM TYPE=SOLIDS-SEP NPHASE=2 PRES=1.
+        446        SOLIDS-SEP SOLID-SPLIT=1. FLUID-SPLIT=1.
+        447
+        448    EO-CONV-OPTI
+        449
+        450    STREAM-REPOR MOLEFLOW
+        451
+        452    PROPERTY-REP PCES
+        453
+        454    REACTIONS R-1 LHHW
+        455        REAC-DATA 1
+        456        RATE-CON 1 PRE-EXP=0.07 ACT-ENERGY=16.6 <kJ/mol>
+        457        STOIC 1 MIXED TRIOL-01 -1. / METHA-01 -3. / METHY-01 3. / &
+        458            GLYCEROL 1.
+        459        DFORCE-EXP-1 1 MIXED TRIOL-01 1. / MIXED METHA-01 0. /  &
+        460            MIXED METHY-01 0. / MIXED GLYCEROL 0.
+        461        DFORCE-EQ-1 REACNO=1 A=0.
+        462        DFORCE-EQ-2 REACNO=1 A=-52.95
+        463
+        464    REACTIONS R-2 LHHW
+        465        REAC-DATA 1
+        466        RATE-CON 1 PRE-EXP=0.07 ACT-ENERGY=16.6 <kJ/mol>
+        467        STOIC 1 MIXED TRILI-01 -1. / METHA-01 -3. / GLYCEROL 1. / &
+        468            METHY-02 3.
+        469        DFORCE-EXP-1 1 MIXED TRILI-01 1. / MIXED METHA-01 0. /  &
+        470            MIXED GLYCEROL 0. / MIXED METHY-02 0.
+        471        DFORCE-EQ-1 REACNO=1 A=0.
+        472        DFORCE-EQ-2 REACNO=1 A=-52.95
+        473
+        474    PROP-TABLE BINRY-2 PROPS
+        475        IN-UNITS MET PRESSURE=bar TEMPERATURE=C DELTA-T=C PDROP=bar  &
+        476            INVERSE-PRES='1/bar' SHORT-LENGTH=mm
+        477        ANALYSIS ANAL-TYPE=GIBBS UNITS='cal/mol'
+        478        PROPERTIES SR-POLAR FREE-WATER=STEAM-TA SOLU-WATER=3  &
+        479            TRUE-COMPS=YES
+        480        MOLE-FLOW GLYCEROL 1 /  METHY-01  1
+        481        STATE PRES=1.
+        482        VARY TEMP
+        483        RANGE LIST=40.
+        484        VARY MOLEFRAC COMP=GLYCEROL
+        485        RANGE VARVALUE=RANGE LOWER=0.0 UPPER=1.0 NPOINT=50
+        486        PARAM NPHASE=3
+        487    ;
+        488    ;
+        489    ;
+        490    ;
+        491    ;
+
+   SIMULATION STARTED     MODULE USED: apmain  
+   LOCATED IN:C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\\xeq
